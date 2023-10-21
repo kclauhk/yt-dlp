@@ -136,8 +136,8 @@ class IdoltvVodIE(IdoltvIE):
     def _real_extract(self, url):
         id = self._match_id(url)
         webpage = (self._download_webpage(url, id)).replace('&nbsp;', ' ')
-        fulltitle = (self._html_extract_title(webpage) or
-                     self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
+        fulltitle = (self._html_extract_title(webpage)
+                     or self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
         title = (self._html_search_regex(r'<h2 class="title" id="name">\s*<span itemprop="name">(.+)</span>\s*</h2>', webpage, 'title', default=None, fatal=False)
                  or fulltitle.split(' | ')[0])
         catagory = (self._html_search_regex(r'分類：</span><a href=".+">(.+)</a>', webpage, 'title', default=None, fatal=False)
