@@ -37,18 +37,18 @@ class IdoltvIE(InfoExtractor):
         id, source_id, episode_id = self._match_valid_url(url).group('id', 'source_id', 'episode_id')
         video_id = str(id) + '-' + str(episode_id)
         webpage = (self._download_webpage(url, video_id)).replace('&nbsp;', ' ')
-        fulltitle = (self._html_extract_title(webpage) or 
-                     self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
-        title = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', webpage, 'title', default=None, fatal=False) or 
-                 fulltitle.split(' | ')[0])
+        fulltitle = (self._html_extract_title(webpage)
+                     or self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
+        title = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', webpage, 'title', default=None, fatal=False)
+                 or fulltitle.split(' | ')[0])
         catagory = fulltitle.split(' | ')[1]
-        description = (self._html_search_regex(r'<div class="panel play_content" style="display:none;">((.|\s)*?)</div>', webpage, 'description', default=None, fatal=False) or 
-                       self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1]).split('\n')[-1]
+        description = (self._html_search_regex(r'<div class="panel play_content" style="display:none;">((.|\s)*?)</div>', webpage, 'description', default=None, fatal=False)
+                       or self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1]).split('\n')[-1]
         thumbnail = self._html_search_meta(['og:image', 'twitter:image'], webpage, 'thumbnail')
         upload_date = self._html_search_regex(r'vod/(\d{8})-', thumbnail, 'upload_date', default=None, fatal=False)
         average_rating = float_or_none(self._html_search_regex(r'<span class="text_score">(\d+\.\d+)', webpage, 'text_score', default=None, fatal=False))
-        tags = (self._html_search_regex(r'<span class="split_line"></span></span>\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False) or 
-                self._html_search_regex(r'<p class="nstem data ms_p margin_0">\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False)).split(' ')
+        tags = (self._html_search_regex(r'<span class="split_line"></span></span>\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False)
+                or self._html_search_regex(r'<p class="nstem data ms_p margin_0">\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False)).split(' ')
         conch = re.findall(r'<li class="tab-play conch-01" title="(.+)"><a href="(.+?)">', webpage)
         tab_play = re.findall(r'<li class="tab-play " title="(.+)"><a href="(.+?)">', webpage)
         playlist = re.findall(r'<li ><a href="(.+?)">(.+?)</a></li>',
@@ -71,8 +71,8 @@ class IdoltvIE(InfoExtractor):
 
         for s in tab_play:
             page = (self._download_webpage('https://idoltv.tv%s' % (s[1]), video_id)).replace('&nbsp;', ' ')
-            t = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', page, 'title', default=None, fatal=False) or 
-                 self._html_extract_title(page).split(' | ')[0])
+            t = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', page, 'title', default=None, fatal=False)
+                 or self._html_extract_title(page).split(' | ')[0])
             v = [self._parse_json(j, video_id, fatal=False) for j in re.findall(r'>var player_data=({.*})</script>', page)]
             if url_or_none(v[0]['url']):
                 f = self._extract_m3u8_formats_and_subtitles(v[0]['url'], video_id, fatal=False)[0]
@@ -138,12 +138,12 @@ class IdoltvVodIE(IdoltvIE):
         webpage = (self._download_webpage(url, id)).replace('&nbsp;', ' ')
         fulltitle = (self._html_extract_title(webpage) or
                      self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
-        title = (self._html_search_regex(r'<h2 class="title" id="name">\s*<span itemprop="name">(.+)</span>\s*</h2>', webpage, 'title', default=None, fatal=False) or 
-                 fulltitle.split(' | ')[0])
-        catagory = (self._html_search_regex(r'分類：</span><a href=".+">(.+)</a>', webpage, 'title', default=None, fatal=False) or 
-                    fulltitle.split(' | ')[1])
-        description = (self._html_search_regex(r'<div class="content_desc full_text clearfix" id="description">((.|\s)*?)</span>', webpage, 'description', default=None, fatal=False) or 
-                       self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1])
+        title = (self._html_search_regex(r'<h2 class="title" id="name">\s*<span itemprop="name">(.+)</span>\s*</h2>', webpage, 'title', default=None, fatal=False)
+                 or fulltitle.split(' | ')[0])
+        catagory = (self._html_search_regex(r'分類：</span><a href=".+">(.+)</a>', webpage, 'title', default=None, fatal=False)
+                    or fulltitle.split(' | ')[1])
+        description = (self._html_search_regex(r'<div class="content_desc full_text clearfix" id="description">((.|\s)*?)</span>', webpage, 'description', default=None, fatal=False)
+                       or self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1])
         thumbnail = self._html_search_meta(['og:image', 'twitter:image'], webpage, 'thumbnail')
         upload_date = self._html_search_regex(r'vod/(\d{8})-', thumbnail, 'upload_date', default=None, fatal=False)
         average_rating = float_or_none(self._html_search_regex(r'<span class="star_tips">(\d+\.\d+)</span>', webpage, 'star_tips', default=None, fatal=False))
