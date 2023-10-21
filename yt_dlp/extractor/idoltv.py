@@ -22,7 +22,7 @@ class IdoltvIE(InfoExtractor):
                 'description': '講述一段鄉村的愛情故事。奉藝奮（韓志旼 飾）是一位擁有讀 心術的獸醫，某天，被下放到鄉村的熱血刑警文張烈（李民基 飾）無意間發現她的這項超能力。在這個清淨的村莊裡，兩人聯手解決著 居民們的各種問題，卻意外捲入一場連續殺人事件。一段搞笑的聯手搜查故事就此展開！',
                 'thumbnail': 'https://idoltv.tv/upload/vod/20230813-1/1da9f9ee7fc5a9797496699f782359ce.jpg',
                 'catagory': ['韓劇'],
-                'tags': ['2023','韓國','奇幻','喜劇','愛情','警察'],
+                'tags': ['2023', '韓國', '奇幻', '喜劇', '愛情', '警察'],
                 'release_year': 2023,
                 'upload_date': '20230813',
                 'average_rating': 10.0,
@@ -37,22 +37,22 @@ class IdoltvIE(InfoExtractor):
         id, source_id, episode_id = self._match_valid_url(url).group('id', 'source_id', 'episode_id')
         video_id = str(id) + '-' + str(episode_id)
         webpage = (self._download_webpage(url, video_id)).replace('&nbsp;', ' ')
-        fulltitle = (self._html_extract_title(webpage) or
+        fulltitle = (self._html_extract_title(webpage) or 
                      self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
-        title = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', webpage, 'title', default=None, fatal=False) or
+        title = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', webpage, 'title', default=None, fatal=False) or 
                  fulltitle.split(' | ')[0])
         catagory = fulltitle.split(' | ')[1]
-        description = (self._html_search_regex(r'<div class="panel play_content" style="display:none;">((.|\s)*?)</div>', webpage, 'description', default=None, fatal=False) or
+        description = (self._html_search_regex(r'<div class="panel play_content" style="display:none;">((.|\s)*?)</div>', webpage, 'description', default=None, fatal=False) or 
                        self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1]).split('\n')[-1]
         thumbnail = self._html_search_meta(['og:image', 'twitter:image'], webpage, 'thumbnail')
         upload_date = self._html_search_regex(r'vod/(\d{8})-', thumbnail, 'upload_date', default=None, fatal=False)
         average_rating = float_or_none(self._html_search_regex(r'<span class="text_score">(\d+\.\d+)', webpage, 'text_score', default=None, fatal=False))
-        tags = (self._html_search_regex(r'<span class="split_line"></span></span>\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False) or
+        tags = (self._html_search_regex(r'<span class="split_line"></span></span>\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False) or 
                 self._html_search_regex(r'<p class="nstem data ms_p margin_0">\s*(.*)[^</p>]', webpage, 'tag', default=None, fatal=False)).split(' ')
         conch = re.findall(r'<li class="tab-play conch-01" title="(.+)"><a href="(.+?)">', webpage)
         tab_play = re.findall(r'<li class="tab-play " title="(.+)"><a href="(.+?)">', webpage)
         playlist = re.findall(r'<li ><a href="(.+?)">(.+?)</a></li>',
-                    re.sub(r'(\n|\t)+', '', (re.findall(r'<ul class="content_playlist list_scroll clearfix">((.|\s)+?)</ul>', webpage) or (' '))[0][0]))
+                              re.sub(r'(\n|\t)+', '', (re.findall(r'<ul class="content_playlist list_scroll clearfix">((.|\s)+?)</ul>', webpage) or (' '))[0][0]))
         video_data = [self._parse_json(j, video_id, fatal=False) for j in re.findall(r'>var player_data=({.*})</script>', webpage)]
 
         formats = []
@@ -62,7 +62,7 @@ class IdoltvIE(InfoExtractor):
                 f[0]['format_id'] = re.sub('[^0-9]+', '', conch[0][0])
                 f[0]['ext'] = ('mp4' if not f[0]['ext'] else f[0]['ext'])
                 f[0]['format_note'] = conch[0][0]
-                if not 'width' in f[0].keys() and not 'height' in f[0].keys() and title.count(' 1080P') > 0:
+                if 'width' not in f[0].keys() and 'height' not in f[0].keys() and title.count(' 1080P') > 0:
                     f[0]['width'], f[0]['height'] = 1920, 1080
                 # ‘雲播15’ provides lesser info but usually higher resolution and faster download
                 if f[0]['url'].count('.haiwaikan.com') > 0:
@@ -71,7 +71,7 @@ class IdoltvIE(InfoExtractor):
 
         for s in tab_play:
             page = (self._download_webpage('https://idoltv.tv%s' % (s[1]), video_id)).replace('&nbsp;', ' ')
-            t = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', page, 'title', default=None, fatal=False) or
+            t = (self._html_search_regex(r'<h2 class="title margin_0">(.+?)</h2>', page, 'title', default=None, fatal=False) or 
                  self._html_extract_title(page).split(' | ')[0])
             v = [self._parse_json(j, video_id, fatal=False) for j in re.findall(r'>var player_data=({.*})</script>', page)]
             if url_or_none(v[0]['url']):
@@ -80,7 +80,7 @@ class IdoltvIE(InfoExtractor):
                     f[0]['format_id'] = re.sub('[^0-9]+', '', s[0])
                     f[0]['ext'] = ('mp4' if not f[0]['ext'] else f[0]['ext'])
                     f[0]['format_note'] = s[0]
-                    if not 'width' in f[0].keys() and not 'height' in f[0].keys() and t.count(' 1080P') > 0:
+                    if 'width' not in f[0].keys() and 'height' not in f[0].keys() and t.count(' 1080P') > 0:
                         f[0]['width'], f[0]['height'] = 1920, 1080
                     # ‘雲播15’ provides lesser info but usually higher resolution and faster download
                     if f[0]['url'].count('.haiwaikan.com') > 0:
@@ -138,11 +138,11 @@ class IdoltvVodIE(IdoltvIE):
         webpage = (self._download_webpage(url, id)).replace('&nbsp;', ' ')
         fulltitle = (self._html_extract_title(webpage) or
                      self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
-        title = (self._html_search_regex(r'<h2 class="title" id="name">\s*<span itemprop="name">(.+)</span>\s*</h2>', webpage, 'title', default=None, fatal=False) or
+        title = (self._html_search_regex(r'<h2 class="title" id="name">\s*<span itemprop="name">(.+)</span>\s*</h2>', webpage, 'title', default=None, fatal=False) or 
                  fulltitle.split(' | ')[0])
-        catagory = (self._html_search_regex(r'分類：</span><a href=".+">(.+)</a>', webpage, 'title', default=None, fatal=False) or
+        catagory = (self._html_search_regex(r'分類：</span><a href=".+">(.+)</a>', webpage, 'title', default=None, fatal=False) or 
                     fulltitle.split(' | ')[1])
-        description = (self._html_search_regex(r'<div class="content_desc full_text clearfix" id="description">((.|\s)*?)</span>', webpage, 'description', default=None, fatal=False) or
+        description = (self._html_search_regex(r'<div class="content_desc full_text clearfix" id="description">((.|\s)*?)</span>', webpage, 'description', default=None, fatal=False) or 
                        self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1])
         thumbnail = self._html_search_meta(['og:image', 'twitter:image'], webpage, 'thumbnail')
         upload_date = self._html_search_regex(r'vod/(\d{8})-', thumbnail, 'upload_date', default=None, fatal=False)
@@ -150,7 +150,7 @@ class IdoltvVodIE(IdoltvIE):
         year = self._html_search_regex(r'年份：</span><a href=".+" target="_blank">(\d+)</a>', webpage, 'year', default=None, fatal=False)
         region = self._html_search_regex(r'地區：</span><a href=".+" target="_blank">(.+)</a>', webpage, 'region', default=None, fatal=False)
         playlist = re.findall(r'<li><a itemprop="url" href="(.+?)">',
-                    re.sub(r'(\n|\t)+', '', (re.findall(r'<ul class="content_playlist list_scroll clearfix">((.|\s)+?)</ul>', webpage) or (' '))[0][0]))
+                              re.sub(r'(\n|\t)+', '', (re.findall(r'<ul class="content_playlist list_scroll clearfix">((.|\s)+?)</ul>', webpage) or (' '))[0][0]))
         entries = [
             self.url_result('https://idoltv.tv' + h, IdoltvIE)
             for h in playlist]
