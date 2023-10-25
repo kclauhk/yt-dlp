@@ -6,6 +6,7 @@ from ..utils import (
     float_or_none,
     int_or_none,
     url_or_none,
+    ExtractorError,
 )
 from .bilibili import BiliBiliIE
 from .odnoklassniki import OdnoklassnikiIE
@@ -98,6 +99,8 @@ class IdoltvIE(InfoExtractor):
         id, source_id, episode_id = self._match_valid_url(url).group('id', 'source_id', 'episode_id')
         video_id = str(id) + '-' + str(episode_id)
         webpage = (self._download_webpage(url, video_id)).replace('&nbsp;', ' ')
+        if webpage.count('<h1>404</h1>'):
+            raise ExtractorError('Unable to download webpage: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)')
         fulltitle = self._html_extract_title(webpage) or self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title')
         video_inf = re.findall(r'<h2 class="title margin_0">(.+)</h2>[\S\s]*<p class="nstem data ms_p margin_0">\s*(<span class[\S\s]+</span></span>)?\s*(<a href=.+</a>)[\S\s]*<div class="panel play_content.+>\s*<p>([\S\s]+)</p>\s*</div>[\S\s]*播放地址', webpage)[0]
         title = video_inf[0] or fulltitle.split(' | ')[0]
@@ -205,9 +208,11 @@ class IdoltvVodIE(IdoltvIE):
     def _real_extract(self, url):
         id = self._match_id(url)
         webpage = (self._download_webpage(url, id)).replace('&nbsp;', ' ')
+        if webpage.count('<h1>404</h1>'):
+            raise ExtractorError('Unable to download webpage: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)')
         fulltitle = (self._html_extract_title(webpage)
                      or self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
-        video_inf = re.findall(r'<h2 class="title[\S\s]*itemprop="name">(.+)</span>[\S\s]*id="year">.*>(\d+)</a>[\S\s]*id="area">.*>(.+)</a>[\S\s]*id="class">.*>(.+)</a>', webpage)[0]
+        video_inf = (re.findall(r'<h2 class="title[\S\s]*itemprop="name">(.+)</span>[\S\s]*id="year">.*>(\d+)</a>[\S\s]*id="area">.*>(.+)</a>[\S\s]*id="class">.*>(.+)</a>', webpage) or [()])[0]
         cast = re.findall(r'id="actor">(.+)</li>[\S\s]*id="director">(.+?)</li>', webpage)[0]
         title = video_inf[0] or fulltitle.split(' | ')[0]
         release_year = int_or_none(video_inf[1])
