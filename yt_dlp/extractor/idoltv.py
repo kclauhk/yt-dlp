@@ -19,7 +19,7 @@ def simp_episode(string):
     elif re.search(r'^(SD|HD|FHD|\d{,4}P|標清|超清|高清|正片)', string, re.IGNORECASE):
         return ['RES', 'r']
     elif re.search(r'(第\d+集)|(ep\s*\d+)|(episode\s*\d+)', string, re.IGNORECASE):
-        return [re.findall(r'(第|ep\s*|episode\s*)?(\d+)集?', string, re.IGNORECASE)[0][-1].replace('集', ''), 'e']
+        return [re.findall(r'(第|ep\s*|episode\s*)?(\d+)集?', string, re.IGNORECASE)[0][-1], 'e']
     elif re.search(r'^\d{1,4}\D*$', string):
         return [str(int(re.findall(r'\d{1,4}', string)[0])), 'e']
     elif re.search(r'\D\d+-\d+', string):
