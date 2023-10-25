@@ -212,7 +212,7 @@ class IdoltvVodIE(IdoltvIE):
             raise ExtractorError('Unable to download webpage: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)')
         fulltitle = (self._html_extract_title(webpage)
                      or self._html_search_meta(['og:title', 'twitter:title'], webpage, 'title'))
-        video_inf = (re.findall(r'<h2 class="title[\S\s]*itemprop="name">(.+)</span>[\S\s]*id="year">.*>(\d+)</a>[\S\s]*id="area">.*>(.+)</a>[\S\s]*id="class">.*>(.+)</a>', webpage) or [()])[0]
+        video_inf = re.findall(r'<h2 class="title[\S\s]*itemprop="name">(.+)</span>[\S\s]*id="year">.*>(\d+)</a>[\S\s]*id="area">.*>(.+)</a>[\S\s]*id="class">.*>(.+)</a>', webpage)[0]
         cast = re.findall(r'id="actor">(.+)</li>[\S\s]*id="director">(.+?)</li>', webpage)[0]
         title = video_inf[0] or fulltitle.split(' | ')[0]
         release_year = int_or_none(video_inf[1])
