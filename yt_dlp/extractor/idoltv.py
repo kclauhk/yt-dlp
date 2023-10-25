@@ -94,7 +94,6 @@ class IdoltvIE(InfoExtractor):
             else:
                 return {}
 
-
     def _real_extract(self, url):
         id, source_id, episode_id = self._match_valid_url(url).group('id', 'source_id', 'episode_id')
         video_id = str(id) + '-' + str(episode_id)
@@ -123,7 +122,7 @@ class IdoltvIE(InfoExtractor):
                 url_found = re.findall(r'<li.*><a href="(.+)">[第|0]?%s[集|\D|<]*\/a><\/li>' % (needle[0]), h[1])
             elif needle[1] == 'n':
                 url_found = re.findall(r'<li.*><a href="(.+)">[第|0]?%s集?\D*<\/a><\/li>' % (needle[0]), h[1])
-            
+
             if url_found and url.count(url_found[0]) == 0 and video_src.count((h[0], url_found[0])) == 0:
                 video_src.append((h[0], url_found[0], True))
 
@@ -136,7 +135,7 @@ class IdoltvIE(InfoExtractor):
                     entries = fmt['entries']
                 elif 'formats' in fmt:
                     formats = formats + fmt['formats']
-        
+
         for src in video_src:
             ep = self._html_search_regex(r'<li ><a href="%s">(.+)</a></li>' % (src[1]), webpage, 'episode', default='', fatal=False)
             if simp_episode(ep)[0] == simp_episode(episode)[0] or src[2]:
@@ -178,6 +177,7 @@ class IdoltvIE(InfoExtractor):
             return self.playlist_result(entries, **info_dict)
         else:
             self.raise_no_formats('Video unavailable', video_id=video_id, expected=True)
+
 
 class IdoltvVodIE(IdoltvIE):
     IE_NAME = 'IDOLTV線上看:VOD'
