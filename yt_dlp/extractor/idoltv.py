@@ -66,7 +66,7 @@ class IdoltvIE(InfoExtractor):
             for x in re.findall(r'<li.*><a.* href="(.+)">(.+?)</a></li>', html):
                 z.append(x)
             links.append({'source': src, 'links': z})
-        #print(links)
+        # print(links)
         return links
 
     def _extract_formats(self, video_id, episode_label, media_source, player_data):
@@ -134,7 +134,7 @@ class IdoltvIE(InfoExtractor):
         title = video_inf[0] or fulltitle.split(' | ')[0]
         episode = title.split(' | ')[1] or title.split(' ')[-1]
         epsd = self._parse_episode(episode)
-        #print('    episode: ' + episode + "\n       epsd: " + str(epsd))
+        # print('    episode: ' + episode + "\n       epsd: " + str(epsd))
         average_rating = float_or_none(clean_html(video_inf[1]))
         tags = clean_html(video_inf[2]).split(' ')
         description = clean_html(video_inf[3]) or (self._html_search_meta(['description', 'og:description', 'twitter:description'], webpage, 'description').split('|')[-1])
@@ -164,13 +164,13 @@ class IdoltvIE(InfoExtractor):
                     ep = self._parse_episode(y[1])
                     if y not in other_src and e in ep:
                         z.append(y)
-                    if e[2] == 'd' and abs((datetime.strptime(e[0], '%y%m%d') - datetime.strptime(([x for x in ep if x[1] == e[1] and x[2] == 'd'] or [('500101','','')])[0][0], '%y%m%d')).days) == 1:
+                    if e[2] == 'd' and abs((datetime.strptime(e[0], '%y%m%d') - datetime.strptime(([x for x in ep if x[1] == e[1] and x[2] == 'd'] or [('500101', '', '')])[0][0], '%y%m%d')).days) == 1:
                         d.append(y)
                 if len(z) == 1:
                     other_src.append(z[0])
                 elif len(z) == 0 and len(d) == 1:
                     other_src.append(d[0])
-        #print("other_src: " + str(other_src))
+        # print("other_src: " + str(other_src))
         for x in other_src:
             self.to_screen('Extracting URL: ' 'https://idoltv.tv' + x[0])
             page = (self._download_webpage('https://idoltv.tv' + x[0], video_id)).replace('&nbsp;', ' ')
@@ -277,14 +277,14 @@ class IdoltvVodIE(IdoltvIE):
                                     ep = self._parse_episode(b[1])
                                     if e in ep:
                                         z.append(b)
-                                    if e[2] == 'd' and abs((datetime.strptime(e[0], '%y%m%d') - datetime.strptime(([x for x in ep if x[1] == e[1] and x[2] == 'd'] or [('500101','','')])[0][0], '%y%m%d')).days) == 1:
+                                    if e[2] == 'd' and abs((datetime.strptime(e[0], '%y%m%d') - datetime.strptime(([x for x in ep if x[1] == e[1] and x[2] == 'd'] or [('500101', '', '')])[0][0], '%y%m%d')).days) == 1:
                                         d.append(b)
                                 if len(z) == 1:
                                     links[j]['links'].remove(z[0])
-                                    #print('remove ' + str(z[0]))
+                                    # print('remove ' + str(z[0]))
                                 elif len(z) == 0 and len(d) == 1:
                                     links[j]['links'].remove(d[0])
-                                    #print('remove ' + str(d[0]))
+                                    # print('remove ' + str(d[0]))
         if playlist:
             entries = entries + [self.url_result('https://idoltv.tv' + x[0], IdoltvIE) for x in sorted(playlist, key=lambda x: x[1])]
 
@@ -347,7 +347,7 @@ class IdoltvSearchIE(IdoltvVodIE):
             items_per_page = len(playlist)
             result_end = min(match_total if prefix == 'all' or http else (int_or_none(prefix) or 1), self.get_param('playlistend') or match_total)
             if result_end > items_per_page:
-                # determine page range according to prefix, --playlist-end & --playlist-items 
+                # determine page range according to prefix, --playlist-end & --playlist-items
                 if self.get_param('playlist_items'):
                     items_end = 0
                     for x in tuple(PlaylistEntries.parse_playlist_items(self.get_param('playlist_items'))):
@@ -358,8 +358,8 @@ class IdoltvSearchIE(IdoltvVodIE):
                     result_end = items_end
                 for i in range(2, math.ceil(result_end / items_per_page) + 1):
                     webpage = self._download_webpage('https://idoltv.tv/vodsearch/page/' + str(i) + '/wd/' + urllib.parse.unquote_plus(query) + '.html', query,
-                               'Fetching result ' + str((i - 1) * items_per_page + 1) + '-' + str(min(match_total, i * items_per_page)),
-                               tries=2).replace('&nbsp;', ' ')
+                                                     'Fetching result ' + str((i - 1) * items_per_page + 1) + '-' + str(min(match_total, i * items_per_page)),
+                                                     tries=2).replace('&nbsp;', ' ')
                     if webpage.count('<h1>404</h1>'):
                         raise ExtractorError('Unable to download webpage: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)', expected=True)
                     for x in re.findall(r'<div class="searchlist_titbox">([\s\S]+?)查看詳情', webpage):
