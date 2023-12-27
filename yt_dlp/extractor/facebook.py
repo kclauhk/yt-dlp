@@ -440,7 +440,7 @@ class FacebookIE(InfoExtractor):
                         'duration': float_or_none(data['format']['duration']) if data['format'].get('duration') else None,
                         'tbr': round(int(data['format']['bit_rate']) / 1000, 3) if data['format'].get('bit_rate') else None,
                     })
-                for stream in data['streams']: 
+                for stream in data['streams']:
                     if stream['codec_type'] == 'video':
                         width = int_or_none(stream['width']) if stream.get('width') else None
                         height = int_or_none(stream['height']) if stream.get('height') else None
@@ -985,8 +985,9 @@ class FacebookAdLibIE(FacebookIE):
         def extract_metadata(webpage):
             def extract_format(video_dict):
                 formats = []
-                for i, url in enumerate([url_or_none(video_dict.get('video_sd_url')), url_or_none(video_dict.get('watermarked_video_sd_url')),
-                                         url_or_none(video_dict.get('video_hd_url')), url_or_none(video_dict.get('watermarked_video_hd_url'))]
+                for i, url in enumerate(
+                    [url_or_none(video_dict.get('video_sd_url')), url_or_none(video_dict.get('watermarked_video_sd_url')),
+                     url_or_none(video_dict.get('video_hd_url')), url_or_none(video_dict.get('watermarked_video_hd_url'))]
                 ):
                     if url:
                         f = {
