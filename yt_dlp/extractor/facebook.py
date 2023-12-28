@@ -981,8 +981,7 @@ class FacebookAdLibIE(InfoExtractor):
                             'title': entry.get('title') or title,
                             'description': entry.get('link_description') or description,
                         }
-                        if (entry.get('watermarked_video_sd_url') or entry.get('video_sd_url')
-                            or entry.get('watermarked_video_hd_url') or entry.get('video_hd_url')):
+                        if entry.get('watermarked_video_sd_url') or entry.get('video_sd_url') or entry.get('watermarked_video_hd_url') or entry.get('video_hd_url'):
                             entries.append({**basic, **{
                                 'thumbnail': entry.get('video_preview_image_url'),
                                 'formats': extract_format(entry),
