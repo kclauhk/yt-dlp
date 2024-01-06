@@ -4,6 +4,22 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.01.06.161528
+
+#### Core changes
+- [Add IDOLTV extractor](https://github.com/yt-dlp/yt-dlp/commit/427e5d3f169a6366d0b81b2012f917cf8a86ae61) by [pukkandan](https://github.com/pukkandan)
+- [Update _extractors.py](https://github.com/yt-dlp/yt-dlp/commit/ecdd47bed5f495d09239101ea2a23f21dd8c5697) by [pukkandan](https://github.com/pukkandan)
+- [Update facebook.py](https://github.com/yt-dlp/yt-dlp/commit/a3aea280bd06bd91ebfbc21f8201ca3d1dc56614) by [pukkandan](https://github.com/pukkandan)
+- **cookies**: [Fix `--cookies-from-browser` with macOS Firefox profiles](https://github.com/yt-dlp/yt-dlp/commit/85b33f5c163f60dbd089a6b9bc2ba1366d3ddf93) ([#8909](https://github.com/yt-dlp/yt-dlp/issues/8909)) by [RalphORama](https://github.com/RalphORama)
+- **utils**: `traverse_obj`: [Support `xml.etree.ElementTree.Element`](https://github.com/yt-dlp/yt-dlp/commit/ffbd4f2a02fee387ea5e0a267ce32df5259111ac) ([#8911](https://github.com/yt-dlp/yt-dlp/issues/8911)) by [Grub4K](https://github.com/Grub4K)
+
+#### Extractor changes
+- **ard**: mediathek: [Revert to using old id](https://github.com/yt-dlp/yt-dlp/commit/b6951271ac014761c9c317b9cecd5e8e139cfa7c) ([#8916](https://github.com/yt-dlp/yt-dlp/issues/8916)) by [Grub4K](https://github.com/Grub4K)
+- **bigo**: [Fix JSON extraction](https://github.com/yt-dlp/yt-dlp/commit/85a2d07c1f82c2082b568963d1c32ad3fc848f61) ([#8893](https://github.com/yt-dlp/yt-dlp/issues/8893)) by [DmitryScaletta](https://github.com/DmitryScaletta)
+
+#### Misc. changes
+- **cleanup**: [Fix typo in README.md](https://github.com/yt-dlp/yt-dlp/commit/292d60b1ed3b9fe5bcb2775a894cca99b0f9473e) ([#8894](https://github.com/yt-dlp/yt-dlp/issues/8894)) by [antonkesy](https://github.com/antonkesy)
+
 ### 2023.12.30
 
 #### Core changes

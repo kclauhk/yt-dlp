@@ -423,6 +423,7 @@
  - **Expressen**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
+ - **facebook:ads**: [*facebook*](## "netrc machine")
  - **facebook:reel**
  - **FacebookPluginsVideo**
  - **fancode:live**: [*fancode*](## "netrc machine")
@@ -572,6 +573,9 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**
+ - **IDOLTV:vod**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
