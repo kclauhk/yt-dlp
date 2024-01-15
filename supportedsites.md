@@ -423,6 +423,7 @@
  - **Expressen**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
+ - **facebook:ads**: [*facebook*](## "netrc machine")
  - **facebook:reel**
  - **FacebookPluginsVideo**
  - **fancode:live**: [*fancode*](## "netrc machine")
@@ -572,6 +573,9 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**
+ - **IDOLTV:vod**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -1471,7 +1475,6 @@
  - **TuneInPodcast**
  - **TuneInPodcastEpisode**
  - **TuneInStation**
- - **Turbo**
  - **tv.dfb.de**
  - **TV2**
  - **TV2Article**
@@ -1601,6 +1604,7 @@
  - **ViMP:Playlist**
  - **Vine**
  - **vine:user**
+ - **Viously**
  - **Viqeo**
  - **Viu**
  - **viu:ott**: [*viu*](## "netrc machine")
