@@ -47,7 +47,7 @@ from .acast import (
     ACastChannelIE,
 )
 from .acfun import AcFunVideoIE, AcFunBangumiIE
-from .adn import ADNIE
+from .adn import ADNIE, ADNSeasonIE
 from .adobeconnect import AdobeConnectIE
 from .adobetv import (
     AdobeTVEmbedIE,
@@ -93,6 +93,7 @@ from .alura import (
     AluraIE,
     AluraCourseIE
 )
+from .amadeustv import AmadeusTVIE
 from .amara import AmaraIE
 from .amcnetworks import AMCNetworksIE
 from .amazon import (
@@ -144,6 +145,7 @@ from .arte import (
     ArteTVCategoryIE,
 )
 from .arnes import ArnesIE
+from .asobichannel import AsobiChannelIE, AsobiChannelTagURLIE
 from .atresplayer import AtresPlayerIE
 from .atscaleconf import AtScaleConfEventIE
 from .atvat import ATVAtIE
@@ -911,6 +913,7 @@ from .koo import KooIE
 from .kth import KTHIE
 from .krasview import KrasViewIE
 from .ku6 import Ku6IE
+from .kukululive import KukuluLiveIE
 from .kusi import KUSIIE
 from .kuwo import (
     KuwoIE,
@@ -1275,6 +1278,7 @@ from .niconicochannelplus import (
     NiconicoChannelPlusChannelLivesIE,
 )
 from .ninegag import NineGagIE
+from .ninenews import NineNewsIE
 from .ninenow import NineNowIE
 from .nintendo import NintendoIE
 from .nitter import NitterIE
@@ -1606,7 +1610,10 @@ from .restudy import RestudyIE
 from .reuters import ReutersIE
 from .reverbnation import ReverbNationIE
 from .rheinmaintv import RheinMainTVIE
-from .rinsefm import RinseFMIE
+from .rinsefm import (
+    RinseFMIE,
+    RinseFMArtistPlaylistIE,
+)
 from .rmcdecouverte import RMCDecouverteIE
 from .rockstargames import RockstarGamesIE
 from .rokfin import (
@@ -2014,6 +2021,7 @@ from .trovo import (
     TrovoChannelClipIE,
 )
 from .trtcocuk import TrtCocukVideoIE
+from .trtworld import TrtWorldIE
 from .trueid import TrueIDIE
 from .trunews import TruNewsIE
 from .truth import TruthIE
