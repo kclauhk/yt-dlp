@@ -44,6 +44,7 @@ class FacebookIE(InfoExtractor):
                         (?:[^#]*?\#!/)?
                         (?:
                             (?:
+                                permalink\.php|
                                 video/video\.php|
                                 photo\.php|
                                 video\.php|
@@ -52,9 +53,10 @@ class FacebookIE(InfoExtractor):
                                 watch(?:/live)?/?
                             )\?(?:.*?)(?:v|video_id|story_fbid)=|
                             [^/]+/videos/(?:[^/]+/)?|
-                            events/(?:[^/]+/)?|
                             [^/]+/posts/|
+                            events/(?:[^/]+/)?|
                             groups/[^/]+/(?:permalink|posts)/|
+                            stories/|
                             watchparty/
                         )|
                     facebook:
