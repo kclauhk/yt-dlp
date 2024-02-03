@@ -1399,6 +1399,7 @@ from .ora import OraTVIE
 from .orf import (
     ORFTVthekIE,
     ORFFM4StoryIE,
+    ORFONIE,
     ORFRadioIE,
     ORFPodcastIE,
     ORFIPTVIE,
@@ -2501,6 +2502,7 @@ from .zee5 import (
     Zee5SeriesIE,
 )
 from .zeenews import ZeeNewsIE
+from .zetland import ZetlandDKArticleIE
 from .zhihu import ZhihuIE
 from .zingmp3 import (
     ZingMp3IE,
