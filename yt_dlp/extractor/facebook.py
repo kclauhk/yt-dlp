@@ -1,7 +1,7 @@
 import json
 import re
 import urllib.parse
-
+import time
 from .common import InfoExtractor
 from ..compat import (
     compat_etree_fromstring,
@@ -13,16 +13,16 @@ from ..networking.exceptions import network_exceptions
 from ..postprocessor import FFmpegPostProcessor
 from ..utils import (
     ExtractorError,
-    clean_html,
+    # clean_html,
     determine_ext,
     error_to_compat_str,
     float_or_none,
     format_field,
-    get_element_by_id,
-    get_first,
+    # get_element_by_id,
+    # get_first,
     int_or_none,
     join_nonempty,
-    js_to_json,
+    # js_to_json,
     merge_dicts,
     parse_count,
     parse_qs,
@@ -33,7 +33,7 @@ from ..utils import (
     url_or_none,
     urlencode_postdata,
     urljoin,
-    variadic,
+    # variadic,
 )
 
 
@@ -508,6 +508,7 @@ class FacebookIE(InfoExtractor):
         webpage = self._download_webpage(
             url.replace('://m.facebook.com/', '://www.facebook.com/'), video_id)
 
+        """
         def extract_metadata(webpage):
             post_data = [self._parse_json(j, video_id, fatal=False) for j in re.findall(
                 r'data-sjs>({.*?ScheduledServerJS.*?})</script>', webpage)]
@@ -563,6 +564,7 @@ class FacebookIE(InfoExtractor):
             info_json_ld['title'] = (re.sub(r'\s*\|\s*Facebook$', '', title or info_json_ld.get('title') or page_title or '')
                                      or (description or '').replace('\n', ' ') or f'Facebook video #{video_id}')
             return merge_dicts(info_json_ld, info_dict)
+        """
 
         video_data = None
 
@@ -575,12 +577,14 @@ class FacebookIE(InfoExtractor):
                         video_data.append(video_item['videoData'])
             return video_data
 
+        """
         server_js_data = self._parse_json(self._search_regex(
             [r'handleServerJS\(({.+})(?:\);|,")', r'\bs\.handle\(({.+?})\);'],
             webpage, 'server js data', default='{}'), video_id, fatal=False)
 
         if server_js_data:
             video_data = extract_video_data(server_js_data.get('instances', []))
+        """
 
         def extract_from_jsmods_instances(js_data):
             if js_data:
@@ -615,27 +619,134 @@ class FacebookIE(InfoExtractor):
                 lambda _, v: 'RelayPrefetchedStreamCache' in v, ..., ...,
                 '__bbox', 'result', 'data', {dict}), get_all=False) or {}
 
+        """
         if not video_data:
             server_js_data = self._parse_json(self._search_regex([
                 r'bigPipe\.onPageletArrive\(({.+?})\)\s*;\s*}\s*\)\s*,\s*["\']onPageletArrive\s+' + self._SUPPORTED_PAGLETS_REGEX,
                 r'bigPipe\.onPageletArrive\(({.*?id\s*:\s*"%s".*?})\);' % self._SUPPORTED_PAGLETS_REGEX
             ], webpage, 'js data', default='{}'), video_id, js_to_json, False)
             video_data = extract_from_jsmods_instances(server_js_data)
+        """
+
+        a = time.time()
+
+        def find_json_obj(json_string, *patterns, obj_in_value=False, get_all=False):
+            """
+            Find JSON object, in the form of a string, by regular expression
+            >>> obj = find_json_obj(json_str, regex_a, (regex_b, _or_c), obj_in_value=True, get_all=True)
+            @params *patterns       string, tuple   regex patterns
+                    obj_in_value    bool            False:  find the object(s) containing the pattern(s)
+                                                    True :  given pattern(s) of the key(s) to find the
+                                                            object(s) in the value of that key(s)
+            @return                 A list of JSON object(s) as string
+            """
+            def find_offset(string, bracket):
+                _BRACKET_MAP = {
+                    '{': ('}', (1 if obj_in_value else -1)),    # (opposite sign, search direction)
+                    '}': ('{', 1),                              # direction: 1 - forward, -1 - backward
+                }
+                count, sum, offset = 0, 0, 0
+                for x in string[::_BRACKET_MAP[bracket][1]]:
+                    count += (1 if x == bracket or x == _BRACKET_MAP[bracket][0] else 0)
+                    sum += (1 if x == bracket else (-1 if x == _BRACKET_MAP[bracket][0] else 0))
+                    offset += 1
+                    if count > 0 and sum >= (0 if obj_in_value else 1):
+                        break
+                return offset * _BRACKET_MAP[bracket][1]
+            for pattern_grp in (patterns if isinstance(patterns, tuple) else [patterns]):           # find all
+                for pattern in (pattern_grp if isinstance(pattern_grp, tuple) else [pattern_grp]):  # return 1st match
+                    # print(pattern)
+                    found = False
+                    for i in (m.start() for m in re.finditer(pattern, json_string)):                # depend on get_all
+                        # print(i)
+                        if obj_in_value:
+                            opening = i + find_offset(json_string[i:], '{') - 1
+                        else:
+                            opening = i + find_offset(json_string[:i], '{')
+                        closing = i + find_offset(json_string[i:], '}')
+                        if int_or_none(opening) and int_or_none(closing):
+                            yield json_string[opening:closing]
+                            found = True
+                            if not get_all:
+                                break
+                    else:
+                        if get_all and found:
+                            break
+                        continue
+                    break
+                else:
+                    continue
+
+        page_description = self._html_search_meta(
+            ['description', 'og:description', 'twitter:description'],
+            webpage, 'description', default=None)
+        timestamp = int_or_none(self._search_regex(
+            r'<abbr[^>]+data-utime=["\'](\d+)', webpage,
+            'timestamp', default=None))
+        thumbnail = self._html_search_meta(
+            ['og:image', 'twitter:image'], webpage, 'thumbnail', default=None)
+        # some webpages contain unretrievable thumbnail urls
+        # like https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10155168902769113&get_thumbnail=1
+        # in https://www.facebook.com/yaroslav.korpan/videos/1417995061575415/
+        if thumbnail and not re.search(r'\.(?:jpg|png)', thumbnail):
+            thumbnail = None
+        page_title = self._html_search_regex((
+            r'<h2\s+[^>]*class="uiHeaderTitle"[^>]*>(?P<content>[^<]*)</h2>',
+            r'(?s)<span class="fbPhotosPhotoCaption".*?id="fbPhotoPageCaption"><span class="hasCaption">(?P<content>.*?)</span>',
+            self._meta_regex('og:title'), self._meta_regex('twitter:title'), r'<title>(?P<content>.+?)</title>'
+        ), webpage, 'title', default=None, group='content')
+        info_json_ld = self._search_json_ld(webpage, video_id, default={})
+        page_title = (re.sub(r'\s*\|\s*Facebook$', '', info_json_ld.get('title') or page_title or '')
+                      or f'Facebook video #{video_id}')
+
+        post_data = re.findall(r'data-sjs>({.*?ScheduledServerJS.*?})</script>', webpage)
+        # print(len(post_data))
+        data, title = [], None
+        for x in post_data:
+            if not data and '"dash_manifest_url":' in x:
+                data = x
+            if not title and '"title":{' in x:
+                for t in find_json_obj(x, r'"title":{[^}]*"text":'):
+                    if f'"id":"{video_id}"' in t:
+                        title = json.loads(t)['title']['text']
+                        break
+            if data and title:
+                break
+        # print(data)
+
+        webpage_info = {
+            'title': title or page_title,
+            'description': page_description,
+            'thumbnails': [{
+                'url': thumbnail,
+                'height': int_or_none(h.group(1)) if (h := re.search(r'stp=.+_p\d+x(\d+)&', thumbnail)) else None,
+            }] if url_or_none(thumbnail) else [],
+            'timestamp': timestamp,
+            'view_count': parse_count(self._search_regex(
+                (r'\bviewCount\s*:\s*["\']([\d,.]+)', r'video_view_count["\']\s*:\s*(\d+)',),
+                webpage, 'view count', default=None)),
+        }
+        # print(webpage_info)
 
         if not video_data:
+            """
             data = extract_relay_prefetched_data(
                 r'"(?:dash_manifest|playable_url(?:_quality_hd)?)')
+            """
             if data:
                 entries = []
 
                 def parse_graphql_video(video):
+                    # print(video)
                     v_id = video.get('videoId') or video.get('id') or video_id
+                    """
                     reel_info = traverse_obj(
                         video, ('creation_story', 'short_form_video_context', 'playback_video', {dict}))
                     if reel_info:
                         video = video['creation_story']
                         video['owner'] = traverse_obj(video, ('short_form_video_context', 'video_owner'))
                         video.update(reel_info)
+                    """
                     formats = []
                     for key, format_id in (('playable_url', 'sd'), ('playable_url_quality_hd', 'hd'),
                                            ('playable_url_dash', ''), ('browser_native_hd_url', 'hd'),
@@ -662,6 +773,7 @@ class FacebookIE(InfoExtractor):
                                 })
                     extract_dash_manifest(video, formats)
 
+                    # captions/subtitles
                     automatic_captions, subtitles = {}, {}
                     is_broadcast = traverse_obj(video, ('is_video_broadcast', {bool}))
                     for caption in traverse_obj(video, (
@@ -683,20 +795,44 @@ class FacebookIE(InfoExtractor):
                         locale = self._html_search_meta(
                             ['og:locale', 'twitter:locale'], webpage, 'locale', default='en_US')
                         (automatic_captions if is_broadcast else subtitles)[locale] = [{'url': captions_url}]
+                    # uploader
+                    uploader_id = traverse_obj(video, ('owner', 'id', {str_or_none}))
+                    if uploader_id:
+                        if x := list(find_json_obj(
+                            ','.join(post_data), (r'"id":"%s"[^}]*"name":' % uploader_id, r'"name":[^}]*"id":"%s"' % uploader_id)
+                        )):
+                            video['owner'] = merge_dicts(video['owner'], json.loads(x[0]))
+                    elif x := list(find_json_obj(
+                        ','.join(post_data), (r'_creator":[^}]*"name":"', r'_owner":[^}]*"name":"', r'"actor":[^}]*"name":"'), obj_in_value=True
+                    )):
+                        video['owner'] = json.loads(x[0])
+                    # thumbnails
+                    for url in [uri for uri in [traverse_obj(
+                        video, path) for path in [('thumbnailImage', 'uri'), ('preferred_thumbnail', 'image', 'uri'),
+                                                  ('image', 'uri'), ('previewImage', 'uri')]
+                    ] if url_or_none(uri) is not None]:
+                        webpage_info.setdefault('thumbnails', []).append({
+                            'url': url,
+                            'height': int_or_none(h.group(1)) if (h := re.search(r'stp=.+_p\d+x(\d+)&', url)) else None,
+                        })
 
                     info = {
                         'id': v_id,
                         'formats': formats,
-                        'thumbnail': traverse_obj(
-                            video, ('thumbnailImage', 'uri'), ('preferred_thumbnail', 'image', 'uri')),
-                        'uploader_id': traverse_obj(video, ('owner', 'id', {str_or_none})),
+                        'title': video.get('name') or 'Facebook video #%s' % v_id,
+                        'description': try_get(video, lambda x: x['savable_description']['text']),
+                        'uploader': try_get(video, lambda x: x['owner']['name']),
+                        'uploader_id': try_get(video, lambda x: x['owner']['id']),
+                        'uploader_url': try_get(video, lambda x: x['owner']['url']),
                         'timestamp': traverse_obj(video, 'publish_time', 'creation_time', expected_type=int_or_none),
                         'duration': (float_or_none(video.get('playable_duration_in_ms'), 1000)
                                      or float_or_none(video.get('length_in_second'))),
+                        'concurrent_view_count': video.get('liveViewerCount'),
                         'automatic_captions': automatic_captions,
                         'subtitles': subtitles,
                     }
                     process_formats(info)
+                    """
                     description = try_get(video, lambda x: x['savable_description']['text'])
                     title = video.get('name')
                     if title:
@@ -706,8 +842,23 @@ class FacebookIE(InfoExtractor):
                         })
                     else:
                         info['title'] = description or 'Facebook video #%s' % v_id
+                    """
+                    # print(info)
                     entries.append(info)
 
+                video_ids = []
+                for idx, x in enumerate(find_json_obj(
+                    data, (r'"dash_manifest_url":\s?"', r'_hd_url":\s?"', r'_sd_url":\s?"'), get_all=True
+                )):
+                    media = json.loads(x)
+                    if (media.get('__typename', 'Video') == 'Video'
+                            and not media.get('id', f'{video_id}_{idx}') in video_ids):
+                        video_ids.append(media.get('id', f'{video_id}_{idx}'))
+                        parse_graphql_video(media)
+
+                print(time.time() - a)
+
+                """
                 def parse_attachment(attachment, key='media'):
                     media = attachment.get(key) or {}
                     if media.get('__typename') == 'Video':
@@ -747,11 +898,13 @@ class FacebookIE(InfoExtractor):
                         parse_attachment(attachment)
                     if not entries:
                         parse_graphql_video(video)
+                """
 
                 if len(entries) > 1:
-                    return self.playlist_result(entries, video_id, **extract_metadata(webpage))
+                    return self.playlist_result(entries, video_id, **webpage_info)
 
                 video_info = entries[0] if entries else {'id': video_id}
+                """
                 webpage_info = extract_metadata(webpage)
                 # honor precise duration in video info
                 if video_info.get('duration'):
@@ -759,9 +912,12 @@ class FacebookIE(InfoExtractor):
                 # preserve preferred_thumbnail in video info
                 if video_info.get('thumbnail'):
                     webpage_info['thumbnail'] = video_info['thumbnail']
+                """
                 return merge_dicts(webpage_info, video_info)
 
         if not video_data:
+            print('uiInterstitialContent')
+
             m_msg = re.search(r'class="[^"]*uiInterstitialContent[^"]*"><div>(.*?)</div>', webpage)
             if m_msg is not None:
                 raise ExtractorError(
@@ -774,6 +930,8 @@ class FacebookIE(InfoExtractor):
                 self.raise_login_required()
 
         if not video_data and '/watchparty/' in url:
+            print('watchparty')
+
             post_data = {
                 'doc_id': 3731964053542869,
                 'variables': json.dumps({
@@ -810,6 +968,8 @@ class FacebookIE(InfoExtractor):
             return self.playlist_result(entries, video_id)
 
         if not video_data:
+            print('tahoe')
+
             # Video info not in first request, do a secondary request using
             # tahoe player specific URL
             tahoe_data = self._download_webpage(
@@ -891,7 +1051,8 @@ class FacebookIE(InfoExtractor):
             'subtitles': subtitles,
         }
         process_formats(info_dict)
-        info_dict.update(extract_metadata(webpage))
+        # info_dict.update(extract_metadata(webpage))
+        info_dict.update(webpage_info)
 
         return info_dict
 
