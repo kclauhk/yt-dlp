@@ -1,7 +1,7 @@
 import json
 import re
 import urllib.parse
-
+# import time
 from .common import InfoExtractor
 from ..compat import (
     compat_etree_fromstring,
@@ -13,16 +13,16 @@ from ..networking.exceptions import network_exceptions
 from ..postprocessor import FFmpegPostProcessor
 from ..utils import (
     ExtractorError,
-    clean_html,
+    # clean_html,
     determine_ext,
     error_to_compat_str,
     float_or_none,
     format_field,
-    get_element_by_id,
-    get_first,
+    # get_element_by_id,
+    # get_first,
     int_or_none,
     join_nonempty,
-    js_to_json,
+    # js_to_json,
     merge_dicts,
     parse_count,
     parse_qs,
@@ -33,7 +33,7 @@ from ..utils import (
     url_or_none,
     urlencode_postdata,
     urljoin,
-    variadic,
+    # variadic,
 )
 
 
@@ -85,15 +85,15 @@ class FacebookIE(InfoExtractor):
             'id': '3676516585958356',
             'ext': 'mp4',
             'title': 'dr Adam Przygoda',
-            'description': 'md5:34675bda53336b1d16400265c2bb9b3b',
+            'description': 'md5:dfa818a8f88cdef535a0c0f581567204',
             'uploader': 'RADIO KICKS FM',
             'upload_date': '20230818',
             'timestamp': 1692346159,
             'thumbnail': r're:^https?://.*',
             'uploader_id': '100063551323670',
-            'duration': 3132.184,
+            'duration': 3133.583,
             'view_count': int,
-            'concurrent_view_count': 0,
+            'concurrent_view_count': int,
         },
     }, {
         'url': 'https://www.facebook.com/video.php?v=637842556329505&fref=nf',
@@ -106,7 +106,7 @@ class FacebookIE(InfoExtractor):
             'upload_date': '20140908',
             'timestamp': 1410199200,
         },
-        'skip': 'Requires logging in',
+        'skip': 'Video gone',
     }, {
         # data.video
         'url': 'https://www.facebook.com/video.php?v=274175099429670',
@@ -119,8 +119,9 @@ class FacebookIE(InfoExtractor):
             'upload_date': '20140506',
             'timestamp': 1399398998,
             'thumbnail': r're:^https?://.*',
-            'uploader_id': 'pfbid028wxorhX2ErLFJ578N6P3crHD3PHmXTCqCvfBpsnbSLmbokwSY75p5hWBjHGkG4zxl',
+            'uploader_id': r're:^pfbid.*',
             'duration': 131.03,
+            'view_count': int,
             'concurrent_view_count': int,
         },
     }, {
@@ -135,7 +136,7 @@ class FacebookIE(InfoExtractor):
             'upload_date': '20160110',
             'timestamp': 1452431627,
         },
-        'skip': 'Requires logging in',
+        'skip': 'Video gone',
     }, {
         'url': 'https://www.facebook.com/maxlayn/posts/10153807558977570',
         'md5': '037b1fa7f3c2d02b7a0d7bc16031ecc6',
@@ -174,7 +175,7 @@ class FacebookIE(InfoExtractor):
         # have 1080P, but only up to 720p in swf params
         # data.video.story.attachments[].media
         'url': 'https://www.facebook.com/cnn/videos/10155529876156509/',
-        'md5': 'ca63897a90c9452efee5f8c40d080e25',
+        'md5': '05ab65caae8c822c505bcb9d5d681680',
         'info_dict': {
             'id': '10155529876156509',
             'ext': 'mp4',
@@ -196,12 +197,12 @@ class FacebookIE(InfoExtractor):
         'info_dict': {
             'id': '1417995061575415',
             'ext': 'mp4',
-            'title': 'Довгоочікуване відео | By Yaroslav - Facebook',
+            'title': 'Довгоочікуване відео | By Yaroslav',
             'description': 'Довгоочікуване відео',
             'timestamp': 1486648217,
             'upload_date': '20170209',
             'uploader': 'Yaroslav Korpan',
-            'uploader_id': 'pfbid06AScABAWcW91qpiuGrLt99Ef9tvwHoXP6t8KeFYEqkSfreMtfa9nTveh8b2ZEVSWl',
+            'uploader_id': r're:^pfbid.*',
             'concurrent_view_count': int,
             'thumbnail': r're:^https?://.*',
             'view_count': int,
@@ -222,7 +223,7 @@ class FacebookIE(InfoExtractor):
             'uploader': 'La Guía Del Varón',
             'thumbnail': r're:^https?://.*',
         },
-        'skip': 'Requires logging in',
+        'skip': 'Gif on giphy.com',
     }, {
         # data.node.comet_sections.content.story.attachments[].style_type_renderer.attachment.media
         'url': 'https://www.facebook.com/groups/1024490957622648/permalink/1396382447100162/',
@@ -231,12 +232,15 @@ class FacebookIE(InfoExtractor):
             'ext': 'mp4',
             'title': 'birb (O v O") | Hello? Yes your uber ride is here',
             'description': 'Hello? Yes your uber ride is here * Jukin Media Verified * Find this video and others like it by visiting...',
-            'timestamp': 1486035513,
+            'thumbnail': r're:^https?://.*',
+            'timestamp': 1486035494,
             'upload_date': '20170202',
             'uploader': 'Elisabeth Ahtn',
-            'uploader_id': '100013949973717',
+            'uploader_id': r're:^pfbid.*',
+            'duration': 23.891,
+            'view_count': int,
+            'concurrent_view_count': int,
         },
-        'skip': 'Requires logging in',
     }, {
         # data.node.comet_sections.content.story.attachments[].throwbackStyles.attachment_target_renderer.attachment.target.attachments[].styles.attachment.media
         'url': 'https://www.facebook.com/groups/1645456212344334/posts/3737828833107051/',
@@ -247,10 +251,11 @@ class FacebookIE(InfoExtractor):
             'description': 'Vickie Gentry shared a memory.',
             'timestamp': 1511548260,
             'upload_date': '20171124',
-            'uploader': 'Vickie Gentry',
-            'uploader_id': 'pfbid0FuZhHCeWDAxWxEbr3yKPFaRstXvRxgsp9uCPG6GjD4J2AitB35NUAuJ4Q75KcjiDl',
+            'uploader': 'ATTN:',
+            'uploader_id': '100064451419378',
             'thumbnail': r're:^https?://.*',
             'duration': 148.435,
+            'concurrent_view_count': int,
         },
     }, {
         # data.node.comet_sections.content.story.attachments[].styles.attachment.media
@@ -264,9 +269,11 @@ class FacebookIE(InfoExtractor):
             'title': 'ATTN:',
             'duration': 132.675,
             'uploader_id': '100064451419378',
+            'uploader_url': r're:^https?://.*',
             'view_count': int,
             'thumbnail': r're:^https?://.*',
             'timestamp': 1701975646,
+            'concurrent_view_count': int,
         },
     }, {
         # data.node.comet_sections.content.story.attachments[].styles.attachment.media
@@ -278,11 +285,13 @@ class FacebookIE(InfoExtractor):
             'description': 'Today Makkovik\'s own Pilot Mandy Smith made her inaugural landing on the airstrip in her hometown. What a proud moment as we all cheered and...',
             'thumbnail': r're:^https?://.*',
             'uploader': 'Lela Evans',
-            'uploader_id': 'pfbid0shZJipuigyy5mqrUJn9ub5LJFWNHvan5prtyi3LrDuuuJ4NwrURgnQHYR9fywBepl',
+            'uploader_id': r're:^pfbid.*',
+            'uploader_url': r're:^https?://.*',
             'upload_date': '20231228',
             'timestamp': 1703804085,
             'duration': 394.347,
             'view_count': int,
+            'concurrent_view_count': int,
         },
     }, {
         'url': 'https://www.facebook.com/story.php?story_fbid=pfbid0Fnzhm8UuzjBYpPMNFzaSpFE9UmLdU4fJN8qTANi1Dmtj5q7DNrL5NERXfsAzDEV7l&id=100073071055552',
@@ -290,9 +299,11 @@ class FacebookIE(InfoExtractor):
     }, {
         'url': 'https://www.facebook.com/video.php?v=10204634152394104',
         'only_matching': True,
+        'skip': 'Video gone',
     }, {
         'url': 'https://www.facebook.com/amogood/videos/1618742068337349/?fref=nf',
         'only_matching': True,
+        'skip': 'Video gone',
     }, {
         # data.mediaset.currMedia.edges
         'url': 'https://www.facebook.com/ChristyClarkForBC/videos/vb.22819070941/10153870694020942/?type=2&theater',
@@ -305,10 +316,12 @@ class FacebookIE(InfoExtractor):
         # data.node.comet_sections.content.story.attachments[].style_type_renderer.attachment.media
         'url': 'https://www.facebook.com/groups/164828000315060/permalink/764967300301124/',
         'only_matching': True,
+        'skip': 'Video gone',
     }, {
         # data.video.creation_story.attachments[].media
         'url': 'https://zh-hk.facebook.com/peoplespower/videos/1135894589806027/',
         'only_matching': True,
+        'skip': 'Video gone',
     }, {
         # data.video
         'url': 'https://www.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/video.php?v=274175099429670',
@@ -317,6 +330,7 @@ class FacebookIE(InfoExtractor):
         # no title
         'url': 'https://www.facebook.com/onlycleverentertainment/videos/1947995502095005/',
         'only_matching': True,
+        'skip': 'Video gone',
     }, {
         # data.video
         'url': 'https://www.facebook.com/WatchESLOne/videos/359649331226507/',
@@ -329,7 +343,7 @@ class FacebookIE(InfoExtractor):
             'upload_date': '20180523',
             'uploader': 'ESL One Dota 2',
             'uploader_id': '100066514874195',
-            'duration': 4524.212,
+            'duration': 4524.001,
             'view_count': int,
             'thumbnail': r're:^https?://.*',
             'concurrent_view_count': int,
@@ -346,9 +360,9 @@ class FacebookIE(InfoExtractor):
             'title': 'Josef',
             'thumbnail': r're:^https?://.*',
             'concurrent_view_count': int,
-            'uploader_id': 'pfbid0cibUN6tV7DYgdbJdsUFN46wc4jKpVSPAvJQhFofGqBGmVn3V3JtAs2tfUwziw2hUl',
+            'uploader_id': r're:^pfbid.*',
             'timestamp': 1549275572,
-            'duration': 3.413,
+            'duration': 3.283,
             'uploader': 'Josef Novak',
             'description': '',
             'upload_date': '20190204',
@@ -356,7 +370,20 @@ class FacebookIE(InfoExtractor):
     }, {
         # data.video.story.attachments[].media
         'url': 'https://www.facebook.com/watch/?v=647537299265662',
-        'only_matching': True,
+        'info_dict': {
+            'id': '647537299265662',
+            'ext': 'mp4',
+            'title': 'Padre ense\u00f1a a su hijo a c\u00f3mo ba\u00f1ar un reci\u00e9n nacido junto con su gato y se hace viral, mir\u00e1 el video 😍',
+            'description': 'Padre ense\u00f1a a su hijo a c\u00f3mo ba\u00f1ar un reci\u00e9n nacido junto con su gato y se hace viral, mir\u00e1 el video 😍',
+            'thumbnail': r're:^https?://.*',
+            'timestamp': 1605534618,
+            'upload_date': '20201116',
+            'uploader': 'InfoPico',
+            'uploader_id': '100064391811349',
+            'duration': 136.179,
+            'view_count': int,
+            'concurrent_view_count': int,
+        },
     }, {
         # FIXME: https://github.com/yt-dlp/yt-dlp/issues/542
         # data.node.comet_sections.content.story.attachments[].style_type_renderer.attachment.all_subattachments.nodes[].media
@@ -365,18 +392,22 @@ class FacebookIE(InfoExtractor):
             'id': '10157667649866271',
         },
         'playlist_count': 3,
-        'skip': 'Requires logging in',
+        'skip': 'Video gone',
     }, {
         # data.nodes[].comet_sections.content.story.attachments[].style_type_renderer.attachment.media
         'url': 'https://m.facebook.com/Alliance.Police.Department/posts/4048563708499330',
         'info_dict': {
             'id': '117576630041613',
             'ext': 'mp4',
-            # TODO: title can be extracted from video page
-            'title': 'Facebook video #117576630041613',
-            'uploader_id': '189393014416438',
+            'title': 'Officers Rescue Trapped Motorist from Mahoning River Crash 11-22-20',
+            'thumbnail': r're:^https?://.*',
+            'uploader': 'City of Alliance Police Department',
+            'uploader_id': '100064413680392',
             'upload_date': '20201123',
             'timestamp': 1606162592,
+            'duration': 101.504,
+            'view_count': int,
+            'concurrent_view_count': int,
         },
         'skip': 'Requires logging in',
     }, {
@@ -394,14 +425,30 @@ class FacebookIE(InfoExtractor):
     }, {
         # data.video.creation_story.attachments[].media
         'url': 'https://www.facebook.com/watch/live/?v=1823658634322275',
-        'only_matching': True,
+        'info_dict': {
+            'id': '1823658634322275',
+            'ext': 'mp4',
+            'title': 'Live Webcam from Corfu - Greece',
+            'description': '\u2614 What to do in #Corfu when it rains? Simply enjoy these beautiful live images from your device! Watch more at:...',
+            'thumbnail': r're:^https?://.*',
+            'uploader': 'SkylineWebcams',
+            'uploader_id': '100064307154679',
+            'upload_date': '20180319',
+            'timestamp': 1521449766,
+            'duration': 14424.199,
+            'view_count': int,
+            'concurrent_view_count': int,
+        },
+        'params': {
+            'skip_download': True,
+        },
     }, {
         'url': 'https://www.facebook.com/watchparty/211641140192478',
         'info_dict': {
             'id': '211641140192478',
         },
         'playlist_count': 1,
-        'skip': 'Requires logging in',
+        'skip': 'Video gone',
     }, {
         # data.event.cover_media_renderer.cover_video
         'url': 'https://m.facebook.com/events/1509582499515440',
@@ -508,6 +555,7 @@ class FacebookIE(InfoExtractor):
         webpage = self._download_webpage(
             url.replace('://m.facebook.com/', '://www.facebook.com/'), video_id)
 
+        """
         def extract_metadata(webpage):
             post_data = [self._parse_json(j, video_id, fatal=False) for j in re.findall(
                 r'data-sjs>({.*?ScheduledServerJS.*?})</script>', webpage)]
@@ -563,6 +611,7 @@ class FacebookIE(InfoExtractor):
             info_json_ld['title'] = (re.sub(r'\s*\|\s*Facebook$', '', title or info_json_ld.get('title') or page_title or '')
                                      or (description or '').replace('\n', ' ') or f'Facebook video #{video_id}')
             return merge_dicts(info_json_ld, info_dict)
+        """
 
         video_data = None
 
@@ -575,12 +624,14 @@ class FacebookIE(InfoExtractor):
                         video_data.append(video_item['videoData'])
             return video_data
 
+        """
         server_js_data = self._parse_json(self._search_regex(
             [r'handleServerJS\(({.+})(?:\);|,")', r'\bs\.handle\(({.+?})\);'],
             webpage, 'server js data', default='{}'), video_id, fatal=False)
 
         if server_js_data:
             video_data = extract_video_data(server_js_data.get('instances', []))
+        """
 
         def extract_from_jsmods_instances(js_data):
             if js_data:
@@ -615,27 +666,127 @@ class FacebookIE(InfoExtractor):
                 lambda _, v: 'RelayPrefetchedStreamCache' in v, ..., ...,
                 '__bbox', 'result', 'data', {dict}), get_all=False) or {}
 
+        """
         if not video_data:
             server_js_data = self._parse_json(self._search_regex([
                 r'bigPipe\.onPageletArrive\(({.+?})\)\s*;\s*}\s*\)\s*,\s*["\']onPageletArrive\s+' + self._SUPPORTED_PAGLETS_REGEX,
                 r'bigPipe\.onPageletArrive\(({.*?id\s*:\s*"%s".*?})\);' % self._SUPPORTED_PAGLETS_REGEX
             ], webpage, 'js data', default='{}'), video_id, js_to_json, False)
             video_data = extract_from_jsmods_instances(server_js_data)
+        """
+
+        # a = time.time()
+
+        def find_json_obj(json_string, *patterns, obj_in_value=False, get_all=False):
+            """
+            Find JSON object, in the form of a string, by regular expression
+            >>> obj = find_json_obj(json_str, regex_a, (regex_b, _or_c), obj_in_value=True, get_all=True)
+            @params *patterns       string, tuple   regex patterns
+                    obj_in_value    bool            False:  find the object(s) containing the pattern(s)
+                                                    True :  given pattern(s) of the key(s) to find the
+                                                            object(s) in the value of that key(s)
+            @return                 list of str     A list of JSON object(s)
+            """
+            def find_offset(string, bracket):
+                _BRACKET_MAP = {
+                    '{': ('}', (1 if obj_in_value else -1)),    # (opposite sign, search direction)
+                    '}': ('{', 1),                              # direction: 1 - forward, -1 - backward
+                }
+                count, sum, offset = 0, 0, 0
+                for x in string[::_BRACKET_MAP[bracket][1]]:
+                    count += (1 if x == bracket or x == _BRACKET_MAP[bracket][0] else 0)
+                    sum += (1 if x == bracket else (-1 if x == _BRACKET_MAP[bracket][0] else 0))
+                    offset += 1
+                    if count > 0 and sum >= (0 if obj_in_value else 1):
+                        break
+                return offset * _BRACKET_MAP[bracket][1]
+            for pattern_grp in (patterns if isinstance(patterns, tuple) else [patterns]):           # find all
+                for pattern in (pattern_grp if isinstance(pattern_grp, tuple) else [pattern_grp]):  # return 1st match
+                    # print(pattern)
+                    found = False
+                    for i in (m.start() for m in re.finditer(pattern, json_string)):                # depend on get_all
+                        # print(i)
+                        opening = (i + find_offset(
+                            json_string[(i * obj_in_value):(i * (not obj_in_value) - obj_in_value)],
+                            '{') - obj_in_value)
+                        closing = i + find_offset(json_string[i:], '}')
+                        if int_or_none(opening) and int_or_none(closing):
+                            found = True
+                            yield json_string[opening:closing]
+                            if not get_all:
+                                break
+                    else:
+                        if get_all and found:
+                            break
+                        continue
+                    break
+                else:
+                    continue
+
+        page_description = self._html_search_meta(
+            ['description', 'og:description', 'twitter:description'],
+            webpage, 'description', default=None)
+        timestamp = int_or_none(self._search_regex(
+            r'<abbr[^>]+data-utime=["\'](\d+)', webpage,
+            'timestamp', default=None))
+        thumbnail = self._html_search_meta(
+            ['og:image', 'twitter:image'], webpage, 'thumbnail', default=None)
+        if thumbnail and not re.search(r'\.(?:jpg|png)', thumbnail):
+            thumbnail = None
+        page_title = self._html_search_regex((
+            r'<h2\s+[^>]*class="uiHeaderTitle"[^>]*>(?P<content>[^<]*)</h2>',
+            r'(?s)<span class="fbPhotosPhotoCaption".*?id="fbPhotoPageCaption"><span class="hasCaption">(?P<content>.*?)</span>',
+            self._meta_regex('og:title'), self._meta_regex('twitter:title'), r'<title>(?P<content>.+?)</title>'
+        ), webpage, 'title', default=None, group='content')
+        info_json_ld = self._search_json_ld(webpage, video_id, default={})
+        page_title = re.sub(r'\s*\|\s*Facebook$', '', info_json_ld.get('title') or page_title or '')
+
+        post_data = re.findall(r'data-sjs>({.*?ScheduledServerJS.*?})</script>', webpage)
+        # print(len(post_data))
+        data = titles = []
+        for x in post_data:
+            if not data and '"feed_unit":' not in x and '"dash_manifest_url":' in x:
+                data = x
+            if not titles and '"feed_unit":' not in x and '"title":{' in x and '"id":"' in x:
+                titles = find_json_obj(x, r'"title":[^}]*"text":', get_all=True)
+            if data and titles:
+                break
+        # print(data)
+        # print(list(titles))
+
+        webpage_info = {
+            'title': page_title,
+            'description': page_description,
+            'thumbnails': [{k: v for k, v in {
+                'url': thumbnail,
+                'height': (lambda x: int_or_none(x.group(1)) if x else None)(re.search(r'stp=.+_[a-z]\d+x(\d+)&', thumbnail))
+            }.items() if v is not None}] if url_or_none(thumbnail) else [],
+            'timestamp': timestamp,
+            'view_count': parse_count(self._search_regex(
+                (r'\bviewCount\s*:\s*["\']([\d,.]+)', r'video_view_count["\']\s*:\s*(\d+)',),
+                webpage, 'view count', default=None)),
+        }
+        # print(webpage_info)
 
         if not video_data:
+            """
             data = extract_relay_prefetched_data(
                 r'"(?:dash_manifest|playable_url(?:_quality_hd)?)')
+            """
             if data:
                 entries = []
 
                 def parse_graphql_video(video):
+                    # print(video)
                     v_id = video.get('videoId') or video.get('id') or video_id
+                    """
                     reel_info = traverse_obj(
                         video, ('creation_story', 'short_form_video_context', 'playback_video', {dict}))
                     if reel_info:
                         video = video['creation_story']
                         video['owner'] = traverse_obj(video, ('short_form_video_context', 'video_owner'))
                         video.update(reel_info)
+                    """
                     formats = []
                     for key, format_id in (('playable_url', 'sd'), ('playable_url_quality_hd', 'hd'),
                                            ('playable_url_dash', ''), ('browser_native_hd_url', 'hd'),
@@ -662,6 +813,7 @@ class FacebookIE(InfoExtractor):
                                 })
                     extract_dash_manifest(video, formats)
 
+                    # captions/subtitles
                     automatic_captions, subtitles = {}, {}
                     is_broadcast = traverse_obj(video, ('is_video_broadcast', {bool}))
                     for caption in traverse_obj(video, (
@@ -683,20 +835,55 @@ class FacebookIE(InfoExtractor):
                         locale = self._html_search_meta(
                             ['og:locale', 'twitter:locale'], webpage, 'locale', default='en_US')
                         (automatic_captions if is_broadcast else subtitles)[locale] = [{'url': captions_url}]
+                    # thumbnails
+                    for url in [uri for uri in [traverse_obj(
+                        video, path) for path in [('thumbnailImage', 'uri'), ('preferred_thumbnail', 'image', 'uri'),
+                                                  ('image', 'uri'), ('previewImage', 'uri')]
+                    ] if url_or_none(uri) is not None]:
+                        webpage_info.setdefault('thumbnails', []).append({k: v for k, v in {
+                            'url': url,
+                            'height': (lambda x: int_or_none(x.group(1)) if x else None)(re.search(r'stp=.+_[a-z]\d+x(\d+)&', url))
+                        }.items() if v is not None})
+                    # title
+                    title = None
+                    for x in titles:
+                        if f'"id":"{v_id}"' in x:
+                            title = json.loads(x)['title']['text']
+                            break
+                    # timestamp
+                    if not (timestamp := traverse_obj(video, 'publish_time', 'creation_time', expected_type=int_or_none)):
+                        for x in find_json_obj(','.join(post_data), (r'"publish_time":\d+,', r'"creation_time":\d+,'), get_all=True):
+                            if v_id in x:
+                                timestamp = json.loads(x).get('publish_time') or json.loads(x).get('creation_time')
+                                break
+                    # uploader
+                    if uploader_id := traverse_obj(video, ('owner', 'id', {str_or_none})):
+                        if x := list(find_json_obj(
+                            ','.join(post_data), (r'"id":\s?"%s"[^}]*"name":' % uploader_id, r'"name":[^}]*"id":\s?"%s"' % uploader_id)
+                        )):
+                            video['owner'] = merge_dicts(video['owner'], json.loads(x[0]))
+                    elif x := list(find_json_obj(
+                        ','.join(post_data), (r'[_"]creator":[^}]*"name":"', r'[_"]owner":[^}]*"name":"', r'"actor":[^}]*"name":"'), obj_in_value=True
+                    )):
+                        video['owner'] = json.loads(x[0])
 
                     info = {
                         'id': v_id,
-                        'formats': formats,
-                        'thumbnail': traverse_obj(
-                            video, ('thumbnailImage', 'uri'), ('preferred_thumbnail', 'image', 'uri')),
-                        'uploader_id': traverse_obj(video, ('owner', 'id', {str_or_none})),
-                        'timestamp': traverse_obj(video, 'publish_time', 'creation_time', expected_type=int_or_none),
+                        'title': video.get('name') or title or f'Facebook video #{v_id}',
+                        'description': try_get(video, lambda x: x['savable_description']['text']),
+                        'timestamp': timestamp,
+                        'uploader': try_get(video, lambda x: x['owner']['name']),
+                        'uploader_id': try_get(video, lambda x: x['owner']['id']),
+                        'uploader_url': try_get(video, lambda x: x['owner']['url']),
                         'duration': (float_or_none(video.get('playable_duration_in_ms'), 1000)
                                      or float_or_none(video.get('length_in_second'))),
+                        'formats': formats,
                         'automatic_captions': automatic_captions,
                         'subtitles': subtitles,
+                        'concurrent_view_count': video.get('liveViewerCount'),
                     }
                     process_formats(info)
+                    """
                     description = try_get(video, lambda x: x['savable_description']['text'])
                     title = video.get('name')
                     if title:
@@ -706,8 +893,25 @@ class FacebookIE(InfoExtractor):
                         })
                     else:
                         info['title'] = description or 'Facebook video #%s' % v_id
+                    """
+                    # print(info)
                     entries.append(info)
 
+                video_ids = []
+                for idx, x in enumerate(find_json_obj(
+                    data, (r'"dash_manifest_url":\s?"', r'_hd_url":\s?"', r'_sd_url":\s?"'), get_all=True
+                )):
+                    media = json.loads(x)
+                    if (media.get('__typename', 'Video') == 'Video'
+                            and not media.get('id', f'{video_id}_{idx}') in video_ids):
+                        video_ids.append(media.get('id', f'{video_id}_{idx}'))
+                        parse_graphql_video(media)
+                        if media.get('id') == video_id:
+                            break
+
+                # print(time.time() - a)
+
+                """
                 def parse_attachment(attachment, key='media'):
                     media = attachment.get(key) or {}
                     if media.get('__typename') == 'Video':
@@ -747,11 +951,15 @@ class FacebookIE(InfoExtractor):
                         parse_attachment(attachment)
                     if not entries:
                         parse_graphql_video(video)
+                """
 
                 if len(entries) > 1:
-                    return self.playlist_result(entries, video_id, **extract_metadata(webpage))
+                    return self.playlist_result(entries, video_id, **webpage_info)
 
                 video_info = entries[0] if entries else {'id': video_id}
+                if 'Facebook video #' in video_info['title'] and page_title:
+                    video_info['title'] = None
+                """
                 webpage_info = extract_metadata(webpage)
                 # honor precise duration in video info
                 if video_info.get('duration'):
@@ -760,8 +968,12 @@ class FacebookIE(InfoExtractor):
                 if video_info.get('thumbnail'):
                     webpage_info['thumbnail'] = video_info['thumbnail']
                 return merge_dicts(webpage_info, video_info)
+                """
+                return merge_dicts(video_info, webpage_info)
 
         if not video_data:
+            # print('uiInterstitialContent')
+
             m_msg = re.search(r'class="[^"]*uiInterstitialContent[^"]*"><div>(.*?)</div>', webpage)
             if m_msg is not None:
                 raise ExtractorError(
@@ -774,6 +986,8 @@ class FacebookIE(InfoExtractor):
                 self.raise_login_required()
 
         if not video_data and '/watchparty/' in url:
+            # print('watchparty')
+
             post_data = {
                 'doc_id': 3731964053542869,
                 'variables': json.dumps({
@@ -810,10 +1024,14 @@ class FacebookIE(InfoExtractor):
             return self.playlist_result(entries, video_id)
 
         if not video_data:
+            # print('tahoe')
+
             # Video info not in first request, do a secondary request using
             # tahoe player specific URL
             tahoe_data = self._download_webpage(
                 self._VIDEO_PAGE_TAHOE_TEMPLATE % video_id, video_id,
+                errnote='Unable to download tahoe specific URL',
+                fatal=False,
                 data=urlencode_postdata({
                     '__a': 1,
                     '__pc': self._search_regex(
@@ -829,12 +1047,13 @@ class FacebookIE(InfoExtractor):
                 headers={
                     'Content-Type': 'application/x-www-form-urlencoded',
                 })
-            tahoe_js_data = self._parse_json(
-                self._search_regex(
-                    r'for\s+\(\s*;\s*;\s*\)\s*;(.+)', tahoe_data,
-                    'tahoe js data', default='{}'),
-                video_id, fatal=False)
-            video_data = extract_from_jsmods_instances(tahoe_js_data)
+            if tahoe_data:
+                tahoe_js_data = self._parse_json(
+                    self._search_regex(
+                        r'for\s+\(\s*;\s*;\s*\)\s*;(.+)', tahoe_data,
+                        'tahoe js data', default='{}'),
+                    video_id, fatal=False)
+                video_data = extract_from_jsmods_instances(tahoe_js_data)
 
         if not video_data:
             raise ExtractorError('Cannot parse data')
@@ -891,7 +1110,8 @@ class FacebookIE(InfoExtractor):
             'subtitles': subtitles,
         }
         process_formats(info_dict)
-        info_dict.update(extract_metadata(webpage))
+        # info_dict.update(extract_metadata(webpage))
+        info_dict.update(webpage_info)
 
         return info_dict
 
@@ -907,15 +1127,20 @@ class FacebookPluginsVideoIE(InfoExtractor):
 
     _TESTS = [{
         'url': 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fgov.sg%2Fvideos%2F10154383743583686%2F&show_text=0&width=560',
-        'md5': '5954e92cdfe51fe5782ae9bda7058a07',
+        'md5': 'd3e2822e6512cb2357d1ed227125419e',
         'info_dict': {
             'id': '10154383743583686',
             'ext': 'mp4',
-            # TODO: Fix title, uploader
             'title': 'What to do during the haze?',
+            'description': 'md5:81839c0979803a014b20798df255ed0b',
+            'thumbnail': r're:^https?://.*',
             'uploader': 'Gov.sg',
+            'uploader_id': '100064718678925',
             'upload_date': '20160826',
             'timestamp': 1472184808,
+            'duration': 65.385,
+            'view_count': int,
+            'concurrent_view_count': int,
         },
         'add_ie': [FacebookIE.ie_key()],
     }, {
@@ -982,9 +1207,10 @@ class FacebookReelIE(InfoExtractor):
             'id': '1195289147628387',
             'ext': 'mp4',
             'title': 'md5:b05800b5b1ad56c0ca78bd3807b6a61e',
-            'description': 'md5:22f03309b216ac84720183961441d8db',
-            'uploader': 'md5:723e6cb3091241160f20b3c5dc282af1',
-            'uploader_id': '100040874179269',
+            'description': 'md5:3ea795c5ebb7ed28e3e78bb7b1191753',
+            'uploader': 'Beast Camp Training',
+            'uploader_id': '1738535909799870',
+            'uploader_url': r're:^https?://.*',
             'duration': 9.579,
             'timestamp': 1637502609,
             'upload_date': '20211121',
