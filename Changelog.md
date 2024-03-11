@@ -4,6 +4,12 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.03.11.021956
+
+#### Extractor changes
+- **facebook**: [New approach extractor](https://github.com/yt-dlp/yt-dlp/commit/edd7018582554f811bcc06c8c0f81f82256e658d) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ac3c6c41b9339c90687250a277a71475fbb78599) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.03.10
 
 #### Core changes
