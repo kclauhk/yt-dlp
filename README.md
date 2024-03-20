@@ -17,7 +17,7 @@
 </div>
 <!-- MANPAGE: END EXCLUDED SECTION -->
 
-yt-dlp is a [youtube-dl](https://github.com/ytdl-org/youtube-dl) fork based on the now inactive [youtube-dlc](https://github.com/blackjack4494/yt-dlc). The main focus of this project is adding new features and patches while also keeping up to date with the original project
+yt-dlp is a feature-rich command-line audio/video downloader with support for [thousands of sites](supportedsites.md). The project is a fork of [youtube-dl](https://github.com/ytdl-org/youtube-dl) based on the now inactive [youtube-dlc](https://github.com/blackjack4494/yt-dlc).
 
 <!-- MANPAGE: MOVE "USAGE AND OPTIONS" SECTION HERE -->
 
@@ -195,6 +195,15 @@ While all the other dependencies are optional, `ffmpeg` and `ffprobe` are highly
 * [**brotli**](https://github.com/google/brotli)\* or [**brotlicffi**](https://github.com/python-hyper/brotlicffi) - [Brotli](https://en.wikipedia.org/wiki/Brotli) content encoding support. Both licensed under MIT <sup>[1](https://github.com/google/brotli/blob/master/LICENSE) [2](https://github.com/python-hyper/brotlicffi/blob/master/LICENSE) </sup>
 * [**websockets**](https://github.com/aaugustin/websockets)\* - For downloading over websocket. Licensed under [BSD-3-Clause](https://github.com/aaugustin/websockets/blob/main/LICENSE)
 * [**requests**](https://github.com/psf/requests)\* - HTTP library. For HTTPS proxy and persistent connections support. Licensed under [Apache-2.0](https://github.com/psf/requests/blob/main/LICENSE)
+
+#### Impersonation
+
+The following provide support for impersonating browser requests. This may be required for some sites that employ TLS fingerprinting. 
+
+* [**curl_cffi**](https://github.com/yifeikong/curl_cffi) (recommended) - Python binding for [curl-impersonate](https://github.com/lwthiker/curl-impersonate). Provides impersonation targets for Chrome, Edge and Safari. Licensed under [MIT](https://github.com/yifeikong/curl_cffi/blob/main/LICENSE)
+  * Can be installed with the `curl_cffi` group, e.g. `pip install yt-dlp[default,curl_cffi]`
+  * Only included in `yt-dlp.exe`, `yt-dlp_macos` and `yt-dlp_macos_legacy` builds
+
 
 ### Metadata
 
@@ -389,6 +398,10 @@ If you fork the project on GitHub, you can run your fork's [build workflow](.git
                                     direct connection
     --socket-timeout SECONDS        Time to wait before giving up, in seconds
     --source-address IP             Client-side IP address to bind to
+    --impersonate CLIENT[:OS]       Client to impersonate for requests. E.g.
+                                    chrome, chrome-110, chrome:windows-10. Pass
+                                    --impersonate="" to impersonate any client.
+    --list-impersonate-targets      List available clients to impersonate.
     -4, --force-ipv4                Make all connections via IPv4
     -6, --force-ipv6                Make all connections via IPv6
     --enable-file-urls              Enable file:// URLs. This is disabled by
