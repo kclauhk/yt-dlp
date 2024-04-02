@@ -105,6 +105,7 @@
  - **ArteTVPlaylist**
  - **asobichannel**: ASOBI CHANNEL
  - **asobichannel:tag**: ASOBI CHANNEL
+ - **AsobiStage**: ASOBISTAGE (アソビステージ)
  - **AtresPlayer**: [*atresplayer*](## "netrc machine")
  - **AtScaleConfEvent**
  - **ATVAt**
@@ -431,11 +432,12 @@
  - **Expressen**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
- - **facebook:ads**
+ - **facebook:ads**: [*facebook*](## "netrc machine")
  - **facebook:reel**
  - **FacebookPluginsVideo**
  - **fancode:live**: [*fancode*](## "netrc machine") (**Currently broken**)
  - **fancode:vod**: [*fancode*](## "netrc machine") (**Currently broken**)
+ - **Fathom**
  - **faz.net**
  - **fc2**: [*fc2*](## "netrc machine")
  - **fc2:embed**
@@ -581,6 +583,9 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**
+ - **IDOLTV:vod**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -716,6 +721,8 @@
  - **Lnk**
  - **LnkGo**
  - **loc**: Library of Congress
+ - **loom**
+ - **loom:folder**
  - **LoveHomePorn**
  - **LRTStream**
  - **LRTVOD**
@@ -1288,6 +1295,7 @@
  - **SeznamZpravyArticle**
  - **Shahid**: [*shahid*](## "netrc machine")
  - **ShahidShow**
+ - **SharePoint**
  - **ShareVideosEmbed**
  - **ShemarooMe**
  - **ShowRoomLive**
