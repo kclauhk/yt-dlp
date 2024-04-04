@@ -150,6 +150,7 @@ from .arte import (
 )
 from .arnes import ArnesIE
 from .asobichannel import AsobiChannelIE, AsobiChannelTagURLIE
+from .asobistage import AsobiStageIE
 from .atresplayer import AtresPlayerIE
 from .atscaleconf import AtScaleConfEventIE
 from .atvat import ATVAtIE
@@ -2294,6 +2295,7 @@ from .vrt import (
     VrtNUIE,
     KetnetIE,
     DagelijkseKostIE,
+    Radio1BeIE,
 )
 from .vtm import VTMIE
 from .medialaan import MedialaanIE
