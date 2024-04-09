@@ -881,6 +881,7 @@ from .jeuxvideo import JeuxVideoIE
 from .jiosaavn import (
     JioSaavnSongIE,
     JioSaavnAlbumIE,
+    JioSaavnPlaylistIE,
 )
 from .jove import JoveIE
 from .joj import JojIE
