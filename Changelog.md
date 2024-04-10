@@ -4,6 +4,13 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.04.10.024843
+
+#### Extractor changes
+- [get the number of channels of DASH audio](https://github.com/yt-dlp/yt-dlp/commit/4e180523fb4066968e4a93053ce1836f9b340383) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/0100ca70d60a4dbf76caf9e411a6c94e9fbccdb2) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e724d4e74d152b877f7eed74223b00590e16deb8) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.04.09
 
 #### Important changes
