@@ -4,6 +4,19 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.04.14.080347
+
+#### Core changes
+- [Merge branch 'yt-dlp:master' into main](https://github.com/yt-dlp/yt-dlp/commit/a657314a336bc324d8f484e90159704d09eff965) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- [get the number of channels of DASH audio](https://github.com/yt-dlp/yt-dlp/commit/4e180523fb4066968e4a93053ce1836f9b340383) by [pukkandan](https://github.com/pukkandan)
+- **afreecatv**: live: [Add `cdn` extractor-arg](https://github.com/yt-dlp/yt-dlp/commit/315b3544296bb83012e20ee3af9d3cbf5600dd1c) ([#9666](https://github.com/yt-dlp/yt-dlp/issues/9666)) by [bashonly](https://github.com/bashonly)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/e54d29d7b37a3c167a4eea1064195541bf4b9f9d) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bde08501c9ae8235effdd94ea7a9873dbba14000) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7f093b340a3345a14a2d85d741f01dc5316574c2) by [pukkandan](https://github.com/pukkandan)
+- **jiosaavn**: [Extract via API and fix playlists](https://github.com/yt-dlp/yt-dlp/commit/0c21c53885cf03f4040467ae8c44d7ff51016116) ([#9656](https://github.com/yt-dlp/yt-dlp/issues/9656)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.04.09
 
 #### Important changes
