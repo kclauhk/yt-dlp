@@ -4,6 +4,26 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.04.19.020935
+
+#### Core changes
+- [Merge branch 'yt-dlp:master' into main](https://github.com/yt-dlp/yt-dlp/commit/b762e2db5cd62acba2e62e084cdbb85614f4c79a) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- [get the number of channels of DASH audio](https://github.com/yt-dlp/yt-dlp/commit/4e180523fb4066968e4a93053ce1836f9b340383) by [pukkandan](https://github.com/pukkandan)
+- **afreecatv**: live: [Add `cdn` extractor-arg](https://github.com/yt-dlp/yt-dlp/commit/315b3544296bb83012e20ee3af9d3cbf5600dd1c) ([#9666](https://github.com/yt-dlp/yt-dlp/issues/9666)) by [bashonly](https://github.com/bashonly)
+- **canalalpha**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/1f73c7619b7bcb1200071ff1a9567e4eb3aaac78) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/e54d29d7b37a3c167a4eea1064195541bf4b9f9d) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bde08501c9ae8235effdd94ea7a9873dbba14000) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7f093b340a3345a14a2d85d741f01dc5316574c2) by [pukkandan](https://github.com/pukkandan)
+- **jiosaavn**: [Extract via API and fix playlists](https://github.com/yt-dlp/yt-dlp/commit/0c21c53885cf03f4040467ae8c44d7ff51016116) ([#9656](https://github.com/yt-dlp/yt-dlp/issues/9656)) by [bashonly](https://github.com/bashonly)
+- **patreon**: [Fix Vimeo embed extraction](https://github.com/yt-dlp/yt-dlp/commit/c9ce57d9bf51541da2381d99bc096a9d0ddf1f27) ([#9712](https://github.com/yt-dlp/yt-dlp/issues/9712)) by [bashonly](https://github.com/bashonly)
+- **reddit**: [Fix subtitle extraction](https://github.com/yt-dlp/yt-dlp/commit/ad215c7a2d84c0daeda3c57412de6e5b2823676b) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Update iid](https://github.com/yt-dlp/yt-dlp/commit/460d7afc92cc5a5cb80fe219f114ed74467617e0) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**: [Normalize `curl_cffi` group to `curl-cffi`](https://github.com/yt-dlp/yt-dlp/commit/02483bea1c4dbe1bace8ca4d19700104fbb8a00f) ([#9698](https://github.com/yt-dlp/yt-dlp/issues/9698)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.04.09
 
 #### Important changes
