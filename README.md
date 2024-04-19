@@ -202,7 +202,7 @@ While all the other dependencies are optional, `ffmpeg` and `ffprobe` are highly
 The following provide support for impersonating browser requests. This may be required for some sites that employ TLS fingerprinting. 
 
 * [**curl_cffi**](https://github.com/yifeikong/curl_cffi) (recommended) - Python binding for [curl-impersonate](https://github.com/lwthiker/curl-impersonate). Provides impersonation targets for Chrome, Edge and Safari. Licensed under [MIT](https://github.com/yifeikong/curl_cffi/blob/main/LICENSE)
-  * Can be installed with the `curl_cffi` group, e.g. `pip install yt-dlp[default,curl_cffi]`
+  * Can be installed with the `curl-cffi` group, e.g. `pip install yt-dlp[default,curl-cffi]`
   * Currently only included in `yt-dlp.exe` and `yt-dlp_macos` builds
 
 
@@ -1836,6 +1836,9 @@ The following extractors use this feature:
 
 #### jiosaavn
 * `bitrate`: Audio bitrates to request. One or more of `16`, `32`, `64`, `128`, `320`. Default is `128,320`
+
+#### afreecatvlive
+* `cdn`: One or more CDN IDs to use with the API call for stream URLs, e.g. `gcp_cdn`, `gs_cdn_pc_app`, `gs_cdn_mobile_web`, `gs_cdn_pc_web`
 
 **Note**: These options may be changed/removed in the future without concern for backward compatibility
 
