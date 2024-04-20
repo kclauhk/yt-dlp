@@ -46,9 +46,7 @@ class TikTokBaseIE(InfoExtractor):
         'aid': '0',
     }
     _KNOWN_APP_INFO = [
-        '7351144126450059040',
-        '7351149742343391009',
-        '7351153174894626592',
+        '7355728856979392262',
     ]
     _APP_INFO_POOL = None
     _APP_INFO = None
@@ -57,7 +55,7 @@ class TikTokBaseIE(InfoExtractor):
     @property
     def _API_HOSTNAME(self):
         return self._configuration_arg(
-            'api_hostname', ['api22-normal-c-useast2a.tiktokv.com'], ie_key=TikTokIE)[0]
+            'api_hostname', ['api16-normal-c-useast1a.tiktokv.com'], ie_key=TikTokIE)[0]
 
     def _get_next_app_info(self):
         if self._APP_INFO_POOL is None:
