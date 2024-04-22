@@ -4,6 +4,31 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.04.22.025108
+
+#### Core changes
+- [Merge branch 'yt-dlp:master' into main](https://github.com/yt-dlp/yt-dlp/commit/3a0b33d94c01088c1ce5da26de910d70f264140c) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- [Make `_search_nextjs_data` non fatal](https://github.com/yt-dlp/yt-dlp/commit/3ee1194288981c4f2c4abd8315326de0c424d2ce) ([#8937](https://github.com/yt-dlp/yt-dlp/issues/8937)) by [Grub4K](https://github.com/Grub4K)
+- [get the number of channels of DASH audio](https://github.com/yt-dlp/yt-dlp/commit/c88c4340fbf2aef76abca3a21dc58122e9c7a051) by [pukkandan](https://github.com/pukkandan)
+- **afreecatv**: live: [Add `cdn` extractor-arg](https://github.com/yt-dlp/yt-dlp/commit/315b3544296bb83012e20ee3af9d3cbf5600dd1c) ([#9666](https://github.com/yt-dlp/yt-dlp/issues/9666)) by [bashonly](https://github.com/bashonly)
+- **canalalpha**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/f624f52fdf1f8448f40e1aa49a31a31777aa5218) by [pukkandan](https://github.com/pukkandan)
+- **crunchyroll**: [Fix auth and remove cookies support](https://github.com/yt-dlp/yt-dlp/commit/ff38a011d57b763f3a69bebd25a5dc9044a717ce) ([#9749](https://github.com/yt-dlp/yt-dlp/issues/9749)) by [bashonly](https://github.com/bashonly)
+- **facebook**
+    - [Fix DASH formats extraction](https://github.com/yt-dlp/yt-dlp/commit/e3b42d8b1b8bcfff7ba146c19fc3f6f6ba843cea) ([#9734](https://github.com/yt-dlp/yt-dlp/issues/9734)) by [bashonly](https://github.com/bashonly)
+    - [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/4a86b1f12ab2402bd4b58c94ea466f079e8125a0) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/53f50b04d7158a6f97822db7cea7291a85c18017) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b698db4b8e6463f5405f72304c2582e6d9faa72f) by [pukkandan](https://github.com/pukkandan)
+- **jiosaavn**: [Extract via API and fix playlists](https://github.com/yt-dlp/yt-dlp/commit/0c21c53885cf03f4040467ae8c44d7ff51016116) ([#9656](https://github.com/yt-dlp/yt-dlp/issues/9656)) by [bashonly](https://github.com/bashonly)
+- **patreon**: [Fix Vimeo embed extraction](https://github.com/yt-dlp/yt-dlp/commit/c9ce57d9bf51541da2381d99bc096a9d0ddf1f27) ([#9712](https://github.com/yt-dlp/yt-dlp/issues/9712)) by [bashonly](https://github.com/bashonly)
+- **reddit**: [Fix subtitle extraction](https://github.com/yt-dlp/yt-dlp/commit/93b317f95cd958eb5981069f6eb06f0542878791) by [pukkandan](https://github.com/pukkandan)
+- **theatercomplextown**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/8056a3026ed6ec6a6d0ed56fdd7ebcd16e928341) ([#9754](https://github.com/yt-dlp/yt-dlp/issues/9754)) by [bashonly](https://github.com/bashonly)
+- **tiktok**: [Update iid](https://github.com/yt-dlp/yt-dlp/commit/1777acdc53d1e143fad0596764ddf5ddfd50b9b7) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**: [Normalize `curl_cffi` group to `curl-cffi`](https://github.com/yt-dlp/yt-dlp/commit/02483bea1c4dbe1bace8ca4d19700104fbb8a00f) ([#9698](https://github.com/yt-dlp/yt-dlp/issues/9698)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.04.09
 
 #### Important changes
