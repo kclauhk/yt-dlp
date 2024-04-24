@@ -1,5 +1,7 @@
+import re
 import urllib.parse
 
+from urllib.request import urlopen
 from .common import InfoExtractor
 from ..utils import (
     ExtractorError,
@@ -76,7 +78,7 @@ class RedditIE(InfoExtractor):
             'like_count': int,
             'dislike_count': int,
             'comment_count': int,
-            'age_limit': 0,
+            'age_limit': 18,
             'channel_id': 'u_creepyt0es',
         },
         'params': {
@@ -306,7 +308,8 @@ class RedditIE(InfoExtractor):
                 'video_id', default=display_id)
 
             dash_playlist_url = playlist_urls[0] or f'https://v.redd.it/{video_id}/DASHPlaylist.mpd'
-            hls_playlist_url = playlist_urls[1] or f'https://v.redd.it/{video_id}/HLSPlaylist.m3u8'
+            hls_playlist_url = re.sub(r'f=[^&]+', 'f=hd%2CsubsAll', playlist_urls[1]) or f'https://v.redd.it/{video_id}/HLSPlaylist.m3u8?f=hd%2CsubsAll'
+            caption_url = f'https://v.redd.it/{video_id}/wh_ben_en.vtt'
 
             formats = [{
                 'url': unescapeHTML(reddit_video['fallback_url']),
@@ -326,6 +329,13 @@ class RedditIE(InfoExtractor):
                 dash_playlist_url, display_id, mpd_id='dash', fatal=False)
             formats.extend(dash_fmts)
             self._merge_subtitles(dash_subs, target=subtitles)
+            if 'en' not in subtitles:
+                try:
+                    urlopen(caption_url)
+                except Exception:
+                    pass
+                else:
+                    self._merge_subtitles({'en': [{'url': caption_url}]}, target=subtitles)
 
             return {
                 **info,
