@@ -698,6 +698,11 @@ from .gettr import (
     GettrStreamingIE,
 )
 from .giantbomb import GiantBombIE
+from .gimy import (
+    GimyIE,
+    GimyPlaylistIE,
+    GimySearchIE
+)
 from .glide import GlideIE
 from .globalplayer import (
     GlobalPlayerLiveIE,
