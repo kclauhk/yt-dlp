@@ -1,3 +1,4 @@
+import re
 import urllib.parse
 
 from .common import InfoExtractor
@@ -76,7 +77,7 @@ class RedditIE(InfoExtractor):
             'like_count': int,
             'dislike_count': int,
             'comment_count': int,
-            'age_limit': 0,
+            'age_limit': 18,
             'channel_id': 'u_creepyt0es',
         },
         'params': {
@@ -150,6 +151,48 @@ class RedditIE(InfoExtractor):
             'like_count': int,
         },
         'skip': 'Requires account that has opted-in to the GenZedong subreddit',
+    }, {
+        # subtitle in caption url
+        'url': 'https://www.reddit.com/r/Unexpected/comments/1chnufv/the_legend_of_the_sea/',
+        'info_dict': {
+            'id': 'qhh6uj34utxc1',
+            'ext': 'mp4',
+            'display_id': '1chnufv',
+            'title': 'The legend of the sea',
+            'uploader': 'MilaRadiance07',
+            'channel_id': 'Unexpected',
+            'duration': 23,
+            'upload_date': '20240501',
+            'timestamp': 1714574454,
+            'age_limit': 0,
+            'comment_count': int,
+            'dislike_count': int,
+            'like_count': int,
+        },
+        'params': {
+            'skip_download': True,
+        },
+    }, {
+        # subtitle in hls playlist
+        'url': 'https://www.reddit.com/r/Unexpected/comments/1cl9h0u/the_insurance_claim_will_be_interesting/',
+        'info_dict': {
+            'id': 'a2mdj5d57qyc1',
+            'ext': 'mp4',
+            'display_id': '1cl9h0u',
+            'title': 'The insurance claim will be interesting',
+            'uploader': 'darrenpauli',
+            'channel_id': 'Unexpected',
+            'duration': 53,
+            'upload_date': '20240506',
+            'timestamp': 1714966382,
+            'age_limit': 0,
+            'comment_count': int,
+            'dislike_count': int,
+            'like_count': int,
+        },
+        'params': {
+            'skip_download': True,
+        },
     }, {
         'url': 'https://www.reddit.com/r/videos/comments/6rrwyj',
         'only_matching': True,
@@ -306,7 +349,8 @@ class RedditIE(InfoExtractor):
                 'video_id', default=display_id)
 
             dash_playlist_url = playlist_urls[0] or f'https://v.redd.it/{video_id}/DASHPlaylist.mpd'
-            hls_playlist_url = playlist_urls[1] or f'https://v.redd.it/{video_id}/HLSPlaylist.m3u8'
+            hls_playlist_url = re.sub(r'(f=[^&]+)', r'\1%2CsubsAll', playlist_urls[1]) or f'https://v.redd.it/{video_id}/HLSPlaylist.m3u8?f=hd%2CsubsAll'
+            caption_url = f'https://v.redd.it/{video_id}/wh_ben_en.vtt'
 
             formats = [{
                 'url': unescapeHTML(reddit_video['fallback_url']),
@@ -326,6 +370,8 @@ class RedditIE(InfoExtractor):
                 dash_playlist_url, display_id, mpd_id='dash', fatal=False)
             formats.extend(dash_fmts)
             self._merge_subtitles(dash_subs, target=subtitles)
+            if not subtitles and self._is_valid_url(caption_url, video_id, item='subtitle'):
+                self._merge_subtitles({'en': [{'url': caption_url}]}, target=subtitles)
 
             return {
                 **info,
