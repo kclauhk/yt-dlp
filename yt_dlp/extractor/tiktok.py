@@ -15,6 +15,7 @@ from ..utils import (
     UnsupportedError,
     UserNotLive,
     determine_ext,
+    float_or_none,
     format_field,
     int_or_none,
     join_nonempty,
@@ -199,7 +200,31 @@ class TikTokBaseIE(InfoExtractor):
             raise ExtractorError('Unable to find video in feed', video_id=aweme_id)
         return self._parse_aweme_video_app(aweme_detail)
 
-    def _get_subtitles(self, aweme_detail, aweme_id):
+    def _extract_web_data_and_status(self, url, video_id, fatal=True):
+        webpage = self._download_webpage(url, video_id, headers={'User-Agent': 'Mozilla/5.0'}, fatal=fatal)
+        video_data, status = {}, None
+
+        if universal_data := self._get_universal_data(webpage, video_id):
+            self.write_debug('Found universal data for rehydration')
+            status = traverse_obj(universal_data, ('webapp.video-detail', 'statusCode', {int})) or 0
+            video_data = traverse_obj(universal_data, ('webapp.video-detail', 'itemInfo', 'itemStruct', {dict}))
+
+        elif sigi_data := self._get_sigi_state(webpage, video_id):
+            self.write_debug('Found sigi state data')
+            status = traverse_obj(sigi_data, ('VideoPage', 'statusCode', {int})) or 0
+            video_data = traverse_obj(sigi_data, ('ItemModule', video_id, {dict}))
+
+        elif next_data := self._search_nextjs_data(webpage, video_id, default={}):
+            self.write_debug('Found next.js data')
+            status = traverse_obj(next_data, ('props', 'pageProps', 'statusCode', {int})) or 0
+            video_data = traverse_obj(next_data, ('props', 'pageProps', 'itemInfo', 'itemStruct', {dict}))
+
+        elif fatal:
+            raise ExtractorError('Unable to extract webpage video data')
+
+        return video_data, status
+
+    def _get_subtitles(self, aweme_detail, aweme_id, user_url):
         # TODO: Extract text positioning info
         subtitles = {}
         # aweme/detail endpoint subs
@@ -230,31 +255,32 @@ class TikTokBaseIE(InfoExtractor):
                 })
         # webpage subs
         if not subtitles:
-            for caption in traverse_obj(aweme_detail, ('video', 'subtitleInfos', ...), expected_type=dict):
-                if not caption.get('Url'):
-                    continue
+            if user_url:  # only _parse_aweme_video_app needs to extract the webpage here
+                aweme_detail, _ = self._extract_web_data_and_status(
+                    f'{user_url}/video/{aweme_id}', aweme_id, fatal=False)
+            for caption in traverse_obj(aweme_detail, ('video', 'subtitleInfos', lambda _, v: v['Url'])):
                 subtitles.setdefault(caption.get('LanguageCodeName') or 'en', []).append({
                     'ext': remove_start(caption.get('Format'), 'web'),
                     'url': caption['Url'],
                 })
         return subtitles
 
+    def _parse_url_key(self, url_key):
+        format_id, codec, res, bitrate = self._search_regex(
+            r'v[^_]+_(?P<id>(?P<codec>[^_]+)_(?P<res>\d+p)_(?P<bitrate>\d+))', url_key,
+            'url key', default=(None, None, None, None), group=('id', 'codec', 'res', 'bitrate'))
+        if not format_id:
+            return {}, None
+        return {
+            'format_id': format_id,
+            'vcodec': 'h265' if codec == 'bytevc1' else codec,
+            'tbr': int_or_none(bitrate, scale=1000) or None,
+            'quality': qualities(self.QUALITIES)(res),
+        }, res
+
     def _parse_aweme_video_app(self, aweme_detail):
         aweme_id = aweme_detail['aweme_id']
         video_info = aweme_detail['video']
-
-        def parse_url_key(url_key):
-            format_id, codec, res, bitrate = self._search_regex(
-                r'v[^_]+_(?P<id>(?P<codec>[^_]+)_(?P<res>\d+p)_(?P<bitrate>\d+))', url_key,
-                'url key', default=(None, None, None, None), group=('id', 'codec', 'res', 'bitrate'))
-            if not format_id:
-                return {}, None
-            return {
-                'format_id': format_id,
-                'vcodec': 'h265' if codec == 'bytevc1' else codec,
-                'tbr': int_or_none(bitrate, scale=1000) or None,
-                'quality': qualities(self.QUALITIES)(res),
-            }, res
 
         known_resolutions = {}
 
@@ -270,7 +296,7 @@ class TikTokBaseIE(InfoExtractor):
             } if ext == 'mp3' or '-music-' in url else {}
 
         def extract_addr(addr, add_meta={}):
-            parsed_meta, res = parse_url_key(addr.get('url_key', ''))
+            parsed_meta, res = self._parse_url_key(addr.get('url_key', ''))
             is_bytevc2 = parsed_meta.get('vcodec') == 'bytevc2'
             if res:
                 known_resolutions.setdefault(res, {}).setdefault('height', int_or_none(addr.get('height')))
@@ -399,7 +425,7 @@ class TikTokBaseIE(InfoExtractor):
             'album': str_or_none(music_info.get('album')) or None,
             'artists': re.split(r'(?:, | & )', music_author) if music_author else None,
             'formats': formats,
-            'subtitles': self.extract_subtitles(aweme_detail, aweme_id),
+            'subtitles': self.extract_subtitles(aweme_detail, aweme_id, user_url),
             'thumbnails': thumbnails,
             'duration': int_or_none(traverse_obj(video_info, 'duration', ('download_addr', 'duration')), scale=1000),
             'availability': self._availability(
@@ -420,23 +446,63 @@ class TikTokBaseIE(InfoExtractor):
         formats = []
         width = int_or_none(video_info.get('width'))
         height = int_or_none(video_info.get('height'))
+        tbr = float_or_none(video_info.get('bitrate'), 1000)
+        codec = (lambda x: 'h265' if x == 'bytevc1' else x)(video_info.get('codecType'))
+
+        def watermark_info(url, format_note):
+            no_watermark = 'unwatermarked' in url
+            return {
+                'format_note': join_nonempty(format_note, ('' if no_watermark else 'watermarked'), delim=', '),
+                'source_preference': -1 if no_watermark else -2,
+            }
 
         for play_url in traverse_obj(video_info, ('playAddr', ((..., 'src'), None), {url_or_none})):
             formats.append({
+                'format_id': 'play_addr',
+                **watermark_info(play_url, 'Direct video'),
                 'url': self._proto_relative_url(play_url),
                 'ext': 'mp4',
                 'width': width,
                 'height': height,
+                'tbr': tbr,
+                'vcodec': codec,
+                'acodec': 'aac',
+                'quality': qualities(self.QUALITIES)(video_info.get('ratio')),
             })
 
         for download_url in traverse_obj(video_info, (('downloadAddr', ('download', 'url')), {url_or_none})):
             formats.append({
-                'format_id': 'download',
+                'format_id': 'download_addr',
+                **watermark_info(download_url, 'Download video'),
                 'url': self._proto_relative_url(download_url),
                 'ext': 'mp4',
-                'width': width,
-                'height': height,
+                'vcodec': codec,
+                'acodec': 'aac',
             })
+
+        for bitrate in traverse_obj(video_info, 'bitrateInfo', {dict}):
+            if addr := bitrate.get('PlayAddr'):
+                parsed_meta, res = self._parse_url_key(addr.get('UrlKey', ''))
+                is_bytevc2 = parsed_meta.get('vcodec') == 'bytevc2'
+                for url in traverse_obj(addr, 'UrlList', {url_or_none}):
+                    if width and height and res:
+                        if width < height:
+                            v_width = 576 if res == '540p' else int(res.replace('p', ''))
+                            v_height = round(v_width / width * height)
+                        else:
+                            v_height = 576 if res == '540p' else int(res.replace('p', ''))
+                            v_width = round(v_height / height * width)
+                    formats.append({
+                        **watermark_info(url, 'Playback video'),
+                        'url': self._proto_relative_url(url),
+                        'filesize': int_or_none(addr.get('DataSize')),
+                        'ext': 'mp4',
+                        'width': v_width,
+                        'height': v_height,
+                        'acodec': 'aac',
+                        **parsed_meta,
+                        'preference': -100 if is_bytevc2 else -1,
+                    })
 
         self._remove_duplicate_formats(formats)
 
@@ -477,6 +543,7 @@ class TikTokBaseIE(InfoExtractor):
             'channel_id': channel_id,
             'uploader_url': user_url,
             'formats': formats,
+            'subtitles': self.extract_subtitles(aweme_detail, video_id, None),
             'thumbnails': thumbnails,
             'http_headers': {
                 'Referer': webpage_url,
@@ -762,25 +829,7 @@ class TikTokIE(TikTokBaseIE):
                 self.report_warning(f'{e}; trying with webpage')
 
         url = self._create_url(user_id, video_id)
-        webpage = self._download_webpage(url, video_id, headers={'User-Agent': 'Mozilla/5.0'})
-
-        if universal_data := self._get_universal_data(webpage, video_id):
-            self.write_debug('Found universal data for rehydration')
-            status = traverse_obj(universal_data, ('webapp.video-detail', 'statusCode', {int})) or 0
-            video_data = traverse_obj(universal_data, ('webapp.video-detail', 'itemInfo', 'itemStruct', {dict}))
-
-        elif sigi_data := self._get_sigi_state(webpage, video_id):
-            self.write_debug('Found sigi state data')
-            status = traverse_obj(sigi_data, ('VideoPage', 'statusCode', {int})) or 0
-            video_data = traverse_obj(sigi_data, ('ItemModule', video_id, {dict}))
-
-        elif next_data := self._search_nextjs_data(webpage, video_id, default={}):
-            self.write_debug('Found next.js data')
-            status = traverse_obj(next_data, ('props', 'pageProps', 'statusCode', {int})) or 0
-            video_data = traverse_obj(next_data, ('props', 'pageProps', 'itemInfo', 'itemStruct', {dict}))
-
-        else:
-            raise ExtractorError('Unable to extract webpage video data')
+        video_data, status = self._extract_web_data_and_status(url, video_id)
 
         if video_data and status == 0:
             return self._parse_aweme_video_web(video_data, url, video_id)
