@@ -2825,6 +2825,13 @@ class InfoExtractor:
                             'container': mimetype2ext(mime_type) + '_dash',
                             **codecs
                         }
+                        if content_type == 'audio':
+                            for audio_ch_cfg in representation.findall(_add_ns('AudioChannelConfiguration')):
+                                if (audio_ch_cfg.attrib.get('schemeIdUri') in (
+                                        'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
+                                        'urn:dts:dash:audio_channel_configuration:2012')):
+                                    f['audio_channels'] = int_or_none(audio_ch_cfg.attrib.get('value'))
+                                    break
                     elif content_type == 'text':
                         f = {
                             'ext': mimetype2ext(mime_type),
