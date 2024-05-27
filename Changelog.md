@@ -4,6 +4,16 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.05.27.034114
+
+#### Extractor changes
+- [Fix parsing of base URL in SMIL manifest](https://github.com/yt-dlp/yt-dlp/commit/26603d0b34898818992bee4598e0607c07059511) ([#9225](https://github.com/yt-dlp/yt-dlp/issues/9225)) by [seproDev](https://github.com/seproDev)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/b24d0d43e13ebe395f2121a7825bc3e055de51c5) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3f4060ba7fb36bbec949c276a44285c48076adcc) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5526a098af447a5becbc7f147dde3435c3c09301) by [pukkandan](https://github.com/pukkandan)
+- **piksel**: [Update domain](https://github.com/yt-dlp/yt-dlp/commit/ae2194e1dd4a99d32eb3cab7c48a0ff03101ef3b) ([#9223](https://github.com/yt-dlp/yt-dlp/issues/9223)) by [seproDev](https://github.com/seproDev)
+- **tiktok**: [Improve resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/c24905d8d2bfb65705b535405009ac58a236c91d) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.05.26
 
 #### Core changes
