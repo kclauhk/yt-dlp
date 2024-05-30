@@ -4,6 +4,19 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.05.30.011907
+
+#### Core changes
+- [Merge branch 'yt-dlp:master' into main](https://github.com/yt-dlp/yt-dlp/commit/eb7272e370708d0dbfcfd90b51ad08bc1dc62f4a) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/b7232d06a103d6e6824879b7927f6bf67c3d2739) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/410a1d9f34b538354c23a140f30cb58a5c76d8c4) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/6eaae654d91309d907736a5795200682473ef5bf) by [pukkandan](https://github.com/pukkandan)
+- **orf**: on: [Support segmented episodes](https://github.com/yt-dlp/yt-dlp/commit/8b46ad4d8b8ee8c5472af0cde863baa89ca3f425) ([#10053](https://github.com/yt-dlp/yt-dlp/issues/10053)) by [seproDev](https://github.com/seproDev)
+- **tiktok**: [Fix resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/4eef5389dd62f7f1f00fad8c2dd3919aa0a26d9f) by [pukkandan](https://github.com/pukkandan)
+- **tubitv**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/bef9a9e5361fd7a72e21d0f1a8c8afb70d89e8c5) ([#9975](https://github.com/yt-dlp/yt-dlp/issues/9975)) by [chilinux](https://github.com/chilinux)
+
 ### 2024.05.27
 
 #### Extractor changes
