@@ -747,6 +747,7 @@ from .gimy import (
     GimyIE,
     GimySearchIE,
 )
+from .giphy import GiphyIE
 from .glide import GlideIE
 from .globalplayer import (
     GlobalPlayerAudioEpisodeIE,
