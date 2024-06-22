@@ -742,6 +742,11 @@ from .gettr import (
     GettrStreamingIE,
 )
 from .giantbomb import GiantBombIE
+from .gimy import (
+    GimyDetailIE,
+    GimyIE,
+    GimySearchIE,
+)
 from .glide import GlideIE
 from .globalplayer import (
     GlobalPlayerAudioEpisodeIE,
