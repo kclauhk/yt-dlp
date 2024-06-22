@@ -511,6 +511,10 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **Gimy**
+ - **Gimy:detail**
+ - **Gimy:search**
+ - **Giphy**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -585,6 +589,9 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**
+ - **IDOLTV:vod**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -1237,6 +1244,7 @@
  - **rtve.es:television**
  - **RTVS**
  - **rtvslo.si**
+ - **rtvslo.si:show**
  - **RudoVideo**
  - **Rule34Video**
  - **Rumble**
@@ -1360,6 +1368,7 @@
  - **SpreakerShowPage**
  - **SpringboardPlatform**
  - **Sprout**
+ - **SproutVideo**
  - **sr:mediathek**: Saarländischer Rundfunk (**Currently broken**)
  - **SRGSSR**
  - **SRGSSRPlay**: srf.ch, rts.ch, rsi.ch, rtr.ch and swissinfo.ch play sites
@@ -1494,8 +1503,8 @@
  - **Tube8**: (**Currently broken**)
  - **TubeTuGraz**: [*tubetugraz*](## "netrc machine") tube.tugraz.at
  - **TubeTuGrazSeries**: [*tubetugraz*](## "netrc machine")
- - **TubiTv**: [*tubitv*](## "netrc machine")
- - **TubiTvShow**
+ - **tubitv**: [*tubitv*](## "netrc machine")
+ - **tubitv:series**
  - **Tumblr**: [*tumblr*](## "netrc machine")
  - **TuneInPodcast**
  - **TuneInPodcastEpisode**
@@ -1607,6 +1616,7 @@
  - **VidioPremier**: [*vidio*](## "netrc machine")
  - **VidLii**
  - **Vidly**
+ - **vids.io**
  - **viewlift**
  - **viewlift:embed**
  - **Viidea**
