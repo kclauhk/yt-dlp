@@ -53,7 +53,10 @@ dependencies = [
 
 [project.optional-dependencies]
 default = []
-curl-cffi = ["curl-cffi==0.5.10; implementation_name=='cpython'"]
+curl-cffi = [
+    "curl-cffi==0.5.10; os_name=='nt' and implementation_name=='cpython'",
+    "curl-cffi>=0.5.10,!=0.6.*,<0.8; os_name!='nt' and implementation_name=='cpython'",
+]
 secretstorage = [
     "cffi",
     "secretstorage",
