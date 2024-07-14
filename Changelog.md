@@ -4,6 +4,35 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.07.14.093210
+
+#### Extractor changes
+- **afreecatv**: [Fix login and use `legacy_ssl`](https://github.com/yt-dlp/yt-dlp/commit/4cd41469243624d90b7a2009b95cbe0609343efe) ([#10440](https://github.com/yt-dlp/yt-dlp/issues/10440)) by [bashonly](https://github.com/bashonly)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/df6aacd64f1e5937dfd6aee8d92a1d5c4cd15dc2) by [pukkandan](https://github.com/pukkandan)
+- **box**: [Support enterprise URLs](https://github.com/yt-dlp/yt-dlp/commit/705f5b84dec75cc7af97f42fd1530e8062735970) ([#10419](https://github.com/yt-dlp/yt-dlp/issues/10419)) by [seproDev](https://github.com/seproDev)
+- **epidemicsound**: [Support sound effects URLs](https://github.com/yt-dlp/yt-dlp/commit/8531d2b03bac9cc746f2ee8098aaf8f115505f5b) ([#10436](https://github.com/yt-dlp/yt-dlp/issues/10436)) by [iancmy](https://github.com/iancmy)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/0998ccaafca9e78e84236ce444bd8e1faae821a7) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/9753a9b39f4e21b99ab26cbd1e10fc3c503b9d44) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7cf56bfdceca03972fa1e5a6d139fb9d9d8df012) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/164e88a77c5199bea62cef597bbd503838041fe7) by [pukkandan](https://github.com/pukkandan)
+- **picarto**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/bacd18b7df08b4995644fd12cee1f8c8e8636bc7) ([#10414](https://github.com/yt-dlp/yt-dlp/issues/10414)) by [Frankgoji](https://github.com/Frankgoji)
+- **tiktok**
+    - [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/b1d41aac908268fb0818a0d9e9411c00fe13286c) by [pukkandan](https://github.com/pukkandan)
+    - live: [Fix room ID extraction](https://github.com/yt-dlp/yt-dlp/commit/d2189d3d36987ebeac426fd70a60a5fe86325a2b) ([#10408](https://github.com/yt-dlp/yt-dlp/issues/10408)) by [mokrueger](https://github.com/mokrueger)
+- **tv5monde**: [Support browser impersonation](https://github.com/yt-dlp/yt-dlp/commit/9b95a6765a5f6325af99c4aca961587f0c426e8c) ([#10417](https://github.com/yt-dlp/yt-dlp/issues/10417)) by [bashonly](https://github.com/bashonly) (With fixes in [cc1a309](https://github.com/yt-dlp/yt-dlp/commit/cc1a3098c00995c6aebc2a16bd1050a66bad64db))
+- **youtube**
+    - [Avoid poToken experiment player responses](https://github.com/yt-dlp/yt-dlp/commit/8b8b442cb005a8d85315f301615f83fb736b967a) ([#10456](https://github.com/yt-dlp/yt-dlp/issues/10456)) by [seproDev](https://github.com/seproDev)
+    - [Invalidate nsig cache from < 2024.07.09](https://github.com/yt-dlp/yt-dlp/commit/04e17ba20a139f1b3e30ec4bafa3fba26888f0b3) ([#10401](https://github.com/yt-dlp/yt-dlp/issues/10401)) by [bashonly](https://github.com/bashonly)
+
+#### Networking changes
+- [Add `legacy_ssl` request extension](https://github.com/yt-dlp/yt-dlp/commit/150ecc45d9cacc919550c13b04fd998ac5103a6b) ([#10448](https://github.com/yt-dlp/yt-dlp/issues/10448)) by [coletdjnz](https://github.com/coletdjnz)
+- **Request Handler**: curl_cffi: [Support `curl_cffi` 0.7.X](https://github.com/yt-dlp/yt-dlp/commit/42bfca00a6b460fc053514cdd7ac6f5b5daddf0c) by [coletdjnz](https://github.com/coletdjnz)
+
+#### Misc. changes
+- **build**
+    - [Include `curl_cffi` in `yt-dlp_linux`](https://github.com/yt-dlp/yt-dlp/commit/4521f30d1479315cd5c3bf4abdad19391952df98) by [bashonly](https://github.com/bashonly)
+    - [Pin `curl-cffi` to 0.5.10 for Windows](https://github.com/yt-dlp/yt-dlp/commit/ac30941ae682f71eab010877c9a977736a61d3cf) by [bashonly](https://github.com/bashonly)
+
 ### 2024.07.09
 
 #### Core changes
