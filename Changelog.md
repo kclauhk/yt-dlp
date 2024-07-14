@@ -4,6 +4,16 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.07.14.090012
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ea22c8ad8989825fc4e6d9967efa63f8498df096) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/fee46a306475fd2b5731aceaf3552a0c9c85f9de) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b999b40e46fa49ff82e43f4a8466181035e3d3b1) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5472599791b1725170c9f6a8f952f9883f2dd5c1) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5b533c68e9e5fd8396fdf1c677cd5fae09b9d294) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/c7b48585e0bd768596393b654e87ba89dd2feb42) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.07.09
 
 #### Core changes
