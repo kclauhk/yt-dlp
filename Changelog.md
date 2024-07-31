@@ -4,6 +4,27 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.07.31.012529
+
+#### Core changes
+- **utils**: `unified_timestamp`: [Recognize Sunday](https://github.com/yt-dlp/yt-dlp/commit/6daf2c27c0464fba98337be30de0b66d520d0db1) ([#10589](https://github.com/yt-dlp/yt-dlp/issues/10589)) by [bashonly](https://github.com/bashonly)
+
+#### Extractor changes
+- **abematv**: [Fix availability extraction](https://github.com/yt-dlp/yt-dlp/commit/ef36d517f9b05785d61abca7691d9ab7d63cc75c) ([#10569](https://github.com/yt-dlp/yt-dlp/issues/10569)) by [middlingphys](https://github.com/middlingphys)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/596926a288960ce4d75e7a2e6deed36fac736cf9) by [pukkandan](https://github.com/pukkandan)
+- **cbc.ca**: player: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/94a1c5e642e468cebeb51f74c6c220434cb47d96) ([#10302](https://github.com/yt-dlp/yt-dlp/issues/10302)) by [bashonly](https://github.com/bashonly), [trainman261](https://github.com/trainman261)
+- **discoveryplus**: [Support olympics URLs](https://github.com/yt-dlp/yt-dlp/commit/0b7728618417e1aa382722a4d29b916b594d4459) ([#10566](https://github.com/yt-dlp/yt-dlp/issues/10566)) by [bashonly](https://github.com/bashonly)
+- **facebook**: [New extraction method](https://github.com/yt-dlp/yt-dlp/commit/e2591ad9b25b8d1ad3ed0338eedc9cb2c8b27c44) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5d0888616b6c9af19da4b69f0169a4c2f69e7dae) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3fe2a9430f2f39af6211803298fa37ac89b9b5ad) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c4beecf2bfe6a942dd6173dfb50ff5b9a1242b56) by [pukkandan](https://github.com/pukkandan)
+- **learningonscreen**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/fe15d3178e242803ae7a934b90137f13598eba2e) ([#10590](https://github.com/yt-dlp/yt-dlp/issues/10590)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K)
+- **mlbtv**: [Fix makeup game extraction](https://github.com/yt-dlp/yt-dlp/commit/4b69e1b53ea21e631cd5dd68ff531e2f1671ec17) ([#10607](https://github.com/yt-dlp/yt-dlp/issues/10607)) by [bashonly](https://github.com/bashonly)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/6f7848ada1111370c2601920c6c57580a9b1eb0b) by [pukkandan](https://github.com/pukkandan)
+- **tva**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/28d485714fef88937c82635438afba5db81f9089) ([#10567](https://github.com/yt-dlp/yt-dlp/issues/10567)) by [bashonly](https://github.com/bashonly)
+- **vimeo**: review: [Fix password-protected video extraction](https://github.com/yt-dlp/yt-dlp/commit/2b6df93a243bdfb9d6bb5c1e18020625cd02d465) ([#10598](https://github.com/yt-dlp/yt-dlp/issues/10598)) by [bashonly](https://github.com/bashonly)
+- **youtube**: [Player client maintenance](https://github.com/yt-dlp/yt-dlp/commit/0e539617a41913c7da1edd74fb6543c10ad727b3) ([#10573](https://github.com/yt-dlp/yt-dlp/issues/10573)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.07.25
 
 #### Extractor changes

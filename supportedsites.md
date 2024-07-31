@@ -193,6 +193,7 @@
  - **blerp**
  - **blogger.com**
  - **Bloomberg**
+ - **Bluey**
  - **BokeCC**
  - **BongaCams**
  - **Boosty**
@@ -510,6 +511,16 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **gimy**
+ - **gimy:detail**
+ - **gimy:search**: gimy Search; "gimysearch:" prefix
+ - **GimySearchURL**
+ - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -584,6 +595,10 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -690,6 +705,7 @@
  - **Lcp**
  - **LcpPlay**
  - **Le**: 乐视网
+ - **LearningOnScreen**
  - **Lecture2Go**: (**Currently broken**)
  - **Lecturio**: [*lecturio*](## "netrc machine")
  - **LecturioCourse**: [*lecturio*](## "netrc machine")
@@ -1140,7 +1156,6 @@
  - **QuantumTV**: [*quantumtv*](## "netrc machine")
  - **QuantumTVLive**: [*quantumtv*](## "netrc machine")
  - **QuantumTVRecordings**: [*quantumtv*](## "netrc machine")
- - **Qub**
  - **R7**: (**Currently broken**)
  - **R7Article**: (**Currently broken**)
  - **Radiko**
@@ -1517,9 +1532,9 @@
  - **tv5unis**
  - **tv5unis:video**
  - **tv8.it**
- - **TVA**
  - **TVANouvelles**
  - **TVANouvellesArticle**
+ - **tvaplus**: TVA+
  - **TVC**
  - **TVCArticle**
  - **TVer**
