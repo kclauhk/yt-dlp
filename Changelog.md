@@ -4,6 +4,18 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.08.14.014226
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ae19be619cff71e9bb19508a9167a87afc82b9fc) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/0606a6d67045239c4510767435ef9335f0cdc70b) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bcaed7000832e55efc86ed73a8fdf51dded29f8b) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/068b807738204b63804742b1f3d80b9725eb6163) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/81f48f42508d0ba222f05cea68f22045543c8cba) by [pukkandan](https://github.com/pukkandan)
+- **patreoncampaign**: [Support API URLs](https://github.com/yt-dlp/yt-dlp/commit/232e6db30c474d1b387e405342f34173ceeaf832) ([#10734](https://github.com/yt-dlp/yt-dlp/issues/10734)) by [bashonly](https://github.com/bashonly), [hibes](https://github.com/hibes)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/87a5f351915606fbcfecbdce36c9b4ea3724e562) by [pukkandan](https://github.com/pukkandan)
+- **youtube**: [Support excluding `player_client`s in extractor-arg](https://github.com/yt-dlp/yt-dlp/commit/49f3741a820ed142f6866317c2e7d247b130960e) ([#10710](https://github.com/yt-dlp/yt-dlp/issues/10710)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.08.06
 
 #### Core changes
