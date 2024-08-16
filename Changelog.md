@@ -4,6 +4,22 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.08.16.012007
+
+#### Extractor changes
+- **adn**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/cc88a54bb1ef285154775f8a6a413335ce4c71ce) ([#10749](https://github.com/yt-dlp/yt-dlp/issues/10749)) by [infanf](https://github.com/infanf)
+- **bilibili**: [Fix festival URL support](https://github.com/yt-dlp/yt-dlp/commit/b43bd864851f2862e26caa85461c5d825d49d463) ([#10740](https://github.com/yt-dlp/yt-dlp/issues/10740)) by [bashonly](https://github.com/bashonly), [grqz](https://github.com/grqz)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2e3eaead5b48503eb8287d6b70c81481828871ad) by [pukkandan](https://github.com/pukkandan)
+- **facebook**
+    - [Experimental](https://github.com/yt-dlp/yt-dlp/commit/a9a5c699bb83a3c3399ae018c9bd5083cf6145c3) by [pukkandan](https://github.com/pukkandan)
+    - ads: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/d62fef7e07d454c0d2ba2d69fb96d691dba1ded0) ([#10704](https://github.com/yt-dlp/yt-dlp/issues/10704)) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4dd5c4c21cf68bb39bd6276e3f023175e3a1784b) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/22d5bf75107b1a51838777163ab40c1bf8e227a7) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/77097ca863b4711349fa822dc05dfbd740811cfa) by [pukkandan](https://github.com/pukkandan)
+- **patreoncampaign**: [Support API URLs](https://github.com/yt-dlp/yt-dlp/commit/232e6db30c474d1b387e405342f34173ceeaf832) ([#10734](https://github.com/yt-dlp/yt-dlp/issues/10734)) by [bashonly](https://github.com/bashonly), [hibes](https://github.com/hibes)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/3340ae1f813e356b79d9319e98f9435e15430156) by [pukkandan](https://github.com/pukkandan)
+- **youtube**: [Support excluding `player_client`s in extractor-arg](https://github.com/yt-dlp/yt-dlp/commit/49f3741a820ed142f6866317c2e7d247b130960e) ([#10710](https://github.com/yt-dlp/yt-dlp/issues/10710)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.08.06
 
 #### Core changes
