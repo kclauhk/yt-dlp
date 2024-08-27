@@ -4,6 +4,32 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.08.27.023925
+
+#### Extractor changes
+- **adn**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/cc88a54bb1ef285154775f8a6a413335ce4c71ce) ([#10749](https://github.com/yt-dlp/yt-dlp/issues/10749)) by [infanf](https://github.com/infanf)
+- **asobistage**: [Support redirected URLs](https://github.com/yt-dlp/yt-dlp/commit/a7d3235c84dac57a127cbe0ff38f7f7c2fdd8fa0) ([#10768](https://github.com/yt-dlp/yt-dlp/issues/10768)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **bilibili**: [Fix festival URL support](https://github.com/yt-dlp/yt-dlp/commit/b43bd864851f2862e26caa85461c5d825d49d463) ([#10740](https://github.com/yt-dlp/yt-dlp/issues/10740)) by [bashonly](https://github.com/bashonly), [grqz](https://github.com/grqz)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d1da911bec93300f186cd49a0fadd191fc15eb21) by [pukkandan](https://github.com/pukkandan)
+- **eurosport**: [Support local URL variants](https://github.com/yt-dlp/yt-dlp/commit/f0bb28504c8c2b75ee3e5796aed50de2a7f90a1b) ([#10785](https://github.com/yt-dlp/yt-dlp/issues/10785)) by [seproDev](https://github.com/seproDev)
+- **facebook**
+    - [Experimental](https://github.com/yt-dlp/yt-dlp/commit/29c8741ef0d9d41a4a9e8da15e7164a666e10dd4) by [pukkandan](https://github.com/pukkandan)
+    - ads: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/d62fef7e07d454c0d2ba2d69fb96d691dba1ded0) ([#10704](https://github.com/yt-dlp/yt-dlp/issues/10704)) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/791f640451ff74a80e509e42baae0f28d575fad1) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/cdc8daf451360ac16e71f3f998477e290e239240) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/04ea140ca620ebf72439e58fbffefb96a5ca2329) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e8c67da1f59f1cec9ffd735b5f63ff564121d164) by [pukkandan](https://github.com/pukkandan)
+- **patreoncampaign**: [Support API URLs](https://github.com/yt-dlp/yt-dlp/commit/232e6db30c474d1b387e405342f34173ceeaf832) ([#10734](https://github.com/yt-dlp/yt-dlp/issues/10734)) by [bashonly](https://github.com/bashonly), [hibes](https://github.com/hibes)
+- **radiko**: [Extract unique `id` values](https://github.com/yt-dlp/yt-dlp/commit/c8d096c5ce111411fbdbe2abb8fed54f317a6182) ([#10726](https://github.com/yt-dlp/yt-dlp/issues/10726)) by [garret1317](https://github.com/garret1317)
+- **rutube**: [Support livestreams](https://github.com/yt-dlp/yt-dlp/commit/41be32e78c3845000dbac188ffb90ea3ea7c4dfa) ([#10844](https://github.com/yt-dlp/yt-dlp/issues/10844)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/85c2ec67f7416656c007593a478c3349ecfc7a38) by [pukkandan](https://github.com/pukkandan)
+- **twitter**: spaces: [Support video spaces](https://github.com/yt-dlp/yt-dlp/commit/bef1d4d6fc9493fda7f75e2289c07c507d10092f) ([#10789](https://github.com/yt-dlp/yt-dlp/issues/10789)) by [bashonly](https://github.com/bashonly)
+- **vidflex**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e978c312d6550a6ae4c9df18001afb1b420cb72f) ([#10002](https://github.com/yt-dlp/yt-dlp/issues/10002)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **youtube**: [Support excluding `player_client`s in extractor-arg](https://github.com/yt-dlp/yt-dlp/commit/49f3741a820ed142f6866317c2e7d247b130960e) ([#10710](https://github.com/yt-dlp/yt-dlp/issues/10710)) by [bashonly](https://github.com/bashonly)
+
+#### Networking changes
+- **Request Handler**: websockets: [Upgrade websockets to 13.0](https://github.com/yt-dlp/yt-dlp/commit/6f9e6537434562d513d0c9b68ced8a61ade94a64) ([#10815](https://github.com/yt-dlp/yt-dlp/issues/10815)) by [coletdjnz](https://github.com/coletdjnz)
+
 ### 2024.08.06
 
 #### Core changes
