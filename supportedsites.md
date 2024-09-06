@@ -193,6 +193,7 @@
  - **blerp**
  - **blogger.com**
  - **Bloomberg**
+ - **Bluey**
  - **BokeCC**
  - **BongaCams**
  - **Boosty**
@@ -510,6 +511,16 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **gimy**
+ - **gimy:detail**
+ - **gimy:search**: gimy Search; "gimysearch:" prefix
+ - **GimySearchURL**
+ - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -584,6 +595,10 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -660,6 +675,9 @@
  - **kick:vod**
  - **Kicker**
  - **KickStarter**
+ - **KidoodleTV**
+ - **KidoodleTV:series**
+ - **Kika**: KiKA.de
  - **kinja:embed**
  - **KinoPoisk**
  - **Kommunetv**
@@ -756,7 +774,7 @@
  - **Masters**
  - **MatchTV**
  - **MBN**: mbn.co.kr (매일방송)
- - **MDR**: MDR.DE and KiKA
+ - **MDR**: MDR.DE
  - **MedalTV**
  - **media.ccc.de**
  - **media.ccc.de:lists**
@@ -776,6 +794,7 @@
  - **megatvcom:embed**: megatv.com embedded videos
  - **Meipai**: 美拍
  - **MelonVOD**
+ - **MeritPlus**
  - **Metacritic**
  - **mewatch**
  - **MicrosoftBuild**
@@ -1068,6 +1087,9 @@
  - **Pinkbike**
  - **Pinterest**
  - **PinterestCollection**
+ - **PiramideTV**
+ - **PiramideTV:channel**: "piramidetv:" prefix
+ - **PiramideTVChannelURL**
  - **pixiv:sketch**
  - **pixiv:​sketch:user**
  - **Pladform**
@@ -1608,6 +1630,7 @@
  - **videomore:season**
  - **videomore:video**
  - **VideoPress**
+ - **Vidflex**
  - **Vidio**: [*vidio*](## "netrc machine")
  - **VidioLive**: [*vidio*](## "netrc machine")
  - **VidioPremier**: [*vidio*](## "netrc machine")
@@ -1648,6 +1671,8 @@
  - **VKPlay**
  - **VKPlayLive**
  - **vm.tiktok**
+ - **VMwareExplore**
+ - **VMwareExplore:search**: "vmwaresearch:" prefix
  - **Vocaroo**
  - **VODPl**
  - **VODPlatform**
