@@ -143,6 +143,7 @@
  - **BBVTV**: [*bbvtv*](## "netrc machine")
  - **BBVTVLive**: [*bbvtv*](## "netrc machine")
  - **BBVTVRecordings**: [*bbvtv*](## "netrc machine")
+ - **BeaconTv**
  - **BeatBumpPlaylist**
  - **BeatBumpVideo**
  - **Beatport**
@@ -193,6 +194,7 @@
  - **blerp**
  - **blogger.com**
  - **Bloomberg**
+ - **Bluey**
  - **BokeCC**
  - **BongaCams**
  - **Boosty**
@@ -429,6 +431,9 @@
  - **EWETVLive**: [*ewetv*](## "netrc machine")
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
+ - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
@@ -510,6 +515,16 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **gimy**
+ - **gimy:detail**
+ - **gimy:search**: gimy Search; "gimysearch:" prefix
+ - **GimySearchURL**
+ - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -580,10 +595,15 @@
  - **HungamaAlbumPlaylist**
  - **HungamaSong**
  - **huya:live**: huya.com
+ - **huya:video**: 虎牙视频
  - **Hypem**
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -660,6 +680,9 @@
  - **kick:vod**
  - **Kicker**
  - **KickStarter**
+ - **KidoodleTV**
+ - **KidoodleTV:series**
+ - **Kika**: KiKA.de
  - **kinja:embed**
  - **KinoPoisk**
  - **Kommunetv**
@@ -722,7 +745,6 @@
  - **livestream:original**
  - **Livestreamfails**
  - **Lnk**
- - **LnkGo**
  - **loc**: Library of Congress
  - **loom**
  - **loom:folder**
@@ -756,7 +778,7 @@
  - **Masters**
  - **MatchTV**
  - **MBN**: mbn.co.kr (매일방송)
- - **MDR**: MDR.DE and KiKA
+ - **MDR**: MDR.DE
  - **MedalTV**
  - **media.ccc.de**
  - **media.ccc.de:lists**
@@ -776,6 +798,7 @@
  - **megatvcom:embed**: megatv.com embedded videos
  - **Meipai**: 美拍
  - **MelonVOD**
+ - **MeritPlus**
  - **Metacritic**
  - **mewatch**
  - **MicrosoftBuild**
@@ -1068,6 +1091,9 @@
  - **Pinkbike**
  - **Pinterest**
  - **PinterestCollection**
+ - **PiramideTV**
+ - **PiramideTV:channel**: "piramidetv:" prefix
+ - **PiramideTVChannelURL**
  - **pixiv:sketch**
  - **pixiv:​sketch:user**
  - **Pladform**
@@ -1285,12 +1311,14 @@
  - **Screencast**
  - **Screencastify**
  - **ScreencastOMatic**
+ - **ScreenRec**
  - **ScrippsNetworks**
  - **scrippsnetworks:watch**
  - **Scrolller**
  - **SCTE**: [*scte*](## "netrc machine") (**Currently broken**)
  - **SCTECourse**: [*scte*](## "netrc machine") (**Currently broken**)
  - **sejm**
+ - **Sen**
  - **SenalColombiaLive**: (**Currently broken**)
  - **SenateGov**
  - **SenateISVP**
@@ -1608,6 +1636,7 @@
  - **videomore:season**
  - **videomore:video**
  - **VideoPress**
+ - **Vidflex**
  - **Vidio**: [*vidio*](## "netrc machine")
  - **VidioLive**: [*vidio*](## "netrc machine")
  - **VidioPremier**: [*vidio*](## "netrc machine")
@@ -1648,6 +1677,8 @@
  - **VKPlay**
  - **VKPlayLive**
  - **vm.tiktok**
+ - **VMwareExplore**
+ - **VMwareExplore:search**: "vmwaresearch:" prefix
  - **Vocaroo**
  - **VODPl**
  - **VODPlatform**
@@ -1736,7 +1767,7 @@
  - **XiaoHongShu**: 小红书
  - **ximalaya**: 喜马拉雅FM
  - **ximalaya:album**: 喜马拉雅FM 专辑
- - **xinpianchang**: xinpianchang.com (**Currently broken**)
+ - **Xinpianchang**: 新片场
  - **XMinus**: (**Currently broken**)
  - **XNXX**
  - **Xstream**
