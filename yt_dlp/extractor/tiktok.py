@@ -514,13 +514,13 @@ class TikTokBaseIE(InfoExtractor):
                 if dimension == 540:  # '540p' is actually 576p
                     dimension = 576
                 if ratio < 1:  # portrait: res/dimension is width
-                    y = int(dimension / ratio)
+                    y = round(dimension / ratio)
                     format_info.update({
                         'width': dimension,
                         'height': y - (y % 2),
                     })
                 else:  # landscape: res/dimension is height
-                    x = int(dimension * ratio)
+                    x = round(dimension * ratio)
                     format_info.update({
                         'width': x + (x % 2),
                         'height': dimension,
