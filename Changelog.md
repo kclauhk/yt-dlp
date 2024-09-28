@@ -4,6 +4,21 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.09.28.022429
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/1292095b8196da6f0afa56037682903418847121) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/614907d7cc8b337547a9fe7a80926c7aa93e6aff) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/ee799d46a506e4d585ede4485e2691b07917174f) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0bd480af9e653a9cbe9e502098cc31bf32b9f5b1) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/da021ef76be3facf520a2f9d0af951d850bdc33d) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5c8b17dd03f749f1ce6cbdd8bbd7b06f7c0fd851) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e995be0ff55c3750d2dcdd3e587fe6ccb104ada9) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3e92542ee637c7b5a918d99f4bc567fe1e99dcb4) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e0fafd128a6885d2ca9e6bed59135179596ddec9) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/7d5ee18b6f60720ad0e1c55622867c6fd5fd2579) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2476cc4d8bc82faa4b0b6eaf5f9abbd2ccbe37e3) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.09.27
 
 #### Important changes
