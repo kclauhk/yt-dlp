@@ -4,6 +4,22 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.09.30.041242
+
+#### Extractor changes
+- **applepodcasts**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/6328e2e67a4e126e08af382e6a387073082d5c5f) ([#10903](https://github.com/yt-dlp/yt-dlp/issues/10903)) by [coreywright](https://github.com/coreywright)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/1fd511627bb41c50fdd275b5b2b1c4ee07531e1a) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0452ef4802fc8638fcb7a5f043bf64bae70bc1c7) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/57a9c18a27614ebf233bc0cc842cc846f4785192) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/532a408f5bec540ed015b21ecf95928c20f0f68a) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2221142f28ae27231b845eb0bee789dd528b0c54) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/67ec66b9685fd45cd15d60c3dd2373c196e05936) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0b1a9966cb162a28b66c27861151bb7cadf6c7ee) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/72b2d51fa39ab4a0882012dad8c906f3cc5a3d95) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/210a7e465f58898742b72b9911a52cce0bd1de2a) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/79653812916458b4fd7614db7b33d80998e66ffb) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0542988282ac68f8b1889021860388b6781d2f15) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.09.27
 
 #### Important changes
