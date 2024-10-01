@@ -4,6 +4,29 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.10.01.025632
+
+#### Core changes
+- **cookies**: [Fix cookie load error handling](https://github.com/yt-dlp/yt-dlp/commit/e59c82a74cda5139eb3928c75b0bd45484dbe7f0) ([#11140](https://github.com/yt-dlp/yt-dlp/issues/11140)) by [Grub4K](https://github.com/Grub4K)
+
+#### Extractor changes
+- **applepodcasts**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/6328e2e67a4e126e08af382e6a387073082d5c5f) ([#10903](https://github.com/yt-dlp/yt-dlp/issues/10903)) by [coreywright](https://github.com/coreywright)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/66c9db44afe201b1296ca096dde8ef17b349b078) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/55e4e9df0565ddbb8a9a61b38c5237118fa27e7d) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/436dbac83667855ede6b4de875891fa6a2c682fa) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d8732367a475bb2f97b98ab6b50da1e31e3be8c4) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/13ade63cc296a09ffb88cf4e85f755c6e847f446) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bcdfeac296625ae2a0951a0ff5ee9d9858078a08) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/29f486715ac46e8205a9df77faa7fcfce64827fe) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c4d1f8338f8bb44fe0285edd37a55cbc7677aaa5) by [pukkandan](https://github.com/pukkandan)
+- **patreon**: [Extract all m3u8 formats for locked posts](https://github.com/yt-dlp/yt-dlp/commit/f91645aceaf13926cf35be2c1dfef61b3aab97fb) ([#11138](https://github.com/yt-dlp/yt-dlp/issues/11138)) by [bashonly](https://github.com/bashonly)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0ee8e56017e6eb249dda36a898b955f8eb3b43f5) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/57a55c9093de43fbbfcd81690d7916718e99fd2b) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/6cde70b091af0dee7805cc3a4fe1a359819dfd03) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **ci**: [Rerun failed tests](https://github.com/yt-dlp/yt-dlp/commit/b31b81d85f00601710d4fac590c3e4efb4133283) ([#11143](https://github.com/yt-dlp/yt-dlp/issues/11143)) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.09.27
 
 #### Important changes
