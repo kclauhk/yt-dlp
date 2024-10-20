@@ -4,6 +4,45 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.10.20.095214
+
+#### Core changes
+- [Add extractor helpers](https://github.com/yt-dlp/yt-dlp/commit/d710a6ca7c622705c0c8c8a3615916f531137d5d) ([#10653](https://github.com/yt-dlp/yt-dlp/issues/10653)) by [Grub4K](https://github.com/Grub4K)
+- **cookies**: [Fix compatibility for Python <=3.9 in traceback](https://github.com/yt-dlp/yt-dlp/commit/c5f0f58efd8c3930de8202c15a5c53b1b635bd51) by [Grub4K](https://github.com/Grub4K)
+- **utils**
+    - `Popen`: [Reset PyInstaller environment](https://github.com/yt-dlp/yt-dlp/commit/fbc66e3ab35743cc847a21223c67d88bb463cd9c) ([#11258](https://github.com/yt-dlp/yt-dlp/issues/11258)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K)
+    - `sanitize_path`: [Reimplement function](https://github.com/yt-dlp/yt-dlp/commit/85b87c991af25dcb35630fa94580fd418e78ee33) ([#11198](https://github.com/yt-dlp/yt-dlp/issues/11198)) by [Grub4K](https://github.com/Grub4K)
+
+#### Extractor changes
+- **adobepass**: [Use newer user-agent for provider redirect request](https://github.com/yt-dlp/yt-dlp/commit/dcfeea4dd5e5686821350baa6c7767a011944867) ([#11250](https://github.com/yt-dlp/yt-dlp/issues/11250)) by [bashonly](https://github.com/bashonly)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/231ab25134bc65c33eed45ed43c675ee1e8cfba3) by [pukkandan](https://github.com/pukkandan)
+- **cwtv**: [Fix extraction](https://github.com/yt-dlp/yt-dlp/commit/9d43dcb2c5c38f443f84dfc126cd32720e1a1ad6) ([#11230](https://github.com/yt-dlp/yt-dlp/issues/11230)) by [bashonly](https://github.com/bashonly)
+- **drtv**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/f4338714241b11d9d43768ae71a25f5e952f677d) ([#11141](https://github.com/yt-dlp/yt-dlp/issues/11141)) by [444995](https://github.com/444995)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/552cce0798c33b0afce19401057c2a4aa6716afb) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/30cce6409e30f0724159071db76a9dce5ff2c444) by [pukkandan](https://github.com/pukkandan)
+- **generic**: [Impersonate browser by default](https://github.com/yt-dlp/yt-dlp/commit/edfd095b1917701c5046bd51f9542897c17d41a7) ([#11206](https://github.com/yt-dlp/yt-dlp/issues/11206)) by [Grub4K](https://github.com/Grub4K)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a408943b91e1b05097209717136e2e15025745c6) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/10baf921f7136832311581329919d4fdfd5202c4) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f1c48a12e3664e2c118c46a0604ece992eb7cc11) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/fd9e445f459dcf37dbfdf974f659fb2c1942adf0) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/83929733c015180bcfc5baad27ed6b9ba856ca96) by [pukkandan](https://github.com/pukkandan)
+- **patreon**: campaign: [Stricter URL matching](https://github.com/yt-dlp/yt-dlp/commit/babb70960595e2146f06f81affc29c7e713e34e2) ([#11235](https://github.com/yt-dlp/yt-dlp/issues/11235)) by [bashonly](https://github.com/bashonly)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/04e83003da5e427cbe23aac7b6cc85d0c4280b0d) by [pukkandan](https://github.com/pukkandan)
+- **reddit**: [Detect and raise when login is required](https://github.com/yt-dlp/yt-dlp/commit/cba7868502f04175fecf9ab3e363296aee7ebec2) ([#11202](https://github.com/yt-dlp/yt-dlp/issues/11202)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **substack**: [Resolve podcast file extensions](https://github.com/yt-dlp/yt-dlp/commit/3148c1822f66533998278f0a1cf842b9bea1526a) ([#11275](https://github.com/yt-dlp/yt-dlp/issues/11275)) by [bashonly](https://github.com/bashonly)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/70e7c8161b869a2e4a1a058fe60a4506d997335e) by [pukkandan](https://github.com/pukkandan)
+- **tver**: [Support series URLs](https://github.com/yt-dlp/yt-dlp/commit/ceaea731b6e314dbbdfb2e358d7677785ed0b4fc) ([#9507](https://github.com/yt-dlp/yt-dlp/issues/9507)) by [pzhlkj6612](https://github.com/pzhlkj6612), [vvto33](https://github.com/vvto33)
+- **twitter**: spaces: [Allow extraction when not logged in](https://github.com/yt-dlp/yt-dlp/commit/679c68240a26481ea7c07cc0c014745631ea8481) ([#11289](https://github.com/yt-dlp/yt-dlp/issues/11289)) by [rubyevadestaxes](https://github.com/rubyevadestaxes)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b1c00025405ccfbf079ace17fbf8744b3c5d02d7) by [pukkandan](https://github.com/pukkandan)
+- **weverse**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/5310fa87f6cb7f66bf42e2520878952fbf6b1652) ([#11215](https://github.com/yt-dlp/yt-dlp/issues/11215)) by [bashonly](https://github.com/bashonly)
+- **youtube**: [Fix `comment_count` extraction](https://github.com/yt-dlp/yt-dlp/commit/7af1ddaaf2a6a0a750373a9ab53c7770af4f9fe4) ([#11274](https://github.com/yt-dlp/yt-dlp/issues/11274)) by [bashonly](https://github.com/bashonly)
+
+#### Misc. changes
+- **build**
+    - [Use `macos-13` image for macOS builds](https://github.com/yt-dlp/yt-dlp/commit/64d84d75ca8c19ec06558cc7c511f5f4f7a822bc) ([#11236](https://github.com/yt-dlp/yt-dlp/issues/11236)) by [bashonly](https://github.com/bashonly)
+    - `make_lazy_extractors`: [Force running without plugins](https://github.com/yt-dlp/yt-dlp/commit/1a830394a21a81a3e9918f9e175abc9fbb21f089) ([#11205](https://github.com/yt-dlp/yt-dlp/issues/11205)) by [Grub4K](https://github.com/Grub4K)
+- **test**: [Allow running tests explicitly](https://github.com/yt-dlp/yt-dlp/commit/16eb28026a2ddf5608d0a628ef15949b8d3805a9) ([#11203](https://github.com/yt-dlp/yt-dlp/issues/11203)) by [Grub4K](https://github.com/Grub4K)
+
 ### 2024.10.07
 
 #### Core changes
