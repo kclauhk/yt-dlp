@@ -4,6 +4,31 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.10.23.020532
+
+#### Important changes
+- **Beginning with this release, yt-dlp's Python dependencies *must* be installed using the `default` group**
+If you're installing yt-dlp with pip/pipx or requiring yt-dlp in your own Python project, you'll need to specify `yt-dlp[default]` if you want to also install yt-dlp's optional dependencies (which were previously included by default). [Read more](https://github.com/yt-dlp/yt-dlp/pull/11255)
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/92906878aebd801e00350abe547f7fd0f0424a47) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7e74631d3df673bc409dae29b22713af258f6d9e) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/6a22687572391d9d27083487961cf2ce0b9c1501) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/100bc4a895686cd83825f10030d5f1d243d0184e) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/097e806cf40a52432f22d911b50147ecb48cb7ee) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/859b7483859a7d0e7a3842c97a07055b8754df8b) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f8ae5458db9acb4eb2279509bc9775b5b9b21e5f) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/1a19e28ef0c73b31fd51cf3b5d07dc12f893a055) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/327f542b1dcbbfc8a8f94a1438834879485338cc) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/09fb0e69016e3b724f6366d4ac7ca704770430c5) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/37049fc5a5f82fde7c29645eac59ebd11b952cef) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**
+    - [Move optional dependencies to the `default` group](https://github.com/yt-dlp/yt-dlp/commit/87884f15580910e4e0fe0e1db73508debc657471) ([#11255](https://github.com/yt-dlp/yt-dlp/issues/11255)) by [bashonly](https://github.com/bashonly)
+    - [Use Ubuntu 20.04 and Python 3.9 for Linux ARM builds](https://github.com/yt-dlp/yt-dlp/commit/dd2e24446954246a2ec4d4a7e95531f52a14b351) ([#8638](https://github.com/yt-dlp/yt-dlp/issues/8638)) by [bashonly](https://github.com/bashonly)
+- **cleanup**: Miscellaneous: [ea9e35d](https://github.com/yt-dlp/yt-dlp/commit/ea9e35d85fba5eab341cdcaf1eaed69b57f7e465) by [bashonly](https://github.com/bashonly)
+
 ### 2024.10.22
 
 #### Important changes
