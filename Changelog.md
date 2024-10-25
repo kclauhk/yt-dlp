@@ -4,6 +4,38 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.10.25.095005
+
+#### Important changes
+- **Beginning with this release, yt-dlp's Python dependencies *must* be installed using the `default` group**
+If you're installing yt-dlp with pip/pipx or requiring yt-dlp in your own Python project, you'll need to specify `yt-dlp[default]` if you want to also install yt-dlp's optional dependencies (which were previously included by default). [Read more](https://github.com/yt-dlp/yt-dlp/pull/11255)
+
+#### Core changes
+- [Expand paths in `--plugin-dirs` (fix 0f593dca9fa995d88eb763170a932da61c8f24dc)](https://github.com/yt-dlp/yt-dlp/commit/edd01f8846a4897fee9677fe6991d74748ce77c3) ([#11334](https://github.com/yt-dlp/yt-dlp/issues/11334)) by [bashonly](https://github.com/bashonly)
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/45f0bb1ba4f2691c9f2affed14172e89e5a49c20) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2144e7145601f1772b3df931ae42098c72417689) by [pukkandan](https://github.com/pukkandan)
+- **facebook**
+    - [Experimental](https://github.com/yt-dlp/yt-dlp/commit/4d861a1bb75aeb63290dce794c10a90083054d69) by [pukkandan](https://github.com/pukkandan)
+    - [Fix formats extraction](https://github.com/yt-dlp/yt-dlp/commit/11ee096bcbef6308d4b79462ba522e0a90b53519) ([#11343](https://github.com/yt-dlp/yt-dlp/issues/11343)) by [kclauhk](https://github.com/kclauhk)
+- **generic**: [Do not impersonate by default (fix edfd095b1917701c5046bd51f9542897c17d41a7)](https://github.com/yt-dlp/yt-dlp/commit/e0c3564e7777bc62b4e895d2d76cafe1f3f072bc) ([#11336](https://github.com/yt-dlp/yt-dlp/issues/11336)) by [bashonly](https://github.com/bashonly)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bb4aab777c5fc8dead90c898a6bc8370a4b5627b) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0f116a45597392125643f585ad0b34fbc5de6d5d) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/baad09f28ad29e7095e723cc9e1eb7039cf383de) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/56f222e563f929acaaae0fc927c2f8b57de648bb) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3522d153d35f77f354838b8a5e606af662a620a8) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d7acacc76fa6e086a97dec3fcf22b0a4efe6e092) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/32a3af678162d6b5451ab849cb1a272b69ebcbc3) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4e44d4a2721e9ae99796277047cb2b1f561b560e) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**: [Move optional dependencies to the `default` group](https://github.com/yt-dlp/yt-dlp/commit/87884f15580910e4e0fe0e1db73508debc657471) ([#11255](https://github.com/yt-dlp/yt-dlp/issues/11255)) by [bashonly](https://github.com/bashonly)
+- **cleanup**
+    - Miscellaneous
+        - [ea9e35d](https://github.com/yt-dlp/yt-dlp/commit/ea9e35d85fba5eab341cdcaf1eaed69b57f7e465) by [bashonly](https://github.com/bashonly)
+        - [f39eac7](https://github.com/yt-dlp/yt-dlp/commit/f39eac7ebe17068cc0d6027c0f4fa81ee5ca9f4c) by [bashonly](https://github.com/bashonly), [KBelmin](https://github.com/KBelmin)
+
 ### 2024.10.22
 
 #### Important changes
