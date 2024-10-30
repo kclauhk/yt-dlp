@@ -4,6 +4,53 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.10.30.013517
+
+#### Important changes
+- **Beginning with this release, yt-dlp's Python dependencies *must* be installed using the `default` group**
+If you're installing yt-dlp with pip/pipx or requiring yt-dlp in your own Python project, you'll need to specify `yt-dlp[default]` if you want to also install yt-dlp's optional dependencies (which were previously included by default). [Read more](https://github.com/yt-dlp/yt-dlp/pull/11255)
+- **The minimum *required* Python version has been raised to 3.9**
+Python 3.8 reached its end-of-life on 2024.10.07, and yt-dlp has now removed support for it. As an unfortunate side effect, the official `yt-dlp.exe` and `yt-dlp_x86.exe` binaries are no longer supported on Windows 7. [Read more](https://github.com/yt-dlp/yt-dlp/issues/10086)
+
+#### Core changes
+- [Allow thumbnails with `.jpe` extension](https://github.com/yt-dlp/yt-dlp/commit/5bc5fb2835ea59bdf326bd12176d74d2c7348a95) ([#11408](https://github.com/yt-dlp/yt-dlp/issues/11408)) by [bashonly](https://github.com/bashonly)
+- [Expand paths in `--plugin-dirs`](https://github.com/yt-dlp/yt-dlp/commit/914af9a0cf51c9a3f74aa88d952bee8334c67511) ([#11334](https://github.com/yt-dlp/yt-dlp/issues/11334)) by [bashonly](https://github.com/bashonly)
+- [Populate format sorting fields before dependent fields](https://github.com/yt-dlp/yt-dlp/commit/5c880ef42e9c2b2fc412f6d69dad37d34fb75a62) ([#11353](https://github.com/yt-dlp/yt-dlp/issues/11353)) by [Grub4K](https://github.com/Grub4K)
+- [Remove Python 3.8 support](https://github.com/yt-dlp/yt-dlp/commit/d784464399b600ba9516bbcec6286f11d68974dd) ([#11321](https://github.com/yt-dlp/yt-dlp/issues/11321)) by [bashonly](https://github.com/bashonly)
+- **utils**: [Fix `find_element` by class](https://github.com/yt-dlp/yt-dlp/commit/f93c16395cea1fe9ffc3c594d3e019c3b214544c) ([#11402](https://github.com/yt-dlp/yt-dlp/issues/11402)) by [bashonly](https://github.com/bashonly)
+
+#### Extractor changes
+- [Resolve `language` to ISO639-2 for ISM formats](https://github.com/yt-dlp/yt-dlp/commit/21cdcf03a237a0c4979c941d5a5385cae44c7906) ([#11359](https://github.com/yt-dlp/yt-dlp/issues/11359)) by [bashonly](https://github.com/bashonly)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2b0bae4e2c08de6ffec9452e96733dd894ea21e1) by [pukkandan](https://github.com/pukkandan)
+- **ccma**: [Support new 3cat.cat domain](https://github.com/yt-dlp/yt-dlp/commit/330335386d4f7603d92d6796798375336005275e) ([#11222](https://github.com/yt-dlp/yt-dlp/issues/11222)) by [JoseAngelB](https://github.com/JoseAngelB)
+- **cnn**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/9acf79c91a8c6c55ca972747c6858e784e2da351) ([#10185](https://github.com/yt-dlp/yt-dlp/issues/10185)) by [kylegustavo](https://github.com/kylegustavo), [seproDev](https://github.com/seproDev)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/19b411f66f23b6c95304d7d07b54ec49f8af27b4) by [pukkandan](https://github.com/pukkandan)
+- **facebook**
+    - [Experimental](https://github.com/yt-dlp/yt-dlp/commit/17d2ebe947eca0e85894ad27618cdf12795deb33) by [pukkandan](https://github.com/pukkandan)
+    - [Fix formats extraction](https://github.com/yt-dlp/yt-dlp/commit/ec9b25043f399de6a591d8370d32bf0e66c117f2) ([#11343](https://github.com/yt-dlp/yt-dlp/issues/11343)) by [kclauhk](https://github.com/kclauhk)
+- **generic**: [Do not impersonate by default](https://github.com/yt-dlp/yt-dlp/commit/c29f5a7fae93a08f3cfbb6127b2faa75145b06a0) ([#11336](https://github.com/yt-dlp/yt-dlp/issues/11336)) by [bashonly](https://github.com/bashonly)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7829e5432d00f3f4e5d26fc78cd7f685aca9c6dc) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f4948e598ccf6c2b56a9491c093510e7b20a5ecc) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/61b786af0d44db329e507f83eb8696403cc08d7e) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3aded3e1c49a2b94bac23a5695aa327445358920) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f8a092d4a2c3d8876ebbf931f6a994f93c219add) by [pukkandan](https://github.com/pukkandan)
+- **niconicouser**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/6abef74232c0fc695cd803c18ae446cacb129389) ([#11324](https://github.com/yt-dlp/yt-dlp/issues/11324)) by [Wesley107772](https://github.com/Wesley107772)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/06cada4a6a12d69f2b4b225206da256a71bbe259) by [pukkandan](https://github.com/pukkandan)
+- **soundcloud**: [Extract artists](https://github.com/yt-dlp/yt-dlp/commit/f101e5d34c97c608156ad5396714c2a2edca966a) ([#11377](https://github.com/yt-dlp/yt-dlp/issues/11377)) by [seproDev](https://github.com/seproDev)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/6aab7dd8c7df348d71a9e00c2d0a14fc0ae69d31) by [pukkandan](https://github.com/pukkandan)
+- **vimeo**: [Fix API retries](https://github.com/yt-dlp/yt-dlp/commit/57212a5f97ce367590aaa5c3e9a135eead8f81f7) ([#11351](https://github.com/yt-dlp/yt-dlp/issues/11351)) by [bashonly](https://github.com/bashonly)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/1e4e905e1912e46236bb6e45f0ce74720e0b7d8b) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**
+    - [Move optional dependencies to the `default` group](https://github.com/yt-dlp/yt-dlp/commit/87884f15580910e4e0fe0e1db73508debc657471) ([#11255](https://github.com/yt-dlp/yt-dlp/issues/11255)) by [bashonly](https://github.com/bashonly)
+    - [Use Ubuntu 20.04 and Python 3.9 for Linux ARM builds](https://github.com/yt-dlp/yt-dlp/commit/dd2e24446954246a2ec4d4a7e95531f52a14b351) ([#8638](https://github.com/yt-dlp/yt-dlp/issues/8638)) by [bashonly](https://github.com/bashonly)
+- **cleanup**
+    - Miscellaneous
+        - [ea9e35d](https://github.com/yt-dlp/yt-dlp/commit/ea9e35d85fba5eab341cdcaf1eaed69b57f7e465) by [bashonly](https://github.com/bashonly)
+        - [c998238](https://github.com/yt-dlp/yt-dlp/commit/c998238c2e76c62d1d29962c6e8ebe916cc7913b) by [bashonly](https://github.com/bashonly), [KBelmin](https://github.com/KBelmin)
+- **devscripts**: `make_changelog`: [Parse full commit message for fixes](https://github.com/yt-dlp/yt-dlp/commit/0a3991edae0e10f2ea41ece9fdea5e48f789f1de) ([#11366](https://github.com/yt-dlp/yt-dlp/issues/11366)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K)
+
 ### 2024.10.22
 
 #### Important changes
