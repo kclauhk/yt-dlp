@@ -190,6 +190,7 @@
  - **blerp**
  - **blogger.com**
  - **Bloomberg**
+ - **Bluey**
  - **BokeCC**
  - **BongaCams**
  - **Boosty**
@@ -247,7 +248,7 @@
  - **cbsnews:livevideo**: CBS News Live Videos
  - **cbssports**: (**Currently broken**)
  - **cbssports:embed**: (**Currently broken**)
- - **CCMA**
+ - **CCMA**: 3Cat, TV3 and Catalunya Ràdio
  - **CCTV**: 央视网
  - **CDA**: [*cdapl*](## "netrc machine")
  - **CDAFolder**
@@ -280,8 +281,6 @@
  - **cmt.com**: (**Currently broken**)
  - **CNBCVideo**
  - **CNN**
- - **CNNArticle**
- - **CNNBlogs**
  - **CNNIndonesia**
  - **ComedyCentral**
  - **ComedyCentralTV**
@@ -427,6 +426,9 @@
  - **EWETVLive**: [*ewetv*](## "netrc machine")
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
+ - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
@@ -509,6 +511,16 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **gimy**
+ - **gimy:detail**
+ - **gimy:search**: gimy Search; "gimysearch:" prefix
+ - **GimySearchURL**
+ - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -584,6 +596,10 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -660,6 +676,8 @@
  - **kick:vod**
  - **Kicker**
  - **KickStarter**
+ - **KidoodleTV**
+ - **KidoodleTV:series**
  - **Kika**: KiKA.de
  - **kinja:embed**
  - **KinoPoisk**
@@ -685,9 +703,9 @@
  - **LastFMPlaylist**
  - **LastFMUser**
  - **LaXarxaMes**: [*laxarxames*](## "netrc machine")
- - **lbry**
- - **lbry:channel**
- - **lbry:playlist**
+ - **lbry**: odysee.com
+ - **lbry:channel**: odysee.com channels
+ - **lbry:playlist**: odysee.com playlists
  - **LCI**
  - **Lcp**
  - **LcpPlay**
@@ -776,6 +794,7 @@
  - **megatvcom:embed**: megatv.com embedded videos
  - **Meipai**: 美拍
  - **MelonVOD**
+ - **MeritPlus**
  - **Metacritic**
  - **mewatch**
  - **MicrosoftBuild**
@@ -1069,6 +1088,9 @@
  - **Pinkbike**
  - **Pinterest**
  - **PinterestCollection**
+ - **PiramideTV**
+ - **PiramideTV:channel**: "piramidetv:" prefix
+ - **PiramideTVChannelURL**
  - **pixiv:sketch**
  - **pixiv:​sketch:user**
  - **Pladform**
@@ -1657,6 +1679,9 @@
  - **VKPlay**
  - **VKPlayLive**
  - **vm.tiktok**
+ - **VMware**
+ - **VMware:search**: "vmwaresearch:" prefix
+ - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
  - **VODPlatform**
