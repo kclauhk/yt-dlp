@@ -5,6 +5,7 @@ import urllib.parse
 from .common import InfoExtractor
 from ..utils import (
     ExtractorError,
+    determine_ext,
     float_or_none,
     mimetype2ext,
     smuggle_url,
@@ -31,6 +32,9 @@ class MediasiteIE(InfoExtractor):
                 'ext': 'mp4',
                 'title': 'Lecture: Tuesday, September 20, 2016 - Sir Andrew Wiles',
                 'description': 'Sir Andrew Wiles: “Equations in arithmetic”\\n\\nI will describe some of the interactions between modern number theory and the problem of solving equations in rational numbers or integers\\u0027.',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['Sir Andrew J. Miles, Silver Plaque of the IMU, 1998 | Abel Prize, 2016'],
+                'duration': 2978.0,
                 'timestamp': 1474268400.0,
                 'upload_date': '20160919',
             },
@@ -44,6 +48,7 @@ class MediasiteIE(InfoExtractor):
                 'title': '5) IT-forum 2015-Dag 1  - Dungbeetle -  How and why Rain created a tiny bug tracker for Unity',
                 'timestamp': 1430311380.0,
             },
+            'skip': 'no longer exist',
         },
         {
             'url': 'https://collegerama.tudelft.nl/Mediasite/Play/585a43626e544bdd97aeb71a0ec907a01d',
@@ -54,9 +59,14 @@ class MediasiteIE(InfoExtractor):
                 'title': 'Een nieuwe wereld: waarden, bewustzijn en techniek van de mensheid 2.0.',
                 'description': '',
                 'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['H. Wijffels'],
                 'duration': 7713.088,
                 'timestamp': 1413309600,
                 'upload_date': '20141014',
+            },
+            'params': {
+                # format 'video1-1.1' HTTP Error 400: Bad Request
+                'skip_download': True,
             },
         },
         {
@@ -68,9 +78,13 @@ class MediasiteIE(InfoExtractor):
                 'title': '64ste Vakantiecursus: Afvalwater',
                 'description': 'md5:7fd774865cc69d972f542b157c328305',
                 'thumbnail': r're:^https?://.*\.jpg(?:\?.*?)?$',
+                'cast': ['D.J. van den Berg', 'L.C. Rietveld', 'D. van Halem', 'N.C. van de Giesen', 'J.Q.J.C. Verberk'],
                 'duration': 10853,
                 'timestamp': 1326446400,
                 'upload_date': '20120113',
+            },
+            'params': {
+                'skip_download': True,
             },
         },
         {
@@ -79,11 +93,35 @@ class MediasiteIE(InfoExtractor):
             'info_dict': {
                 'id': '24aace4429fc450fb5b38cdbf424a66e1d',
                 'ext': 'mp4',
-                'title': 'Xyce Software Training - Section 1',
+                'title': 'Xyce Software Training - Section 1 - Apr. 2012',
                 'description': r're:(?s)SAND Number: SAND 2013-7800.{200,}',
-                'upload_date': '20120409',
-                'timestamp': 1333983600,
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['01400 Computation, Computers \\u0026 Math'],
                 'duration': 7794,
+                'timestamp': 1333983600,
+                'upload_date': '20120409',
+            },
+            'params': {
+                # format 'video1-1.0' HTTP Error 400: Bad Request
+                'skip_download': True,
+            },
+        },
+        {
+            'url': 'https://events7.mediasite.com/Mediasite/Play/a7812390a2d44739ae857527e05776091d',
+            'info_dict': {
+                'id': 'a7812390a2d44739ae857527e05776091d',
+                'ext': 'mp4',
+                'title': 'Practical Prevention, Detection and Responses to the New Threat Landscape',
+                'description': r're:^The bad guys aren’t standing still, and neither is Okta',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['Franklin Rosado', 'Alex Bovee'],
+                'duration': 2415.487,
+                'timestamp': 1472567400,
+                'upload_date': '20160830',
+            },
+            'params': {
+                # frag 1 too small (only 768B)
+                'skip_download': True,
             },
         },
         {
@@ -243,8 +281,8 @@ class MediasiteIE(InfoExtractor):
                         'ext': ext,
                     })
 
-            images = traverse_obj(player_options, ('PlayerLayoutOptions', 'Images', {dict}))
-            if stream.get('HasSlideContent') and images:
+            images = traverse_obj(player_options, ('PlayerLayoutOptions', 'Images', {dict}), default={})
+            if stream.get('HasSlideContent'):
                 stream_formats.append(self.__extract_slides(
                     stream_id=stream_id,
                     snum=snum,
@@ -266,9 +304,35 @@ class MediasiteIE(InfoExtractor):
                     'preference': -1 if stream_type != 0 else 0,
                 })
             formats.extend(stream_formats)
+        if url_or_none(presentation.get('VodcastUrl')):
+            formats.append({
+                'format_id': 'vodcast',
+                'url': presentation.get('VodcastUrl').split('?attachmentName=')[0],
+            })
 
-        # XXX: Presentation['Presenters']
-        # XXX: Presentation['Transcript']
+        transcripts = presentation.get('Transcripts', {})
+        captions, subtitles = {}, {}
+        for transcript in transcripts:
+            lang_code = traverse_obj(
+                transcript, (('DetailedLanguageCode', 'LanguageCode'), {str}), get_all=False)
+            lang_name = transcript.get('Language')
+            t = {
+                'url': transcript.get('CaptionsUrl'),
+                'name': lang_name,
+            }
+            if 'Auto-Generated' in lang_name:
+                captions.setdefault(lang_code, []).append(t)
+            else:
+                subtitles.setdefault(lang_code, []).append(t)
+        if transcript_url := presentation.get('TranscriptUrl'):
+            if determine_ext(transcript_url) != 'txt':
+                if len(transcripts) == 1 and captions:
+                    captions.setdefault(lang_code, []).append({
+                        'url': transcript_url,
+                        'name': lang_name,
+                    })
+                else:
+                    subtitles.setdefault('und', []).append({'url': transcript_url})
 
         return {
             'id': resource_id,
@@ -277,7 +341,10 @@ class MediasiteIE(InfoExtractor):
             'duration': float_or_none(presentation.get('Duration'), 1000),
             'timestamp': float_or_none(presentation.get('UnixTime'), 1000),
             'formats': formats,
+            'automatic_captions': captions,
+            'subtitles': subtitles,
             'thumbnails': thumbnails,
+            'cast': traverse_obj(presentation, ('Presenters', ..., 'Name', {str})),
         }
 
 
