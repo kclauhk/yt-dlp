@@ -4,6 +4,24 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.11.07.014201
+
+#### Extractor changes
+- **adobepass**: [Fix provider requests](https://github.com/yt-dlp/yt-dlp/commit/85fdc66b6e01d19a94b4f39b58e3c0cf23600902) ([#11472](https://github.com/yt-dlp/yt-dlp/issues/11472)) by [bashonly](https://github.com/bashonly)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f22edcc23da40209d15e38d49fc3de1c62150fc5) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b70ad388b3d771c2d83b3006097da6f040c13fc5) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/4c5982f1b18786bc78ddb6e6fa040d819f703a50) by [pukkandan](https://github.com/pukkandan)
+- **gamedevtv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/be3579aaf0c3b71a0a3195e1955415d5e4d6b3d8) ([#11368](https://github.com/yt-dlp/yt-dlp/issues/11368)) by [bashonly](https://github.com/bashonly), [stratus-ss](https://github.com/stratus-ss)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/85d8a2a66a07fec7a2142bcffc9fb0617f5f60c0) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/108b102fc32e278065069772021552012bcd8d10) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/43308557afa35d7563697b96e7954250c24f4bbc) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/db4d62ba042ed19c3dec9a07469e03a02a5a7500) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/8747e0ea8ce6f84fd8fe8daf649681ebac2246c6) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ef79857648bd8138228274626c26e6c5f6d21af2) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a1122afe559f408fa7cf4c3d8170cc0ca5e192cb) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/9530b4489cec07b340f4650519be7f7243be55db) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a03fd8f4cd93a95f881f43e3eface3afce471e29) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.11.04
 
 #### Important changes
