@@ -845,6 +845,12 @@ from .ichinanalive import (
     IchinanaLiveIE,
 )
 from .idolplus import IdolPlusIE
+from .idoltv import (
+    IdoltvIE,
+    IdoltvSearchIE,
+    IdoltvSearchURLIE,
+    IdoltvVodIE,
+)
 from .ign import (
     IGNIE,
     IGNArticleIE,
