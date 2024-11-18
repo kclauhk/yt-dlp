@@ -129,6 +129,8 @@
  - **Bandcamp:album**
  - **Bandcamp:user**
  - **Bandcamp:weekly**
+ - **Bandlab**
+ - **BandlabPlaylist**
  - **BannedVideo**
  - **bbc**: [*bbc*](## "netrc machine") BBC
  - **bbc.co.uk**: [*bbc*](## "netrc machine") BBC iPlayer
@@ -191,6 +193,7 @@
  - **blogger.com**
  - **Bloomberg**
  - **Bluesky**
+ - **Bluey**
  - **BokeCC**
  - **BongaCams**
  - **Boosty**
@@ -426,6 +429,9 @@
  - **EWETVLive**: [*ewetv*](## "netrc machine")
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
+ - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
@@ -484,6 +490,7 @@
  - **Gab**
  - **GabTV**
  - **Gaia**: [*gaia*](## "netrc machine")
+ - **GameDevTVDashboard**: [*gamedevtv*](## "netrc machine")
  - **GameJolt**
  - **GameJoltCommunity**
  - **GameJoltGame**
@@ -508,6 +515,16 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **gimy**
+ - **gimy:detail**
+ - **gimy:search**: gimy Search; "gimysearch:" prefix
+ - **GimySearchURL**
+ - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -583,6 +600,10 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -651,6 +672,8 @@
  - **Karaoketv**
  - **Katsomo**: (**Currently broken**)
  - **KelbyOne**: (**Currently broken**)
+ - **Kenh14Playlist**
+ - **Kenh14Video**
  - **Ketnet**
  - **khanacademy**
  - **khanacademy:unit**
@@ -659,6 +682,8 @@
  - **kick:vod**
  - **Kicker**
  - **KickStarter**
+ - **KidoodleTV**
+ - **KidoodleTV:series**
  - **Kika**: KiKA.de
  - **kinja:embed**
  - **KinoPoisk**
@@ -775,6 +800,7 @@
  - **megatvcom:embed**: megatv.com embedded videos
  - **Meipai**: 美拍
  - **MelonVOD**
+ - **MeritPlus**
  - **Metacritic**
  - **mewatch**
  - **MicrosoftBuild**
@@ -784,10 +810,6 @@
  - **MicrosoftLearnSession**
  - **MicrosoftMedius**
  - **microsoftstream**: Microsoft Stream
- - **mildom**: Record ongoing live by specific user in Mildom
- - **mildom:clip**: Clip in Mildom
- - **mildom:​user:vod**: Download all VODs from specific user in Mildom
- - **mildom:vod**: VOD in Mildom
  - **minds**
  - **minds:channel**
  - **minds:group**
@@ -798,6 +820,7 @@
  - **MiTele**: mitele.es
  - **mixch**
  - **mixch:archive**
+ - **mixch:movie**
  - **mixcloud**
  - **mixcloud:playlist**
  - **mixcloud:user**
@@ -1060,14 +1083,17 @@
  - **PhilharmonieDeParis**: Philharmonie de Paris
  - **phoenix.de**
  - **Photobucket**
+ - **PiaLive**
  - **Piapro**: [*piapro*](## "netrc machine")
- - **PIAULIZAPortal**: ulizaportal.jp - PIA LIVE STREAM
  - **Picarto**
  - **PicartoVod**
  - **Piksel**
  - **Pinkbike**
  - **Pinterest**
  - **PinterestCollection**
+ - **PiramideTV**
+ - **PiramideTV:channel**: "piramidetv:" prefix
+ - **PiramideTVChannelURL**
  - **pixiv:sketch**
  - **pixiv:​sketch:user**
  - **Pladform**
@@ -1088,8 +1114,6 @@
  - **PodbayFMChannel**
  - **Podchaser**
  - **podomatic**: (**Currently broken**)
- - **Pokemon**
- - **PokemonWatch**
  - **PokerGo**: [*pokergo*](## "netrc machine")
  - **PokerGoCollection**: [*pokergo*](## "netrc machine")
  - **PolsatGo**
@@ -1160,6 +1184,7 @@
  - **RadioJavan**: (**Currently broken**)
  - **radiokapital**
  - **radiokapital:show**
+ - **RadioRadicale**
  - **RadioZetPodcast**
  - **radlive**
  - **radlive:channel**
@@ -1367,9 +1392,7 @@
  - **spotify**: Spotify episodes (**Currently broken**)
  - **spotify:show**: Spotify shows (**Currently broken**)
  - **Spreaker**
- - **SpreakerPage**
  - **SpreakerShow**
- - **SpreakerShowPage**
  - **SpringboardPlatform**
  - **Sprout**
  - **SproutVideo**
@@ -1570,6 +1593,8 @@
  - **UFCTV**: [*ufctv*](## "netrc machine")
  - **ukcolumn**: (**Currently broken**)
  - **UKTVPlay**
+ - **UlizaPlayer**
+ - **UlizaPortal**: ulizaportal.jp
  - **umg:de**: Universal Music Deutschland (**Currently broken**)
  - **Unistra**
  - **Unity**: (**Currently broken**)
@@ -1587,8 +1612,6 @@
  - **Varzesh3**: (**Currently broken**)
  - **Vbox7**
  - **Veo**
- - **Veoh**
- - **veoh:user**
  - **Vesti**: Вести.Ru (**Currently broken**)
  - **Vevo**
  - **VevoPlaylist**
@@ -1656,6 +1679,9 @@
  - **VKPlay**
  - **VKPlayLive**
  - **vm.tiktok**
+ - **VMware**
+ - **VMware:search**: "vmwaresearch:" prefix
+ - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
  - **VODPlatform**
