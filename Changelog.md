@@ -4,6 +4,22 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.11.19.051709
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b0ade48e704353bc8e1073f9d59d3f900df897d1) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/79a150654df31c88df893ae34d83a6bcb19c00f1) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/6d1cd26f42fec846ec418ed02fa7e1c992c3e7b9) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0355ea03e22a547d5099f13612738ba8c2f914e8) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0af58210d2c29f67806b1c58d99450c15ac0b010) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f0f45c14fdd5c35c1d92c5c65469b3ab07dc5ae7) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2358f4420a60300b1bfa47f904574dc079ca5f49) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/2e0823995c945f1e7412bed036118cfd9d3e2be2) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a94da3e976399595cec744c70ab99d778c470e73) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/05e9acb1dc08a8880da337a690bd3dcd59c607c2) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/4d0bd62c874481cb55c89f742cbcac93457e7bce) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b6da56656c517d0f4e7775ab6d1be43390507786) by [pukkandan](https://github.com/pukkandan)
+
 ### 2024.11.18
 
 #### Important changes
