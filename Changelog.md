@@ -4,6 +4,36 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.11.25.021351
+
+#### Core changes
+- [Add `playlist_webpage_url` field](https://github.com/yt-dlp/yt-dlp/commit/7d6c259a03bc4707a319e5e8c6eff0278707874b) ([#11613](https://github.com/yt-dlp/yt-dlp/issues/11613)) by [seproDev](https://github.com/seproDev)
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c57ba986671c7ce44b4cc33315e8fd64f80c1033) by [pukkandan](https://github.com/pukkandan)
+- **chaturbate**: [Fix support for non-public streams](https://github.com/yt-dlp/yt-dlp/commit/4b5eec0aaa7c02627f27a386591b735b90e681a8) ([#11624](https://github.com/yt-dlp/yt-dlp/issues/11624)) by [jkruse](https://github.com/jkruse)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e4c2a11a8b6d712ed3a9537d85d2fde0fe43242d) by [pukkandan](https://github.com/pukkandan)
+- **facebook**
+    - [Experimental](https://github.com/yt-dlp/yt-dlp/commit/89c4df74aba9b5b5e8759b06c1dd907f8d7bfc79) by [pukkandan](https://github.com/pukkandan)
+    - [Support more groups URLs](https://github.com/yt-dlp/yt-dlp/commit/e0f1ae813b36e783e2348ba2a1566e12f5cd8f6e) ([#11576](https://github.com/yt-dlp/yt-dlp/issues/11576)) by [grqz](https://github.com/grqz)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/899e17f5cb03e17e7ac3a4329f12f25f44d4046c) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/791df09f801e78a6d6b89aae220cd8ca2b086035) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5465cca8ae5b16ac61bffa2a505fa505d3193b29) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/62aca46fd042859ca0e090353e4efcf04390b465) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/3db0dfb4c58fc14ca96d2bff7126a2369fb6bbfb) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a5e7453300571d8d6d91119042b70d639d6fac51) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f98e1a2dba282c0a8e3458879881882e9a59036f) by [pukkandan](https://github.com/pukkandan)
+- **stripchat**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/16336c51d0848a6868a4fa04e749fa03548b4913) ([#11596](https://github.com/yt-dlp/yt-dlp/issues/11596)) by [gitninja1234](https://github.com/gitninja1234)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/0ad4830cee9109c8756b534fa608d8e5752da194) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4596608509578fd94678fe9e820ab03ed0e85154) by [pukkandan](https://github.com/pukkandan)
+- **youtube**: tab: [Fix playlists tab extraction](https://github.com/yt-dlp/yt-dlp/commit/fe70f20aedf528fdee332131bc9b6710e54e6f10) ([#11615](https://github.com/yt-dlp/yt-dlp/issues/11615)) by [seproDev](https://github.com/seproDev)
+
+#### Networking changes
+- **Request Handler**: websockets: [Support websockets 14.0+](https://github.com/yt-dlp/yt-dlp/commit/c7316373c0a886f65a07a51e50ee147bb3294c85) ([#11616](https://github.com/yt-dlp/yt-dlp/issues/11616)) by [coletdjnz](https://github.com/coletdjnz)
+
+#### Misc. changes
+- **cleanup**: Miscellaneous: [ccf0a6b](https://github.com/yt-dlp/yt-dlp/commit/ccf0a6b86b7f68a75463804fe485ec240b8635f0) by [bashonly](https://github.com/bashonly), [pzhlkj6612](https://github.com/pzhlkj6612)
+
 ### 2024.11.18
 
 #### Important changes
