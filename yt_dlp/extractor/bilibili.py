@@ -643,16 +643,18 @@ class BiliBiliIE(BilibiliBaseIE):
         if is_festival:
             video_data = initial_state['videoInfo']
         else:
-            play_info_obj = self._search_json(
-                r'window\.__playinfo__\s*=', webpage, 'play info', video_id, fatal=False)
-            if not play_info_obj:
+            play_info = None
+            if play_info_obj := self._search_json(
+                    r'window\.__playinfo__\s*=', webpage, 'play info', video_id, default=None):
+                play_info = traverse_obj(play_info_obj, ('data', {dict}))
+            else:
                 if traverse_obj(initial_state, ('error', 'trueCode')) == -403:
                     self.raise_login_required()
                 if traverse_obj(initial_state, ('error', 'trueCode')) == -404:
                     raise ExtractorError(
                         'This video may be deleted or geo-restricted. '
                         'You might want to try a VPN or a proxy server (with --proxy)', expected=True)
-            play_info = traverse_obj(play_info_obj, ('data', {dict}))
+                play_info = self._download_playinfo(video_id, initial_state['cid'], headers=headers)
             if not play_info:
                 if traverse_obj(play_info_obj, 'code') == 87007:
                     toast = get_element_by_class('tips-toast', webpage) or ''
