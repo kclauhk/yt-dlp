@@ -4,6 +4,31 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.12.06.155151
+
+#### Core changes
+- **cookies**: [Add `--cookies-from-browser` support for MS Store Firefox](https://github.com/yt-dlp/yt-dlp/commit/354cb4026cf2191e1a130ec2a627b95cabfbc60a) ([#11731](https://github.com/yt-dlp/yt-dlp/issues/11731)) by [wesson09](https://github.com/wesson09)
+
+#### Extractor changes
+- **bilibili**: [Fix HD formats extraction](https://github.com/yt-dlp/yt-dlp/commit/fca3eb5f8be08d5fab2e18b45b7281a12e566725) ([#11734](https://github.com/yt-dlp/yt-dlp/issues/11734)) by [grqz](https://github.com/grqz)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/71671bed0f8351dd67e91cb83bf4681b65172195) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/89efa8409736b2bdcfe184def488d8ea3b6a63ba) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/2742e1090307423e0273892e61239f2acbc83525) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b8e6c77dc265f536b9ebb0b2fd76d51f41caf445) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2bdabc72140345a2b95e5d4667e5cb92587bb80e) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b261f7f8fba7b7f6742529a0328e120f45114bdf) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bad2552a2b89b6e4934e5e29d56d89b2976321be) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/8bcfafa29bddca00de069a4a5406108e27698f51) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/66d8e036be0382d5f220d6e8dcfa93bd8a2c3776) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/91ee978bd8e5c63d8c65cccfd3f2092b77fbb2c6) by [pukkandan](https://github.com/pukkandan)
+- **soundcloud**: [Fix formats extraction](https://github.com/yt-dlp/yt-dlp/commit/2feb28028ee48f2185d2d95076e62accb09b9e2e) ([#11742](https://github.com/yt-dlp/yt-dlp/issues/11742)) by [bashonly](https://github.com/bashonly)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/f39718e98eae34f8ebf9358672e380b76cdf20d9) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ed7ec637de1a08bb1f2f12b35c9b6c745dede84c) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Fix `n` sig extraction for player `3bb1f723`](https://github.com/yt-dlp/yt-dlp/commit/a95ee6d8803fca9157adecf63732ab58bf87fd88) ([#11750](https://github.com/yt-dlp/yt-dlp/issues/11750)) by [bashonly](https://github.com/bashonly)
+    - [Fix signature function extraction](https://github.com/yt-dlp/yt-dlp/commit/4c85ccd1366c88cf93982f8350f58eed17355981) ([#11751](https://github.com/yt-dlp/yt-dlp/issues/11751)) by [bashonly](https://github.com/bashonly)
+    - [Player client maintenance](https://github.com/yt-dlp/yt-dlp/commit/2e49c789d3eebc39af8910705d65a98bca0e4c4f) ([#11724](https://github.com/yt-dlp/yt-dlp/issues/11724)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.12.03
 
 #### Core changes
