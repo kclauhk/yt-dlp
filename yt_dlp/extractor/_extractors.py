@@ -551,6 +551,12 @@ from .europeantour import EuropeanTourIE
 from .eurosport import EurosportIE
 from .euscreen import EUScreenIE
 from .expressen import ExpressenIE
+from .extrememusic import (
+    ExtremeMusicAIE,
+    ExtremeMusicIE,
+    ExtremeMusicPIE,
+    ExtremeMusicSearchIE,
+)
 from .facebook import (
     FacebookAdsIE,
     FacebookIE,
