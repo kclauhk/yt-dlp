@@ -753,6 +753,14 @@ from .gimy import (
     GimySearchIE,
     GimySearchURLIE,
 )
+from .giphy import (
+    GiphyChannelIE,
+    GiphyChannelPageIE,
+    GiphyIE,
+    GiphySearchIE,
+    GiphySearchURLIE,
+    GiphyStoriesIE,
+)
 from .glide import GlideIE
 from .globalplayer import (
     GlobalPlayerAudioEpisodeIE,
