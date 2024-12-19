@@ -1,12 +1,37 @@
-from .common import InfoExtractor, SearchInfoExtractor
-from ..utils import (
-    parse_iso8601,
-    traverse_obj,
-    url_or_none,
-)
+import re
+
+from .common import InfoExtractor
+from ..utils import parse_iso8601, url_or_none
+from ..utils.traversal import traverse_obj
 
 
-class PiramideTVIE(InfoExtractor):
+class PiramideTVBaseIE(InfoExtractor):
+    def _extract_video(self, video_id, fatal=True):
+        video_data = self._download_json(
+            f'https://hermes.piramide.tv/video/data/{video_id}', video_id, fatal=fatal)
+        formats, subtitles = self._extract_m3u8_formats_and_subtitles(
+            f'https://cdn.piramide.tv/video/{video_id}/manifest.m3u8', video_id, fatal=fatal)
+        info_dict = {
+            'id': video_id,
+            **traverse_obj(video_data, ('video', {
+                'id': ('id', {str}),
+                'title': ('title', {str}),
+                'description': ('description', {str}),
+                'thumbnail': ('media', 'thumbnail', {url_or_none}),
+                'channel': ('channel', 'name', {str}),
+                'channel_id': ('channel', 'id', {str}),
+                'timestamp': ('date', {parse_iso8601}),
+            })),
+            'formats': formats,
+            'subtitles': subtitles,
+            'webpage_url': f'https://piramide.tv/video/{video_id}',
+            'webpage_url_basename': video_id,
+        }
+        next_video_id = traverse_obj(video_data, ('video', 'next_video', 'id', {str}))
+        return info_dict, next_video_id
+
+
+class PiramideTVIE(PiramideTVBaseIE):
     _VALID_URL = r'https?://piramide\.tv/video/(?P<id>[\w-]+)'
     _TESTS = [{
         'url': 'https://piramide.tv/video/wWtBAORdJUTh',
@@ -25,7 +50,7 @@ class PiramideTVIE(InfoExtractor):
         'url': 'https://piramide.tv/video/wcYn6li79NgN',
         'info_dict': {
             'id': 'wcYn6li79NgN',
-            'title': 'ACEPTO TENER UN BEBE CON MI NOVIA\u2026? | Parte 1',
+            'title': 'ACEPTO TENER UN BEBE CON MI NOVIA\u2026?',
             'description': '',
             'channel': 'ARTA GAME',
             'channel_id': 'arta_game',
@@ -33,81 +58,57 @@ class PiramideTVIE(InfoExtractor):
         'playlist_count': 4,
     }]
 
-    def _real_extract(self, url):
-        def extract_video(video_id, fatal=False):
-            video_data = self._download_json(
-                f'https://hermes.piramide.tv/video/data/{video_id}', video_id, fatal=fatal)
-            formats, subtitles = self._extract_m3u8_formats_and_subtitles(
-                f'https://cdn.piramide.tv/video/{video_id}/manifest.m3u8', video_id, fatal=fatal)
-            video_info = {**traverse_obj(video_data, ('video', {
-                'id': ('id', {str}),
-                'title': ('title', {str}),
-                'description': ('description', {str}),
-                'thumbnail': ('media', 'thumbnail', {url_or_none}),
-                'channel': ('channel', 'name', {str}),
-                'channel_id': ('channel', 'id', {str}),
-                'timestamp': ('date', {parse_iso8601}),
-            })),
-                'formats': formats,
-                'subtitles': subtitles,
-                'webpage_url': f'https://piramide.tv/video/{video_id}',
-                'webpage_url_basename': video_id,
-            }
-            next_video_id = traverse_obj(video_data, ('video', 'next_video', 'id', {str}))
-            return video_info, next_video_id
-
-        video_id = self._match_id(url)
-        entries = []
+    def _entries(self, video, video_id):
+        if video:
+            yield video
         while video_id is not None:
-            video, next_video = extract_video(video_id, (not entries))
+            video, next_video_id = self._extract_video(video_id, False)
             if video.get('formats'):
-                entries.append(video)
-            video_id = next_video if next_video != video_id else None
+                yield video
+            video_id = next_video_id if next_video_id != video_id else None
 
-        if len(entries) == 1:
-            return entries[0]
-        elif len(entries) > 1:
-            return self.playlist_result(entries, **traverse_obj(entries[0], {
-                'id': ('id'),
-                'title': ('title'),
-                'description': ('description'),
-                'channel': ('channel'),
-                'channel_id': ('channel_id'),
-            }))
-        else:
-            return {'id': video_id}
+    def _real_extract(self, url):
+        video_id = self._match_id(url)
+        video, next_video_id = self._extract_video(video_id)
+        if next_video_id:
+            if self.get_param('noplaylist'):
+                self.to_screen(f'Downloading just video {video_id} because of --no-playlist')
+            else:
+                return self.playlist_result(
+                    self._entries(video, next_video_id),
+                    **traverse_obj(video, {
+                        'id': ('id'),
+                        'title': ('title', {lambda x: re.split(r'\s+\|?\s*Parte\s*\d', x,
+                                                               flags=re.IGNORECASE)[0]}),
+                        'description': ('description'),
+                        'channel': ('channel'),
+                        'channel_id': ('channel_id'),
+                    }))
+        return video
 
 
-class PiramideTVChannelURLIE(InfoExtractor):
+class PiramideTVChannelIE(PiramideTVBaseIE):
     _VALID_URL = r'https?://piramide\.tv/channel/(?P<id>[\w-]+)'
     _TESTS = [{
-        'url': 'https://piramide.tv/channel/thekalo',
-        'playlist_mincount': 10,
+        'url': 'https://piramide.tv/channel/ariancita',
+        'playlist_mincount': 2,
         'info_dict': {
-            'id': 'thekalo',
-            'title': 'thekalo',
+            'id': 'ariancita',
         },
     }]
+
+    def _entries(self, channel_name):
+        videos = self._download_json(
+            f'https://hermes.piramide.tv/channel/list/{channel_name}/date/100000', channel_name)
+        video_done = [None]
+        for video_id in traverse_obj(videos, ('videos', ..., 'id', {str})):
+            while video_id not in video_done:
+                video, next_video_id = self._extract_video(video_id, fatal=False)
+                if video:
+                    yield video
+                video_done.append(video_id)
+                video_id = next_video_id if next_video_id != video_id else None
 
     def _real_extract(self, url):
         channel_name = self._match_id(url)
-        return self.url_result(url=f'piramidetvall:{channel_name}', url_transparent=True)
-
-
-class PiramideTVChannelIE(SearchInfoExtractor):
-    IE_NAME = 'PiramideTV:channel'
-    _SEARCH_KEY = 'piramidetv'
-    _TESTS = [{
-        'url': 'piramidetv5:bobicraft',
-        'playlist_count': 5,
-        'info_dict': {
-            'id': 'bobicraft',
-            'title': 'bobicraft',
-        },
-    }]
-
-    def _search_results(self, query):
-        videos = self._download_json(
-            f'https://hermes.piramide.tv/channel/list/{query}/date/100000', query)
-        for video_id in traverse_obj(videos, ('videos', ..., 'id', {str})):
-            yield self.url_result(f'https://piramide.tv/video/{video_id}')
+        return self.playlist_result(self._entries(channel_name), channel_name)
