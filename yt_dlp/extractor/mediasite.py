@@ -1,3 +1,4 @@
+import itertools
 import json
 import re
 import urllib.parse
@@ -13,6 +14,7 @@ from ..utils import (
     str_or_none,
     try_call,
     try_get,
+    unified_strdate,
     unsmuggle_url,
     url_or_none,
     urljoin,
@@ -23,7 +25,7 @@ _ID_RE = r'(?:[0-9a-f]{32,34}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0
 
 
 class MediasiteIE(InfoExtractor):
-    _VALID_URL = rf'(?xi)https?://[^/]+/Mediasite/(?:Play|Showcase/[^/#?]+/Presentation)/(?P<id>{_ID_RE})(?P<query>\?[^#]+|)'
+    _VALID_URL = rf'(?xi)https?://[^/]+/Mediasite/(?:Play|Showcase/[^/#\?]+/Presentation|Channel/[^/#\?]+/watch)/(?P<id>{_ID_RE})(?P<query>\?[^#]+|)'
     _EMBED_REGEX = [rf'(?xi)<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:(?:https?:)?//[^/]+)?/Mediasite/Play/{_ID_RE}(?:\?.*?)?)\1']
     _TESTS = [
         {
@@ -120,6 +122,23 @@ class MediasiteIE(InfoExtractor):
                 'duration': 2415.487,
                 'timestamp': 1472567400,
                 'upload_date': '20160830',
+            },
+        },
+        {
+            'url': 'https://uconnhealth.mediasite.com/Mediasite/Channel/medical_grand_rounds/watch/1eeff651adc74b2fb17089ada14b61041d',
+            'info_dict': {
+                'id': '1eeff651adc74b2fb17089ada14b61041d',
+                'ext': 'mp4',
+                'title': 'Adrenal Adenomas Ruining the Renals  12/12/2024 ',
+                'description': '',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['Matthew Widlus MD, Internal Medicine Resident, PGY-3 Department of Medicine  UConn Health'],
+                'duration': 3243.0,
+                'timestamp': 1733990400,
+                'upload_date': '20241212',
+            },
+            'params': {
+                'skip_download': True,
             },
         },
         {
@@ -489,3 +508,78 @@ class MediasiteNamedCatalogIE(InfoExtractor):
         return self.url_result(
             f'{mediasite_url}/Catalog/Full/{catalog_id}',
             ie=MediasiteCatalogIE.ie_key(), video_id=catalog_id)
+
+
+class MediasiteChannelIE(InfoExtractor):
+    _VALID_URL = r'(?xi)(?P<url>https?://[^/]+/Mediasite/Channel/(?P<id>[^/#\?]+)/?(?:/browse/.*)?$)'
+    _TESTS = [{
+        'url': 'https://fau.mediasite.com/Mediasite/Channel/2024-twts/browse/null/oldest/null/0/null',
+        'info_dict': {
+            'id': '2024-twts',
+            'title': '2024 Teaching with Technology Showcase',
+        },
+        'playlist_mincount': 13,
+    }, {
+        'url': 'https://fau.mediasite.com/Mediasite/Channel/osls-2023/',
+        'info_dict': {
+            'id': 'osls-2023',
+            'title': 'Ocean Science Lecture Series 2023',
+        },
+        'playlist_mincount': 11,
+    }, {
+        'url': 'https://fau.mediasite.com/Mediasite/Channel/osls-2023',
+        'only_matching': True,
+    }]
+
+    def _entries(self, json_data, channel_id):
+        site_data = json_data['SiteData']
+        app_root = site_data['ApplicationRoot']
+        _sort_by = ('most-recent','oldest', 'title-az', 'title-za', 'views')
+        for i in itertools.count():
+            postdata = {
+                'Page': str(i),
+                'Rows': 12,
+                'SortBy': _sort_by[json_data['DefaultSort']],
+                'UrlChannelId': channel_id,
+                'MediasiteChannelId': json_data['MediasiteChannelId'],
+                'AuthTicketId': json_data['AuthTicketId'],
+                'SearchBy': None,
+                'SearchTerm': None,
+                'Tags': None,
+                'FocusToolbarList': None,
+                'FolderSelected': None,
+                'FolderName': None,
+                'NavigateFunction': None,
+            }
+            if channel_data := self._download_json(
+                    f'{app_root}/webapps-api/MediasiteChannelApp/GetMediasiteChannelAppContent',
+                    channel_id, fatal=True, data=json.dumps(postdata).encode(), headers={
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        site_data['AntiForgeryHeaderName']: site_data['AntiForgeryToken'],
+                    }):
+                for entry in traverse_obj(channel_data, ('Results', 'rows', ..., {dict})):
+                    yield self.url_result(entry['PlayUrl'], **traverse_obj(entry, {
+                        'id': ('Id', {str}),
+                        'title': ('ObjectData', 'Title', {str}),
+                        'description': ('ObjectData', 'Description', {str_or_none}),
+                        'thumbnail': ('ThumbnailUrl', {url_or_none}),
+                        'duration': ('ObjectData', 'Duration',
+                                     {lambda v: float_or_none(v, 1000)}),
+                        'cast': ('ObjectData', 'PresenterList', ..., 'DisplayName'),
+                        'tags': ('Tags'),
+                        'upload_date': ('RecordDate', {unified_strdate}),
+                    }))
+                if i == channel_data['Results']['total'] - 1:
+                    break
+
+    def _real_extract(self, url):
+        url, data = unsmuggle_url(url, {})
+        mobj = self._match_valid_url(url)
+        channel_id = mobj.group('id')
+
+        webpage = self._download_webpage(url, channel_id)
+        init_json = self._search_json(r'window\.ApplicationInitialization\s*=', webpage,
+                                      'ApplicationInitialization', channel_id, fatal=True)
+        return self.playlist_result(self._entries(init_json, channel_id), playlist_id=channel_id,
+                                    playlist_title=init_json['MediasiteChannelName'])
