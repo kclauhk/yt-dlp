@@ -1,3 +1,4 @@
+import itertools
 import json
 import re
 import urllib.parse
@@ -5,12 +6,15 @@ import urllib.parse
 from .common import InfoExtractor
 from ..utils import (
     ExtractorError,
+    determine_ext,
     float_or_none,
+    join_nonempty,
     mimetype2ext,
     smuggle_url,
     str_or_none,
     try_call,
     try_get,
+    unified_strdate,
     unsmuggle_url,
     url_or_none,
     urljoin,
@@ -21,7 +25,10 @@ _ID_RE = r'(?:[0-9a-f]{32,34}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0
 
 
 class MediasiteIE(InfoExtractor):
-    _VALID_URL = rf'(?xi)https?://[^/]+/Mediasite/(?:Play|Showcase/[^/#?]+/Presentation)/(?P<id>{_ID_RE})(?P<query>\?[^#]+|)'
+    _VALID_URL = rf'''(?xi)https?://[^/]+/Mediasite/(?:Play
+                                                       |Showcase/[^/#?]+/Presentation
+                                                       |Channel/[^/#?]+/watch
+                                                    )/(?P<id>{_ID_RE})(?P<query>\?[^#]+|)'''
     _EMBED_REGEX = [rf'(?xi)<iframe\b[^>]+\bsrc=(["\'])(?P<url>(?:(?:https?:)?//[^/]+)?/Mediasite/Play/{_ID_RE}(?:\?.*?)?)\1']
     _TESTS = [
         {
@@ -31,9 +38,13 @@ class MediasiteIE(InfoExtractor):
                 'ext': 'mp4',
                 'title': 'Lecture: Tuesday, September 20, 2016 - Sir Andrew Wiles',
                 'description': 'Sir Andrew Wiles: “Equations in arithmetic”\\n\\nI will describe some of the interactions between modern number theory and the problem of solving equations in rational numbers or integers\\u0027.',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['Sir Andrew J. Miles, Silver Plaque of the IMU, 1998 | Abel Prize, 2016'],
+                'duration': 2978.0,
                 'timestamp': 1474268400.0,
                 'upload_date': '20160919',
             },
+            'skip': 'HTTP Error 500: Service Fault',
         },
         {
             'url': 'http://mediasite.uib.no/Mediasite/Play/90bb363295d945d6b548c867d01181361d?catalog=a452b7df-9ae1-46b7-a3ba-aceeb285f3eb',
@@ -44,6 +55,7 @@ class MediasiteIE(InfoExtractor):
                 'title': '5) IT-forum 2015-Dag 1  - Dungbeetle -  How and why Rain created a tiny bug tracker for Unity',
                 'timestamp': 1430311380.0,
             },
+            'skip': 'no longer exist',
         },
         {
             'url': 'https://collegerama.tudelft.nl/Mediasite/Play/585a43626e544bdd97aeb71a0ec907a01d',
@@ -54,9 +66,14 @@ class MediasiteIE(InfoExtractor):
                 'title': 'Een nieuwe wereld: waarden, bewustzijn en techniek van de mensheid 2.0.',
                 'description': '',
                 'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['H. Wijffels'],
                 'duration': 7713.088,
                 'timestamp': 1413309600,
                 'upload_date': '20141014',
+            },
+            'params': {
+                # format 'video1-1.1' HTTP Error 400: Bad Request
+                'skip_download': True,
             },
         },
         {
@@ -68,10 +85,12 @@ class MediasiteIE(InfoExtractor):
                 'title': '64ste Vakantiecursus: Afvalwater',
                 'description': 'md5:7fd774865cc69d972f542b157c328305',
                 'thumbnail': r're:^https?://.*\.jpg(?:\?.*?)?$',
+                'cast': ['D.J. van den Berg', 'L.C. Rietveld', 'D. van Halem', 'N.C. van de Giesen', 'J.Q.J.C. Verberk'],
                 'duration': 10853,
                 'timestamp': 1326446400,
                 'upload_date': '20120113',
             },
+            'skip': 'video no longer available',
         },
         {
             'url': 'http://digitalops.sandia.gov/Mediasite/Play/24aace4429fc450fb5b38cdbf424a66e1d',
@@ -79,16 +98,69 @@ class MediasiteIE(InfoExtractor):
             'info_dict': {
                 'id': '24aace4429fc450fb5b38cdbf424a66e1d',
                 'ext': 'mp4',
-                'title': 'Xyce Software Training - Section 1',
+                'title': 'Xyce Software Training - Section 1 - Apr. 2012',
                 'description': r're:(?s)SAND Number: SAND 2013-7800.{200,}',
-                'upload_date': '20120409',
-                'timestamp': 1333983600,
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['01400 Computation, Computers \\u0026 Math'],
                 'duration': 7794,
+                'timestamp': 1333983600,
+                'upload_date': '20120409',
+            },
+            'params': {
+                # format 'video1-1.0' HTTP Error 400: Bad Request
+                'skip_download': True,
+            },
+        },
+        {
+            'url': 'https://events7.mediasite.com/Mediasite/Play/a7812390a2d44739ae857527e05776091d',
+            'info_dict': {
+                'id': 'a7812390a2d44739ae857527e05776091d',
+                'ext': 'mp4',
+                'title': 'Practical Prevention, Detection and Responses to the New Threat Landscape',
+                'description': r're:^The bad guys aren’t standing still, and neither is Okta',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['Franklin Rosado', 'Alex Bovee'],
+                'duration': 2415.487,
+                'timestamp': 1472567400,
+                'upload_date': '20160830',
+            },
+            'params': {
+                'skip_download': True,
             },
         },
         {
             'url': 'https://collegerama.tudelft.nl/Mediasite/Showcase/livebroadcast/Presentation/ada7020854f743c49fbb45c9ec7dbb351d',
-            'only_matching': True,
+            'info_dict': {
+                'id': 'ada7020854f743c49fbb45c9ec7dbb351d',
+                'ext': 'mp4',
+                'title': 'Nachtelijk weer: een koud kunstje?',
+                'description': '',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'timestamp': 1542981600,
+                'duration': 4000.879,
+                'cast': ['B.J.H. van de Wiel'],
+                'upload_date': '20181123',
+            },
+            'params': {
+                'skip_download': True,
+            },
+        },
+        {
+            'url': 'https://uconnhealth.mediasite.com/Mediasite/Channel/medical_grand_rounds/watch/1eeff651adc74b2fb17089ada14b61041d',
+            'info_dict': {
+                'id': '1eeff651adc74b2fb17089ada14b61041d',
+                'ext': 'mp4',
+                'title': 'Adrenal Adenomas Ruining the Renals  12/12/2024 ',
+                'description': '',
+                'thumbnail': r're:^https?://.*\.jpg(?:\?.*)?$',
+                'cast': ['Matthew Widlus MD, Internal Medicine Resident, PGY-3 Department of Medicine  UConn Health'],
+                'duration': 3243.0,
+                'timestamp': 1733990400,
+                'upload_date': '20241212',
+            },
+            'params': {
+                'skip_download': True,
+            },
         },
         {
             'url': 'https://mediasite.ntnu.no/Mediasite/Showcase/default/Presentation/7d8b913259334b688986e970fae6fcb31d',
@@ -117,9 +189,9 @@ class MediasiteIE(InfoExtractor):
 
     def __extract_slides(self, *, stream_id, snum, stream, duration, images):
         slide_base_url = stream['SlideBaseUrl']
-
+        playback_ticket = stream.get('SlidePlaybackTicketId')
         fname_template = stream['SlideImageFileNameTemplate']
-        if fname_template != 'slide_{0:D4}.jpg':
+        if fname_template != 'slide_{0:D4}.jpg' and fname_template != 'slide_%s_{0:D4}.jpg' % stream_id:
             self.report_warning('Unusual slide file name template; report a bug if slide downloading fails')
         fname_template = re.sub(r'\{0:D([0-9]+)\}', r'{0:0\1}', fname_template)
 
@@ -145,7 +217,8 @@ class MediasiteIE(InfoExtractor):
                 expected_type=(int, float))
 
             fragments.append({
-                'path': fname_template.format(slide.get('Number', i + 1)),
+                'path': join_nonempty(fname_template.format(slide.get('Number', i + 1)),
+                                      playback_ticket, delim='?playbackTicket='),
                 'duration': (next_time - slide['Time']) / 1000,
             })
 
@@ -160,6 +233,28 @@ class MediasiteIE(InfoExtractor):
             'fragments': fragments,
             'fragment_base_url': slide_base_url,
         }
+
+    def _get_transcript_txt(self, transcript_url, resource_id, lang_code, lang_name=None, force_download=True):
+        ts = {
+            'name': join_nonempty(lang_name, '(Untimed)', delim=' '),
+            'ext': 'ttml',
+        }
+        if ((self.get_param('writesubtitles') or self.get_param('writeautomaticsub'))
+                and (force_download or 'ttml' in self.get_param('subtitlesformat'))):
+            if transcript := self._download_webpage(
+                    transcript_url, resource_id, note='Downloading transcript', fatal=False):
+                d = ('<?xml version="1.0" encoding="utf-8" ?>\n'
+                     '<tt\n  xmlns="http://www.w3.org/ns/ttml"\n'
+                     '  xmlns:ttp="http://www.w3.org/ns/ttml#parameter"\n'
+                     '  xmlns:xml="http://www.w3.org/XML/1998/namespace"\n'
+                     f'  xml:lang="{lang_code}">\n'
+                     '<head>\n</head>\n<body>\n<div>\n<p xml:id="transcript">\n<span>\n</span><span>'
+                     + re.sub(r'\r?\n[\t\f ]*', '\n</span><span>', transcript.replace('&', '&amp;').strip())
+                     + '\n</span>\n</p>\n</div>\n</body>\n</tt>')
+                return {'data': d, **ts}
+        else:
+            return {'url': transcript_url, **ts}
+        return {}
 
     def _real_extract(self, url):
         url, data = unsmuggle_url(url, {})
@@ -191,13 +286,18 @@ class MediasiteIE(InfoExtractor):
             }).encode())['d']
 
         presentation = player_options['Presentation']
-        title = presentation['Title']
-
         if presentation is None:
+            if iframe_src := self._html_search_regex(
+                    r'<iframe src="([^"]+)"', webpage, 'iframe_src', default=None):
+                u = urllib.parse.urlparse(iframe_src)
+                return self.url_result(
+                    u._replace(netloc=u.netloc.replace(str(u.port), '')).geturl())
             raise ExtractorError(
                 'Mediasite says: {}'.format(player_options['PlayerPresentationStatusMessage']),
                 expected=True)
 
+        title = (presentation.get('Title')
+                 or self._html_extract_title(webpage, 'title', fatal=False))
         thumbnails = []
         formats = []
         for snum, stream in enumerate(presentation['Streams']):
@@ -233,18 +333,20 @@ class MediasiteIE(InfoExtractor):
                         fatal=False))
                 elif ext in ('m3u', 'm3u8'):
                     stream_formats.extend(self._extract_m3u8_formats(
-                        video_url, resource_id,
+                        video_url, resource_id, media_type.lower(),
                         m3u8_id=f'{stream_id}-{snum}.{unum}',
                         fatal=False))
-                else:
+                elif self._is_valid_url(video_url, resource_id, f'{stream_id}-{snum}.{unum}'):
+                    # TODO: investigate why always error 400
                     stream_formats.append({
                         'format_id': f'{stream_id}-{snum}.{unum}',
                         'url': video_url,
                         'ext': ext,
                     })
 
-            images = traverse_obj(player_options, ('PlayerLayoutOptions', 'Images', {dict}))
-            if stream.get('HasSlideContent') and images:
+            images = traverse_obj(
+                player_options, ('PlayerLayoutOptions', 'Images', {dict}), default={})
+            if stream.get('HasSlideContent'):
                 stream_formats.append(self.__extract_slides(
                     stream_id=stream_id,
                     snum=snum,
@@ -267,8 +369,47 @@ class MediasiteIE(InfoExtractor):
                 })
             formats.extend(stream_formats)
 
-        # XXX: Presentation['Presenters']
-        # XXX: Presentation['Transcript']
+        for i, cast_url in enumerate(('PodcastUrl', 'VodcastUrl')):
+            if url_or_none(presentation.get(cast_url)):
+                formats.append({
+                    'format_id': cast_url.lower().replace('url', ''),
+                    'url': presentation.get(cast_url).split('?attachmentName=')[0],
+                    'vcodec': None if i else 'none',
+                    'preference': None if i else -2,
+                })
+
+        transcripts = presentation.get('Transcripts', [])
+        captions, subtitles = {}, {}
+        for transcript in transcripts:
+            lang_code = traverse_obj(
+                transcript, (('DetailedLanguageCode', 'LanguageCode'), {str}), get_all=False) or 'und'
+            lang_name = transcript.get('Language')
+            t = {
+                'url': transcript.get('CaptionsUrl'),
+                'name': lang_name,
+            }
+            if 'Auto-Generated' in lang_name:
+                captions.setdefault(lang_code, []).append(t)
+            else:
+                subtitles.setdefault(lang_code, []).append(t)
+        if transcript_url := url_or_none(presentation.get('TranscriptUrl')):
+            if 'playbackTicket=' not in transcript_url:
+                transcript_url = join_nonempty(
+                    transcript_url, traverse_obj(presentation, ('Streams', 0, 'SlidePlaybackTicketId', {str})),
+                    delim='?playbackTicket=')
+            if determine_ext(transcript_url) != 'txt':
+                ts = {'url': transcript_url}
+            else:
+                ts = self._get_transcript_txt(
+                    transcript_url, resource_id,
+                    *([lang_code, lang_name, False] if len(transcripts) == 1 else ['und']))
+            if len(transcripts) == 1:
+                (captions or subtitles)[lang_code].insert(0, {
+                    'name': lang_name,
+                    **ts,
+                })
+            else:
+                subtitles.setdefault('und', []).insert(0, ts)
 
         return {
             'id': resource_id,
@@ -277,7 +418,10 @@ class MediasiteIE(InfoExtractor):
             'duration': float_or_none(presentation.get('Duration'), 1000),
             'timestamp': float_or_none(presentation.get('UnixTime'), 1000),
             'formats': formats,
+            'automatic_captions': captions,
+            'subtitles': subtitles,
             'thumbnails': thumbnails,
+            'cast': traverse_obj(presentation, ('Presenters', ..., 'Name', {str})),
         }
 
 
@@ -412,3 +556,103 @@ class MediasiteNamedCatalogIE(InfoExtractor):
         return self.url_result(
             f'{mediasite_url}/Catalog/Full/{catalog_id}',
             ie=MediasiteCatalogIE.ie_key(), video_id=catalog_id)
+
+
+class MediasiteChannelIE(InfoExtractor):
+    _QY_RE = r'[^/#?]+/[\w-]+/[^/#?]+/\d+/[^/#?]+'
+    _VALID_URL = rf'(?xi)(?P<url>https?://[^/]+/Mediasite/Channel/(?P<id>[^/#?]+)(?:/browse/(?P<query>{_QY_RE}))?/?$)'
+    _TESTS = [{
+        'url': 'https://fau.mediasite.com/Mediasite/Channel/2024-twts/browse/null/oldest/null/0/null',
+        'info_dict': {
+            'id': '2024-twts',
+            'title': '2024 Teaching with Technology Showcase',
+        },
+        'playlist_mincount': 13,
+    }, {
+        'url': 'https://ers.mediasite.com/mediasite/Channel/august_ers_meeting/browse/audit report/relevance/null/0/null',
+        'info_dict': {
+            'id': 'august_ers_meeting',
+            'title': 'August 25th ERS Meeting',
+        },
+        'playlist_mincount': 4,
+    }, {
+        'url': 'https://fau.mediasite.com/Mediasite/Channel/osls-2023/',
+        'info_dict': {
+            'id': 'osls-2023',
+            'title': 'Ocean Science Lecture Series 2023',
+        },
+        'playlist_mincount': 11,
+    }, {
+        'url': 'https://fau.mediasite.com/Mediasite/Channel/osls-2023',
+        'only_matching': True,
+    }]
+
+    def _entries(self, json_data, channel_id, query):
+        site_data = json_data['SiteData']
+        app_root = site_data['ApplicationRoot']
+        query = query or [None] * 5
+        _sort_by = ('most-recent', 'oldest', 'title-az', 'title-za', 'views')
+        for i in itertools.count():
+            postdata = {
+                'Page': str(i),
+                'Rows': 12,
+                'SortBy': query[1] or _sort_by[json_data['DefaultSort']],
+                'UrlChannelId': channel_id,
+                'MediasiteChannelId': json_data['MediasiteChannelId'],
+                'AuthTicketId': json_data['AuthTicketId'],
+                'SearchBy': query[0],
+                'SearchTerm': query[0],
+                'Tags': query[2].split(' ') if query[2] else None,
+                'FocusToolbarList': None,
+                'FolderSelected': query[4],
+                'FolderName': None,
+                'NavigateFunction': None,
+            }
+            postdata['FiltersAsJson'] = json.dumps(postdata)
+            channel_data = self._download_json(
+                f'{app_root}/webapps-api/MediasiteChannelApp/GetMediasiteChannelAppContent',
+                channel_id, fatal=True, data=json.dumps(postdata).encode(), headers={
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    site_data['AntiForgeryHeaderName']: site_data['AntiForgeryToken'],
+                })
+            if traverse_obj(channel_data, ('Results', 'records', {int})) > 0:
+                for entry in traverse_obj(channel_data, ('Results', 'rows', ..., {dict})):
+                    if play_url := (url_or_none(entry.get('PlayUrl'))
+                                    or (f"{app_root.replace('Channel', 'Play')}{entry.get('Id')}"
+                                        if entry.get('Id') else None)):
+                        yield self.url_result(
+                            f"{play_url}?Collection={json_data['MediasiteChannelId']}",
+                            **traverse_obj(entry, {
+                                'id': ('Id', {str}),
+                                'title': (('ObjectData', None), ('Title', 'Name'), {str}),
+                                'description': (('ObjectData', None), 'Description', {str_or_none}),
+                                'thumbnail': ('ThumbnailUrl', {url_or_none}),
+                                'duration': ('ObjectData', ('Duration', 'MediaLength'),
+                                             {lambda v: float_or_none(v, 1000)}),
+                                'upload_date': ((('ObjectData', 'RecordDateTimeUtc'), 'RecordDate'),
+                                                {unified_strdate}),
+                            }, get_all=False),
+                            **traverse_obj(entry, {
+                                'cast': ('ObjectData', 'PresenterList', ..., 'DisplayName', {str_or_none}),
+                                'tags': ('Tags'),
+                            }))
+                if i == traverse_obj(channel_data, ('Results', 'total', {int})) - 1:
+                    break
+            else:
+                return None
+
+    def _real_extract(self, url):
+        url, _ = unsmuggle_url(url, {})
+        mobj = self._match_valid_url(url)
+        channel_id = mobj.group('id')
+        if query := mobj.group('query'):
+            query = [None if x.lower() == 'null' else urllib.parse.unquote(x)
+                     for x in query.split('/')]
+
+        webpage = self._download_webpage(url, channel_id)
+        init_json = self._search_json(r'window\.ApplicationInitialization\s*=', webpage,
+                                      'ApplicationInitialization', channel_id, fatal=True)
+        return self.playlist_result(self._entries(init_json, channel_id, query),
+                                    playlist_id=channel_id,
+                                    playlist_title=init_json['MediasiteChannelName'])
