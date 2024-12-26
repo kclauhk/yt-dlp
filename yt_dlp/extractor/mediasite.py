@@ -589,7 +589,7 @@ class MediasiteChannelIE(InfoExtractor):
                 })
             if traverse_obj(channel_data, ('Results', 'records', {int})) > 0:
                 for entry in traverse_obj(channel_data, ('Results', 'rows', ..., {dict})):
-                    if play_url := (url_or_none(entry.get('PlayUrl'))
+                    if play_url := (url_or_none(entry.get('PlayUrl') + "?Collection=" + json_data['MediasiteChannelId'])
                                     or (f"{app_root.replace('Channel', 'Play')}{entry.get('Id')}"
                                         if entry.get('Id') else None)):
                         yield self.url_result(play_url, **traverse_obj(entry, {
