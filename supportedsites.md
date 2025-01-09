@@ -200,6 +200,7 @@ The only reliable way to check if a site is supported is to try it.
  - **blogger.com**
  - **Bloomberg**
  - **Bluesky**
+ - **Bluey**
  - **BokeCC**: CC视频
  - **BongaCams**
  - **Boosty**
