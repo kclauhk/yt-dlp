@@ -285,6 +285,7 @@ from .blerp import BlerpIE
 from .blogger import BloggerIE
 from .bloomberg import BloombergIE
 from .bluesky import BlueskyIE
+from .bluey import BlueyIE
 from .bokecc import BokeCCIE
 from .bongacams import BongaCamsIE
 from .boosty import BoostyIE
