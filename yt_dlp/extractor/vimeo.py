@@ -28,6 +28,7 @@ from ..utils import (
     try_get,
     unified_timestamp,
     unsmuggle_url,
+    url_or_none,
     urlencode_postdata,
     urlhandle_detect_ext,
     urljoin,
@@ -211,8 +212,8 @@ class VimeoBaseInfoExtractor(InfoExtractor):
                     'width': int_or_none(key),
                     'url': thumb,
                 })
-            thumbnail = video_data.get('thumbnail')
-            if thumbnail:
+            for thumbnail in traverse_obj(
+                    video_data, (('thumbnail_url', 'thumbnail'), {url_or_none})):
                 thumbnails.append({
                     'url': thumbnail,
                 })
