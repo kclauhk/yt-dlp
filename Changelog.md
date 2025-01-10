@@ -4,6 +4,28 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.01.10.182618
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/603312f5ca3d1fb37bcc7cea1e21a3caf1813acf) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ff5e7901b3ea11067fa0293994ce447e71d490c0) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/86effc1ff321c7c2b561a1476eacece1c53b03e3) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4bead91ba521d4489df8a5f3b8595e748f7c4cb9) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/85796cdf89c84323fcc945989808e2defed99c5d) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/6c127601e8619cdfc353bdc695c2876711bd2fff) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3b200d3ab0bdf13d658c5a9bbde6d7b779fb2309) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/00aa09dfb5f6362b7048b3156d5cec785180ae26) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/deb3536c9f70f6e89f01d44fb8632ce09e09bc44) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/e765e1f99181663a4d93c4b64db959d4a5308640) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3595d28058dff3810f93cf9a16ed0e0753790736) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Fix m3u8 formats download](https://github.com/yt-dlp/yt-dlp/commit/092f9a90cb192f365db86fc065198ead97150c8e) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/106b40c7c4ffb5fa9d936c8ffe6dd4a71b927441) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/1d85548cea5460961c7ec91960cfb507a3b2d950) by [pukkandan](https://github.com/pukkandan)
+- **vimeo**: [Fix thumbnail extraction](https://github.com/yt-dlp/yt-dlp/commit/c3c5318e6cd02203533aa95157c2d68b7e940b56) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/df94658c7b16146ed4340764129347720158020f) by [pukkandan](https://github.com/pukkandan)
+- **youtube**: [Fix DASH formats incorrectly skipped in some situations](https://github.com/yt-dlp/yt-dlp/commit/0b6b7742c2e7f2a1fcb0b54ef3dd484bab404b3f) ([#11910](https://github.com/yt-dlp/yt-dlp/issues/11910)) by [coletdjnz](https://github.com/coletdjnz)
+
 ### 2024.12.23
 
 #### Core changes
