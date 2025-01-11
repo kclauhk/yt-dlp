@@ -1954,6 +1954,7 @@ from .southpark import (
     SouthParkIE,
     SouthParkLatIE,
     SouthParkNlIE,
+    SouthParkSeasonsIE,
 )
 from .sovietscloset import (
     SovietsClosetIE,
