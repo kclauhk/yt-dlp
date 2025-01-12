@@ -4,6 +4,38 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.01.12.082127
+
+#### Core changes
+- [Fix filename sanitization with `--no-windows-filenames`](https://github.com/yt-dlp/yt-dlp/commit/8346b549150003df988538e54c9d8bc4de568979) ([#11988](https://github.com/yt-dlp/yt-dlp/issues/11988)) by [bashonly](https://github.com/bashonly)
+- [Validate retries values are non-negative](https://github.com/yt-dlp/yt-dlp/commit/1f4e1e85a27c5b43e34d7706cfd88ffce1b56a4a) ([#11927](https://github.com/yt-dlp/yt-dlp/issues/11927)) by [Strkmn](https://github.com/Strkmn)
+
+#### Extractor changes
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/51ad4df4366f8f3a1cc40e0f8e6ddf952a7baeef) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a39aa38625cb181bbe2f397a9acfa8dc350122ea) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/63e1e8c70d4b60ae3766b3d054a1463eabead9e7) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/80e7b1c93866576da3d4637340ba49789171ca7d) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/694bbd484c3ca0433c605503d677c9f5f59fe079) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/89023c2ac1a7719c35b7dfa111e3d98fc63ef007) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/eed8d447e51e151d9e7d3e5c8ca684e92b26956a) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/ee018bbb3a97cdde1e27a4771dbe181418044dc5) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/3d9bf86eba415b2093df4efe813928b9b6d837a6) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/47706e9bc11d63af305b438f729ff2402cc032d7) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/cceeb7dabdc054c4ca89c1696337fd40fdfdcde8) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Fix m3u8 formats download](https://github.com/yt-dlp/yt-dlp/commit/c9cc2bc6b8a08b31621c9be2664bf592957b1537) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c603b8853e6f392b593e6a7fb2ebd5c876b95bba) by [pukkandan](https://github.com/pukkandan)
+- **plvideo**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3c14e9191f3035b9a729d1d87bc0381f42de57cf) ([#10657](https://github.com/yt-dlp/yt-dlp/issues/10657)) by [Sanceilaks](https://github.com/Sanceilaks), [seproDev](https://github.com/seproDev)
+- **southpark**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/bba4df023fe934975125b39c86d25f506ee4f1e4) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/f17337f5799a4cf5bf0cdb5facf01d1684c5f97a) by [pukkandan](https://github.com/pukkandan)
+- **vimeo**: [Fix thumbnail extraction](https://github.com/yt-dlp/yt-dlp/commit/2d82c0cd88bac63baaf10090a60ce1a199ebf675) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d2d5b166d8f3019949e520e2cd2a88a0f40f8f28) by [pukkandan](https://github.com/pukkandan)
+- **xiaohongshu**: [Extend `_VALID_URL`](https://github.com/yt-dlp/yt-dlp/commit/763ed06ee69f13949397897bd42ff2ec3dc3d384) ([#11806](https://github.com/yt-dlp/yt-dlp/issues/11806)) by [HobbyistDev](https://github.com/HobbyistDev)
+- **youtube**
+    - [Fix DASH formats incorrectly skipped in some situations](https://github.com/yt-dlp/yt-dlp/commit/0b6b7742c2e7f2a1fcb0b54ef3dd484bab404b3f) ([#11910](https://github.com/yt-dlp/yt-dlp/issues/11910)) by [coletdjnz](https://github.com/coletdjnz)
+    - [Refactor cookie auth](https://github.com/yt-dlp/yt-dlp/commit/75079f4e3f7dce49b61ef01da7adcd9876a0ca3b) ([#11989](https://github.com/yt-dlp/yt-dlp/issues/11989)) by [coletdjnz](https://github.com/coletdjnz)
+    - [Use `tv` instead of `mweb` client by default](https://github.com/yt-dlp/yt-dlp/commit/712d2abb32f59b2d246be2901255f84f1a4c30b3) ([#12059](https://github.com/yt-dlp/yt-dlp/issues/12059)) by [coletdjnz](https://github.com/coletdjnz)
+
 ### 2024.12.23
 
 #### Core changes
