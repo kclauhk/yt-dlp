@@ -77,33 +77,39 @@ class BilibiliBaseIE(InfoExtractor):
         flac_audio = traverse_obj(play_info, ('dash', 'flac', 'audio'))
         if flac_audio:
             audios.append(flac_audio)
-        formats = [{
-            'url': traverse_obj(audio, 'baseUrl', 'base_url', 'url'),
-            'ext': mimetype2ext(traverse_obj(audio, 'mimeType', 'mime_type')),
-            'acodec': traverse_obj(audio, ('codecs', {str.lower})),
-            'vcodec': 'none',
-            'tbr': float_or_none(audio.get('bandwidth'), scale=1000),
-            'filesize': int_or_none(audio.get('size')),
-            'format_id': str_or_none(audio.get('id')),
-        } for audio in audios]
-
-        formats.extend({
-            'url': traverse_obj(video, 'baseUrl', 'base_url', 'url'),
-            'ext': mimetype2ext(traverse_obj(video, 'mimeType', 'mime_type')),
-            'fps': float_or_none(traverse_obj(video, 'frameRate', 'frame_rate')),
-            'width': int_or_none(video.get('width')),
-            'height': int_or_none(video.get('height')),
-            'vcodec': video.get('codecs'),
-            'acodec': 'none' if audios else None,
-            'dynamic_range': {126: 'DV', 125: 'HDR10'}.get(int_or_none(video.get('id'))),
-            'tbr': float_or_none(video.get('bandwidth'), scale=1000),
-            'filesize': int_or_none(video.get('size')),
-            'quality': int_or_none(video.get('id')),
-            'format_id': traverse_obj(
-                video, (('baseUrl', 'base_url'), {self._FORMAT_ID_RE.search}, 1),
-                ('id', {str_or_none}), get_all=False),
-            'format': format_names.get(video.get('id')),
-        } for video in traverse_obj(play_info, ('dash', 'video', ...)))
+        formats = []
+        for audio in audios:
+            for url in sorted([u for u in dict.fromkeys(traverse_obj(
+                    audio, (('baseUrl', 'base_url', (('backupUrl', 'backup_url'), ...), 'url'), {url_or_none}))) if u]):
+                formats.append({
+                    'url': url,
+                    'ext': mimetype2ext(traverse_obj(audio, 'mimeType', 'mime_type')),
+                    'acodec': traverse_obj(audio, ('codecs', {str.lower})),
+                    'vcodec': 'none',
+                    'tbr': float_or_none(audio.get('bandwidth'), scale=1000),
+                    'filesize': int_or_none(audio.get('size')),
+                    'format_id': str_or_none(audio.get('id')),
+                })
+        for video in traverse_obj(play_info, ('dash', 'video', ...)):
+            for url in sorted([u for u in dict.fromkeys(traverse_obj(
+                    video, (('baseUrl', 'base_url', (('backupUrl', 'backup_url'), ...), 'url'), {url_or_none}))) if u]):
+                formats.append({
+                    'url': url,
+                    'ext': mimetype2ext(traverse_obj(video, 'mimeType', 'mime_type')),
+                    'fps': float_or_none(traverse_obj(video, 'frameRate', 'frame_rate')),
+                    'width': int_or_none(video.get('width')),
+                    'height': int_or_none(video.get('height')),
+                    'vcodec': video.get('codecs'),
+                    'acodec': 'none' if audios else None,
+                    'dynamic_range': {126: 'DV', 125: 'HDR10'}.get(int_or_none(video.get('id'))),
+                    'tbr': float_or_none(video.get('bandwidth'), scale=1000),
+                    'filesize': int_or_none(video.get('size')),
+                    'quality': int_or_none(video.get('id')),
+                    'format_id': traverse_obj(
+                        video, (('baseUrl', 'base_url'), {self._FORMAT_ID_RE.search}, 1),
+                        ('id', {str_or_none}), get_all=False),
+                    'format': format_names.get(video.get('id')),
+                })
 
         if formats:
             self._check_missing_formats(play_info, formats)
