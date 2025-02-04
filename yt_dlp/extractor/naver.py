@@ -45,7 +45,7 @@ class NaverBaseIE(InfoExtractor):
 
     def _extract_video_info(self, video_id, vid, key):
         video_data = self._download_json(
-            'http://play.rmcnmv.naver.com/vod/play/v2.0/' + vid,
+            'https://apis.naver.com/rmcnmv/rmcnmv/vod/play/v2.0/' + vid,
             video_id, query={
                 'key': key,
             })
@@ -130,7 +130,7 @@ class NaverBaseIE(InfoExtractor):
 
 
 class NaverIE(NaverBaseIE):
-    _VALID_URL = r'https?://(?:m\.)?tv(?:cast)?\.naver\.com/(?:v|embed)/(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:m\.)?tv(?:cast)?\.naver\.com/(?:h|v|embed)/(?P<id>\d+)'
     _GEO_BYPASS = False
     _TESTS = [{
         'url': 'http://tv.naver.com/v/81652',
