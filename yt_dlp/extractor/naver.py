@@ -45,7 +45,7 @@ class NaverBaseIE(InfoExtractor):
 
     def _extract_video_info(self, video_id, vid, key):
         video_data = self._download_json(
-            'http://play.rmcnmv.naver.com/vod/play/v2.0/' + vid,
+            'https://apis.naver.com/rmcnmv/rmcnmv/vod/play/v2.0/' + vid,
             video_id, query={
                 'key': key,
             })
@@ -130,7 +130,7 @@ class NaverBaseIE(InfoExtractor):
 
 
 class NaverIE(NaverBaseIE):
-    _VALID_URL = r'https?://(?:m\.)?tv(?:cast)?\.naver\.com/(?:v|embed)/(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:m\.)?tv(?:cast)?\.naver\.com/(?:h|v|embed)/(?P<id>\d+)(?!.*[?&]playlistNo=)'
     _GEO_BYPASS = False
     _TESTS = [{
         'url': 'http://tv.naver.com/v/81652',
@@ -287,7 +287,7 @@ class NaverLiveIE(NaverBaseIE):
 
 
 class NaverNowIE(NaverBaseIE):
-    IE_NAME = 'navernow'
+    IE_NAME = 'Naver:now'
     _VALID_URL = r'https?://now\.naver\.com/s/now\.(?P<id>\w+)'
     _API_URL = 'https://apis.naver.com/now_web/oldnow_web/v4'
     _TESTS = [{
@@ -423,3 +423,46 @@ class NaverNowIE(NaverBaseIE):
         return self.playlist_result(
             itertools.chain(self._extract_show_replays(show_id), self._extract_show_highlights(show_id)),
             show_id, show_info.get('title'))
+
+
+class NaverPlaylistIE(NaverBaseIE):
+    IE_NAME = 'Naver:playlist'
+    _VALID_URL = r'https?://(?:m\.)?tv(?:cast)?\.naver\.com/(?:(?:h|v|embed)/(?P<vid>\d+))?.*[?&]playlistNo=(?P<id>\d+)'
+    _GEO_BYPASS = False
+    _TESTS = [{
+        'url': 'https://tv.naver.com/sedgolf?tab=playlist&playlistNo=737526',
+        'info_dict': {
+            'id': '737526',
+            'title': '이소미의 실전에 강한 레슨',
+        },
+        'playlist_mincount': 8,
+    }, {
+        'url': 'https://tv.naver.com/v/22306361?playlistNo=736671',
+        'info_dict': {
+            'id': '736671',
+            'title': '\'건강미인\' 이혜정의 어프로치 & 퍼팅',
+        },
+        'playlist_mincount': 9,
+    }]
+
+    def _real_extract(self, url):
+        video_id, playlist_id = self._match_valid_url(url).group('vid', 'id')
+        if video_id and not self._yes_playlist(playlist_id, video_id):
+            return self.url_result(f'https://tv.naver.com/v/{video_id}', NaverIE, video_id)
+
+        data = self._call_api(f'/playlist/{playlist_id}', playlist_id)
+        return self.playlist_result(
+            (self.url_result(
+                f'https://tv.naver.com/v/{video["clipNo"]}',
+                **traverse_obj(video, {
+                    'id': ('clipNo', {int}),
+                    'title': ('title', {str}),
+                    'description': ('description', {str}),
+                    'thumbnail': ('thumbnailImageUrl', {url_or_none}),
+                    'timestamp': ('firstExposureDatetime', {parse_iso8601}),
+                    'duration': ('playTime', {int}),
+                    'like_count': ('likeItCount', {int_or_none}),
+                    'view_count': ('playCount', {int_or_none}),
+                })) for video in traverse_obj(data, ('clips', lambda _, v: v['clipNo']))),
+            playlist_id,
+            data['title'])
