@@ -1147,6 +1147,7 @@ from .nationalgeographic import NationalGeographicTVIE
 from .naver import (
     NaverIE,
     NaverLiveIE,
+    NaverPlaylistIE,
 )
 from .nba import (
     NBAIE,
