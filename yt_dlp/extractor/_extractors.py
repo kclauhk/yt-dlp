@@ -1259,6 +1259,7 @@ from .naver import (
     NaverIE,
     NaverLiveIE,
     NaverNowIE,
+    NaverPlaylistIE,
 )
 from .nba import (
     NBAIE,
