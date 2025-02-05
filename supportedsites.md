@@ -194,6 +194,7 @@
  - **blogger.com**
  - **Bloomberg**
  - **Bluesky**
+ - **Bluey**
  - **BokeCC**
  - **BongaCams**
  - **Boosty**
@@ -314,7 +315,8 @@
  - **curiositystream**: [*curiositystream*](## "netrc machine")
  - **curiositystream:collections**: [*curiositystream*](## "netrc machine")
  - **curiositystream:series**: [*curiositystream*](## "netrc machine")
- - **CWTV**
+ - **cwtv**
+ - **cwtv:movie**
  - **Cybrary**: [*cybrary*](## "netrc machine")
  - **CybraryCourse**: [*cybrary*](## "netrc machine")
  - **DacastPlaylist**
@@ -428,6 +430,9 @@
  - **EWETVLive**: [*ewetv*](## "netrc machine")
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
+ - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
@@ -465,9 +470,9 @@
  - **fptplay**: fptplay.vn
  - **FranceCulture**
  - **FranceInter**
- - **FranceTV**
+ - **francetv**
+ - **francetv:site**
  - **francetvinfo.fr**
- - **FranceTVSite**
  - **Freesound**
  - **freespeech.org**
  - **freetv:series**
@@ -508,6 +513,16 @@
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
+ - **gimy**
+ - **gimy:detail**
+ - **gimy:search**: gimy Search; "gimysearch:" prefix
+ - **GimySearchURL**
+ - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -583,6 +598,10 @@
  - **Hytale**
  - **Icareus**
  - **IdolPlus**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -661,6 +680,8 @@
  - **kick:vod**
  - **Kicker**
  - **KickStarter**
+ - **KidoodleTV**
+ - **KidoodleTV:series**
  - **Kika**: KiKA.de
  - **kinja:embed**
  - **KinoPoisk**
@@ -768,6 +789,7 @@
  - **MediasetShow**
  - **Mediasite**
  - **MediasiteCatalog**
+ - **MediasiteChannel**
  - **MediasiteNamedCatalog**
  - **MediaStream**
  - **MediaWorksNZVOD**
@@ -777,6 +799,7 @@
  - **megatvcom:embed**: megatv.com embedded videos
  - **Meipai**: 美拍
  - **MelonVOD**
+ - **MeritPlus**
  - **Metacritic**
  - **mewatch**
  - **MicrosoftBuild**
@@ -1070,7 +1093,8 @@
  - **Pinterest**
  - **PinterestCollection**
  - **PiramideTV**
- - **PiramideTVChannel**
+ - **PiramideTV:channel**: "piramidetv:" prefix
+ - **PiramideTVChannelURL**
  - **pixiv:sketch**
  - **pixiv:​sketch:user**
  - **Pladform**
@@ -1353,11 +1377,12 @@
  - **SoundcloudEmbed**
  - **soundgasm**
  - **soundgasm:profile**
- - **southpark.cc.com**
+ - **SouthPark**
  - **southpark.cc.com:español**
  - **southpark.de**
  - **southpark.lat**
  - **southpark.nl**
+ - **SouthPark:Seasons**
  - **southparkstudios.dk**
  - **SovietsCloset**
  - **SovietsClosetPlaylist**
@@ -1657,6 +1682,9 @@
  - **VKPlay**
  - **VKPlayLive**
  - **vm.tiktok**
+ - **VMware**
+ - **VMware:search**: "vmwaresearch:" prefix
+ - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
  - **VODPlatform**
