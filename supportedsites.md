@@ -1686,6 +1686,8 @@ The only reliable way to check if a site is supported is to try it.
  - **VKPlay**
  - **VKPlayLive**
  - **vm.tiktok**
+ - **VMware**
+ - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
  - **VODPlatform**
