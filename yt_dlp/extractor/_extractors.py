@@ -2425,6 +2425,11 @@ from .vk import (
     VKUserVideosIE,
     VKWallPostIE,
 )
+from .vmware import (
+    VMwareExploreIE,
+    VMwareIE,
+    VMwareSearchIE,
+)
 from .vocaroo import VocarooIE
 from .vodpl import VODPlIE
 from .vodplatform import VODPlatformIE
