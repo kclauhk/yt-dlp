@@ -598,15 +598,16 @@ class BrightcoveNewBaseIE(AdobePassIE):
 
         return {
             'id': video_id,
+            'title': clean_html(json_data['name'].strip()),
+            'description': clean_html(join_nonempty('description', 'long_description',
+                                                    from_dict=json_data, delim='<br>')),
             'thumbnails': thumbnails,
             'duration': duration,
             'formats': formats,
             'subtitles': subtitles,
+            'tags': json_data.get('tags', []),
             'is_live': is_live,
             **traverse_obj(json_data, {
-                'title': ('name', {clean_html}),
-                'description': ('description', {clean_html}),
-                'tags': ('tags', ..., {str}, filter, all, filter),
                 'timestamp': ('published_at', {parse_iso8601}),
                 'uploader_id': ('account_id', {str}),
             }),
