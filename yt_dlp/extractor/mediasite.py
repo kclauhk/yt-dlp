@@ -198,6 +198,28 @@ class MediasiteIE(InfoExtractor):
             'fragment_base_url': slide_base_url,
         }
 
+    def _get_transcript_txt(self, transcript_url, resource_id, lang_code, lang_name=None, force_download=True):
+        ts = {
+            'name': join_nonempty(lang_name, '(Untimed)', delim=' '),
+            'ext': 'ttml',
+        }
+        if ((self.get_param('writesubtitles') or self.get_param('writeautomaticsub'))
+                and (force_download or 'ttml' in self.get_param('subtitlesformat'))):
+            if transcript := self._download_webpage(
+                    transcript_url, resource_id, note='Downloading transcript', fatal=False):
+                d = ('<?xml version="1.0" encoding="utf-8" ?>\n'
+                     '<tt\n  xmlns="http://www.w3.org/ns/ttml"\n'
+                     '  xmlns:ttp="http://www.w3.org/ns/ttml#parameter"\n'
+                     '  xmlns:xml="http://www.w3.org/XML/1998/namespace"\n'
+                     f'  xml:lang="{lang_code}">\n'
+                     '<head>\n</head>\n<body>\n<div>\n<p xml:id="transcript">\n<span>\n</span><span>'
+                     + re.sub(r'\r?\n[\t\f ]*', '\n</span><span>', transcript.replace('&', '&amp;').strip())
+                     + '\n</span>\n</p>\n</div>\n</body>\n</tt>')
+                return {'data': d, **ts}
+        else:
+            return {'url': transcript_url, **ts}
+        return {}
+
     def _real_extract(self, url):
         url, data = unsmuggle_url(url, {})
         mobj = self._match_valid_url(url)
@@ -320,11 +342,11 @@ class MediasiteIE(InfoExtractor):
                     'preference': None if i else -2,
                 })
 
-        transcripts = presentation.get('Transcripts', {})
+        transcripts = presentation.get('Transcripts', [])
         captions, subtitles = {}, {}
         for transcript in transcripts:
             lang_code = traverse_obj(
-                transcript, (('DetailedLanguageCode', 'LanguageCode'), {str}), get_all=False)
+                transcript, (('DetailedLanguageCode', 'LanguageCode'), {str}), get_all=False) or 'und'
             lang_name = transcript.get('Language')
             t = {
                 'url': transcript.get('CaptionsUrl'),
@@ -334,15 +356,24 @@ class MediasiteIE(InfoExtractor):
                 captions.setdefault(lang_code, []).append(t)
             else:
                 subtitles.setdefault(lang_code, []).append(t)
-        if transcript_url := presentation.get('TranscriptUrl'):
+        if transcript_url := url_or_none(presentation.get('TranscriptUrl')):
+            if 'playbackTicket=' not in transcript_url:
+                transcript_url = join_nonempty(
+                    transcript_url, traverse_obj(presentation, ('Streams', 0, 'SlidePlaybackTicketId', {str})),
+                    delim='?playbackTicket=')
             if determine_ext(transcript_url) != 'txt':
-                if len(transcripts) == 1:
-                    (captions or subtitles).setdefault(lang_code, []).append({
-                        'url': transcript_url,
-                        'name': lang_name,
-                    })
-                else:
-                    subtitles.setdefault('und', []).append({'url': transcript_url})
+                ts = {'url': transcript_url}
+            else:
+                ts = self._get_transcript_txt(
+                    transcript_url, resource_id,
+                    *([lang_code, lang_name, False] if len(transcripts) == 1 else ['und']))
+            if len(transcripts) == 1:
+                (captions or subtitles)[lang_code].insert(0, {
+                    'name': lang_name,
+                    **ts,
+                })
+            else:
+                subtitles.setdefault('und', []).insert(0, ts)
 
         return {
             'id': resource_id,
