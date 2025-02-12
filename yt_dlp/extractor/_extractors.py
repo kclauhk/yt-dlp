@@ -1150,6 +1150,7 @@ from .mediaset import (
 )
 from .mediasite import (
     MediasiteCatalogIE,
+    MediasiteChannelIE,
     MediasiteIE,
     MediasiteNamedCatalogIE,
 )
