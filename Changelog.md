@@ -4,6 +4,38 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.02.22.043245
+
+#### Core changes
+- [Support emitting ConEmu progress codes](https://github.com/yt-dlp/yt-dlp/commit/f7a1f2d8132967a62b0f6d5665c6d2dde2d42c09) ([#10649](https://github.com/yt-dlp/yt-dlp/issues/10649)) by [Grub4K](https://github.com/Grub4K)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/c823982e8b2f8a153f7c824549585bd4cf72a852) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7e84a88161f2a3a1d02b70aaf7159ccdb7af321f) by [pukkandan](https://github.com/pukkandan)
+- **bunnycdn**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3a1583ca75fb523cbad0e5e174387ea7b477d175) ([#11586](https://github.com/yt-dlp/yt-dlp/issues/11586)) by [Grub4K](https://github.com/Grub4K), [seproDev](https://github.com/seproDev)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3f879c1635858e98eed2fd099fef8b0d6b49652c) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/ce5c5c27937463a32de5a55d66b3801d7e9c9ba7) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/9b79b8714a5e637ea2dc410a02217e1762bba3ec) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/1ed5e2049935ef4755910a35fe861684832a8d69) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/161f3e66643d878874ff690af6c1d0855a827847) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/10ba703fa7e6884b049fb2eca292bc487a663f30) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/fec00dbe6ee5b3f3591524344308c0064a835aa0) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/8c860d67c9f1c65491859326a84c9225af495bd2) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/363a44651112cd01a3a91b3bf6631e282ff13088) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/cac4abb8e032be5ce9435356b48b091faf8f4cb6) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL](https://github.com/yt-dlp/yt-dlp/commit/68e992ec41e8005c2aba871a4f72dcab4b2606f7) by [pukkandan](https://github.com/pukkandan)
+- **niconico**: live: [Fix thumbnail extraction](https://github.com/yt-dlp/yt-dlp/commit/c2e6e1d5f77f3b720a6266f2869eb750d20e5dc1) ([#12419](https://github.com/yt-dlp/yt-dlp/issues/12419)) by [bashonly](https://github.com/bashonly)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ab188c0dc764ae57fe06f7a4f211f67cd737315e) by [pukkandan](https://github.com/pukkandan)
+- **soundcloud**: [Extract tags](https://github.com/yt-dlp/yt-dlp/commit/9deed13d7cce6d3647379e50589c92de89227509) ([#12420](https://github.com/yt-dlp/yt-dlp/issues/12420)) by [bashonly](https://github.com/bashonly)
+- **southpark**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/3d138a0eaf3441eef0a20628cfe29e924cc39725) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/c153c1187d901dec5c95628164ed698c9a708cd8) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bdd1b5d1541909f4fd17a5bbd9d14a087dbdd922) by [pukkandan](https://github.com/pukkandan)
+- **youtube**: [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/fed4e43c431df4835bd2db8d3fb37ee8e7c7af13) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **test**: [Show all differences for `expect_value` and `expect_dict`](https://github.com/yt-dlp/yt-dlp/commit/a3e0c7d3b267abdf3933b709704a28d43bb46503) ([#12334](https://github.com/yt-dlp/yt-dlp/issues/12334)) by [Grub4K](https://github.com/Grub4K)
+
 ### 2025.02.19
 
 #### Core changes
