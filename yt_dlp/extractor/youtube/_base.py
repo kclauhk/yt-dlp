@@ -179,7 +179,7 @@ INNERTUBE_CLIENTS = {
             },
         },
         'INNERTUBE_CONTEXT_CLIENT_NAME': 5,
-        'PO_TOKEN_REQUIRED_CONTEXTS': [_PoTokenContext.GVS],
+        # 'PO_TOKEN_REQUIRED_CONTEXTS': [_PoTokenContext.GVS],
         'REQUIRE_JS_PLAYER': False,
     },
     # This client now requires sign-in for every video
