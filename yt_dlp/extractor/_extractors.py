@@ -984,6 +984,10 @@ from .kick import (
 )
 from .kicker import KickerIE
 from .kickstarter import KickStarterIE
+from .kidoodletv import (
+    KidoodleTVIE,
+    KidoodleTVSeriesIE,
+)
 from .kika import (
     KikaIE,
     KikaPlaylistIE,
