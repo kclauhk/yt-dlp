@@ -4,6 +4,39 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.05.04.074603
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/574b29063e8048de873f68770bff1b9ebfe01e3d) by [pukkandan](https://github.com/pukkandan)
+- **bitchute**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/1d0f6539c47e5d5c68c3c47cdb7075339e2885ac) ([#13081](https://github.com/yt-dlp/yt-dlp/issues/13081)) by [bashonly](https://github.com/bashonly)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b17ab5f35c413587acca5c6c4070358c50e59889) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0bfa6ec1dcee3c4321c724de645871346fd322f8) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/468452132819598de33882cd11b6e659bb68cbdf) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/48bf1d5e324f157f9ae8ff2f33f7e4c74c03f132) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/12c87f75dea1400dfa9be7a0c3d933e84f03bb84) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2d063101816c0e2e83aaa72c5dd749353273907b) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bb6aae2018068f70a22a168476a4b31fabf0cf9e) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/0a195687c045fb9d829e41a7ddb175131dca1a51) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/9053f1a5171f4b1562119ed91d5275b7a86a7cb0) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/6e5688791c103e91780e80ff81734b263a359c71) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/59167b1b26bb00b357cdf8dccd455e5c41a84b1a) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/ed8fb082008d21be7ee8a757bea2faea13ef286d) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/fad79459590c79201419b6bb39e51fd0ff6df364) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/c8a7fc2d8207152538a1dd579a37530cc3277087) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/1009f7ce14d819a8b3a5543feb9344b3553d6f0a) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/edd39a92936db12eae21d72f708f930a34092048) by [pukkandan](https://github.com/pukkandan)
+- **weverse**: [Fix live extraction](https://github.com/yt-dlp/yt-dlp/commit/5328eda8820cc5f21dcf917684d23fbdca41831d) ([#13084](https://github.com/yt-dlp/yt-dlp/issues/13084)) by [bashonly](https://github.com/bashonly)
+- **youtube**
+    - [Add `web_embedded` client for age-restricted videos](https://github.com/yt-dlp/yt-dlp/commit/0feec6dc131f488428bf881519e7c69766fbb9ae) ([#13089](https://github.com/yt-dlp/yt-dlp/issues/13089)) by [bashonly](https://github.com/bashonly)
+    - [Fix `--live-from-start` support for premieres](https://github.com/yt-dlp/yt-dlp/commit/8f303afb43395be360cafd7ad4ce2b6e2eedfb8a) ([#13079](https://github.com/yt-dlp/yt-dlp/issues/13079)) by [arabcoders](https://github.com/arabcoders)
+    - [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/3e5414c2cc04b1ea01f50d96266f5f92cb78031f) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**
+    - [Bump PyInstaller to v6.13.0](https://github.com/yt-dlp/yt-dlp/commit/17cf9088d0d535e4a7feffbf02bd49cd9dae5ab9) ([#13082](https://github.com/yt-dlp/yt-dlp/issues/13082)) by [bashonly](https://github.com/bashonly)
+    - [Bump run-on-arch-action to v3](https://github.com/yt-dlp/yt-dlp/commit/9064d2482d1fe722bbb4a49731fe0711c410d1c8) ([#13088](https://github.com/yt-dlp/yt-dlp/issues/13088)) by [bashonly](https://github.com/bashonly)
+
 ### 2025.04.30
 
 #### Important changes
