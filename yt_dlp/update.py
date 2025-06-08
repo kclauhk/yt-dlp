@@ -38,9 +38,9 @@ from .version import (
 UPDATE_SOURCES = {
     'stable': 'yt-dlp/yt-dlp',
     'nightly': 'yt-dlp/yt-dlp-nightly-builds',
-    'master': 'yt-dlp/yt-dlp-master-builds',
+    'master': 'kclauhk/yt-dlp',
 }
-REPOSITORY = UPDATE_SOURCES['stable']
+REPOSITORY = UPDATE_SOURCES['master']
 _INVERSE_UPDATE_SOURCES = {value: key for key, value in UPDATE_SOURCES.items()}
 
 _VERSION_RE = re.compile(r'(\d+\.)*\d+')
