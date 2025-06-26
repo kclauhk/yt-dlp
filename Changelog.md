@@ -4,6 +4,34 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.06.26.022019
+
+#### Core changes
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/3257cf57d05afdb0afff7aabd21859813403a031) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/666be4f996d0afab726f3ff15c01a2585a54a857) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0159fa2eaf8e5fb93a2e3ce311c2bf2afd5cb8bc) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d3c8e2b4ba9751650ae6c83613e30d485eb02ebc) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/4a91ac53651fb7ef07ebe664649a991475f5a400) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/44dc33e342c738bd93197b0e1acab5551c9593e9) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/58ac35def20828eadd0c6e6dbb1afc0ae5c874aa) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8c8e3fa2a2352dd7b0ea463d4ee9fc720024d9e5) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/54aa1f8307480bb2773b068d94726c53033f1b55) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/ede4ddc89242d9f233ff21fa690e9b8ef5fc7953) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/b56063e580c26374e7a457d638c804fd7b2ac553) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/a20d403b4d64421631e95c2d1e4c653eee282220) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f04a9c63c8bccaa9b5f2092dda3100c02b965ff5) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/0d8f0deba71f48d76e5eabdd28698e9afd221cbd) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c2ead4ed54ca7bcd26ffe8f1a71a75fd38555f72) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/52a7d20e059ad48c28eb2a96b6fa30811248c305) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/1be67c26c34c9cecc2ddcdb23764fe47bc3e0995) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/9125ced15cd8857b581f6077e252d4cf568a1321) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/fb39714c51dd49edefcde2e3bac9a20dcfd3f8d4) by [pukkandan](https://github.com/pukkandan)
+    - [extract translated info](https://github.com/yt-dlp/yt-dlp/commit/5118c76f3ed1ed5569cce51b083b5d998cd5bca7) by [pukkandan](https://github.com/pukkandan)
+
 ### 2025.06.25
 
 #### Extractor changes
