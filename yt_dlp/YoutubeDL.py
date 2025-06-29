@@ -138,6 +138,7 @@ from .utils import (
     number_of_digits,
     orderedSet,
     orderedSet_from_options,
+    parse_codecs,
     parse_filesize,
     preferredencoding,
     prepend_extension,
@@ -2195,12 +2196,49 @@ class YoutubeDL:
         return _filter
 
     def _check_formats(self, formats):
+        ffmpeg = FFmpegPostProcessor()
         for f in formats:
             working = f.get('__working')
             if working is not None:
                 if working:
                     yield f
                 continue
+            if (f.get('video_ext', 'none') != 'none' and f.get('width') is None
+                    and ffmpeg.probe_available and f.get('protocol', '').startswith('http')):
+                self.to_screen('[info] Probing format {}'.format(f['format_id']))
+                if self.params.get('verbose', False):
+                    ffmpeg._downloader = self
+                if data := ffmpeg.get_metadata_object(f['url']):
+                    f.update(traverse_obj(data.get('format'), {
+                        'duration': ('duration', {lambda x: round(float(x), 2) if x else None}),
+                    }))
+                    for stream in traverse_obj(data, 'streams', expected_type=list):
+                        if stream.get('codec_type') == 'video':
+                            [frames, duration] = [int_or_none(x) for x in (
+                                stream['avg_frame_rate'].split('/') if stream.get('avg_frame_rate')
+                                else [None, None])]
+                            f.update({
+                                **traverse_obj(stream, {
+                                    'width': ('width', {int_or_none}),
+                                    'height': ('height', {int_or_none}),
+                                }),
+                                'fps': round(frames / duration, 1) if frames and duration else None,
+                                **{k: v for k, v in parse_codecs(stream.get('codec_name')).items() if k != 'acodec'},
+                            })
+                            f['resolution'] = f"{f['width']}x{f['height']}" if f['width'] and f['height'] else None
+                        elif stream.get('codec_type') == 'audio':
+                            f.update({
+                                **traverse_obj(stream, {
+                                    'audio_channels': ('channels', {int_or_none}),
+                                    'asr': ('sample_rate', {int_or_none}),
+                                }),
+                                **{k: v for k, v in parse_codecs(stream.get('codec_name')).items() if k != 'vcodec'},
+                            })
+                    f['__working'] = True
+                    f.pop('__needs_testing', None)
+                    yield f
+                    continue
+
             self.to_screen('[info] Testing format {}'.format(f['format_id']))
             path = self.get_output_path('temp')
             if not self._ensure_dir_exists(f'{path}/'):
