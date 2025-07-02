@@ -4,6 +4,43 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.07.02.015635
+
+#### Core changes
+- [No longer enable `--mtime` by default](https://github.com/yt-dlp/yt-dlp/commit/f3008bc5f89d2691f2f8dfc51b406ef4e25281c3) ([#12781](https://github.com/yt-dlp/yt-dlp/issues/12781)) by [seproDev](https://github.com/seproDev)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/bbded927468512fbe47f5dbb29d109ae2c8b769b) by [pukkandan](https://github.com/pukkandan)
+- [Use ffprobe when checking all formats](https://github.com/yt-dlp/yt-dlp/commit/b73953884211397e52b0637389455f8cd410b5e7) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- [Detect invalid m3u8 playlist data](https://github.com/yt-dlp/yt-dlp/commit/e99c0b838a9c5feb40c0dcd291bd7b8620b8d36d) ([#13601](https://github.com/yt-dlp/yt-dlp/issues/13601)) by [Grub4K](https://github.com/Grub4K)
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/fcc36152e0c2a7396701cebe16fc21ce04b36ab9) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/49801de248959fe2ac7b2b3d67938c0cbd460fdf) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4523bfeaf918d96be946bef5146058ffc8aa9f1e) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/6ccc855ddffa157d16a9dc2887846e7466d465b6) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e641de9a3e190a1e0b48f6e41ceab3f9387e41b7) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e5512832f17bb1b909d3eb2838d74e65d1088691) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0b1e51c0575d52b23d8e0fc696ded80baaf3e56d) by [pukkandan](https://github.com/pukkandan)
+- **kidoodletv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2f045169b0b67ec7bd249056fdffd346426251a3) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/92e4946e273587d8dfbbf43a1f2d104d17456672) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/0c47556b4215b7c6eeda989467f8adb59a1f5692) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/7fdcaad8e99cab05246236fa9c098958d78ef01b) by [pukkandan](https://github.com/pukkandan)
+- **meritplus**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3a815e6f31570e8beffcfe033ef3d7ba5742fbfb) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/f34436f0be2b6e7efbe0f61c5ff271b436fde7ab) by [pukkandan](https://github.com/pukkandan)
+- **piramidetv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3791de04a081719c70447b76a8b9352bd583bad6) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/3ec0fc37e8afca72bafb6d73d4989f783f314fc2) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/9a6740e4df7611d83cb9558336b337bb572747e3) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/35d5cfb9f26556d7b5a87106d39fae2c662f0657) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/71e03dd5836c37c5c8e40e09540c721b4ad02312) by [pukkandan](https://github.com/pukkandan)
+    - [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/100334f96b4603459b81b163b7f7eb39960e51e6) by [pukkandan](https://github.com/pukkandan)
+
+#### Networking changes
+- **Request Handler**: requests: [Work around partial read dropping data](https://github.com/yt-dlp/yt-dlp/commit/c2ff2dbaec7929015373fe002e9bd4849931a4ce) ([#13599](https://github.com/yt-dlp/yt-dlp/issues/13599)) by [Grub4K](https://github.com/Grub4K) (With fixes in [c316416](https://github.com/yt-dlp/yt-dlp/commit/c316416b972d1b05e58fbcc21e80428b900ce102))
+
+#### Misc. changes
+- **cleanup**: [Bump ruff to 0.12.x](https://github.com/yt-dlp/yt-dlp/commit/ca5cce5b07d51efe7310b449cdefeca8d873e9df) ([#13596](https://github.com/yt-dlp/yt-dlp/issues/13596)) by [seproDev](https://github.com/seproDev)
+
 ### 2025.06.30
 
 #### Core changes
