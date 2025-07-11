@@ -256,7 +256,7 @@ INNERTUBE_CLIENTS = {
         'INNERTUBE_CONTEXT_CLIENT_NAME': 5,
         'GVS_PO_TOKEN_POLICY': {
             StreamingProtocol.HTTPS: GvsPoTokenPolicy(
-                required=True,
+                required=False,
                 recommended=True,
                 not_required_with_player_token=True,
             ),
