@@ -1667,6 +1667,40 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             'view_count': int,
         },
         'params': {'skip_download': True},
+    }, {
+        'url': 'https://www.youtube.com/watch?v=8047tcn3o5U',
+        'info_dict': {
+            'id': '8047tcn3o5U',
+            'ext': 'mp4',
+            'title': 'Rooting: Layering and Cuttings in Pots',
+            'age_limit': 0,
+            'availability': 'public',
+            'categories': ['Howto & Style'],
+            'channel': 'MiradasBiologicas in English',
+            'channel_follower_count': int,
+            'channel_id': 'UCNUwfzPMUFZYXOOCHaYnp7g',
+            'channel_is_verified': True,
+            'channel_url': 'https://www.youtube.com/channel/UCNUwfzPMUFZYXOOCHaYnp7g',
+            'comment_count': int,
+            'description': r're:^➤When making new plants,',
+            'duration': 601,
+            'like_count': int,
+            'live_status': 'not_live',
+            'media_type': 'video',
+            'playable_in_embed': False,
+            'tags': 'count:27',
+            'thumbnail': r're:https?://i\.ytimg\.com/.+',
+            'timestamp': 1699623740,
+            'upload_date': '20231110',
+            'uploader': 'MiradasBiologicas in English',
+            'uploader_id': '@Miradasbiologicas',
+            'uploader_url': 'https://www.youtube.com/@Miradasbiologicas',
+            'view_count': int,
+        },
+        'params': {
+            'extractor_args': {'youtube': {'lang': ['en']}},
+            'skip_download': True,
+        },
     }]
     _WEBPAGE_TESTS = [{
         # <object>
@@ -4369,8 +4403,15 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 elif info.get('view_count') is None:
                     info['view_count'] = vc
 
+            if self._preferred_lang:
+                info['title'] = self._get_text(vpir, 'title') or info['title']
+
         vsir = get_first(contents, 'videoSecondaryInfoRenderer')
         if vsir:
+            if self._preferred_lang:
+                info['description'] = traverse_obj(
+                    vsir, ('attributedDescription', 'content', {str}), default=info['description'])
+
             vor = traverse_obj(vsir, ('owner', 'videoOwnerRenderer'))
             info.update({
                 'channel': self._get_text(vor, 'title'),
