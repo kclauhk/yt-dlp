@@ -1343,14 +1343,14 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         'info_dict': {
             'id': 'gHKT4uU8Zng',
             'ext': 'mp4',
-            'title': 'dlp test video title primary (en-GB)',
+            'title': 'dlp test video title translated (fr)',
             'age_limit': 0,
             'availability': 'public',
             'categories': ['People & Blogs'],
             'channel': 'cole-dlp-test-acc',
             'channel_id': 'UCiu-3thuViMebBjw_5nWYrA',
             'channel_url': 'https://www.youtube.com/channel/UCiu-3thuViMebBjw_5nWYrA',
-            'description': 'md5:e8c098ba19888e08554f960ffbf6f90e',
+            'description': 'md5:315d43d167b4526b8561687bff0bef71',
             'duration': 5,
             'like_count': int,
             'live_status': 'not_live',
@@ -1370,6 +1370,40 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             'skip_download': True,
         },
         'expected_warnings': [r'Preferring "fr" translated fields'],
+    }, {
+        'url': 'https://www.youtube.com/watch?v=8047tcn3o5U',
+        'info_dict': {
+            'id': '8047tcn3o5U',
+            'ext': 'mp4',
+            'title': 'Rooting: Layering and Cuttings in Pots',
+            'age_limit': 0,
+            'availability': 'public',
+            'categories': ['Howto & Style'],
+            'channel': 'MiradasBiologicas',
+            'channel_follower_count': int,
+            'channel_id': 'UCNUwfzPMUFZYXOOCHaYnp7g',
+            'channel_is_verified': True,
+            'channel_url': 'https://www.youtube.com/channel/UCNUwfzPMUFZYXOOCHaYnp7g',
+            'comment_count': int,
+            'description': r're:^➤When making new plants,',
+            'duration': 601,
+            'like_count': int,
+            'live_status': 'not_live',
+            'media_type': 'video',
+            'playable_in_embed': False,
+            'tags': 'count:27',
+            'thumbnail': r're:https?://i\.ytimg\.com/.+',
+            'timestamp': 1699623740,
+            'upload_date': '20231110',
+            'uploader': 'MiradasBiologicas',
+            'uploader_id': '@Miradasbiologicas',
+            'uploader_url': 'https://www.youtube.com/@Miradasbiologicas',
+            'view_count': int,
+        },
+        'params': {
+            'extractor_args': {'youtube': {'lang': ['en']}},
+            'skip_download': True,
+        },
     }, {
         'note': '6 channel audio',
         'url': 'https://www.youtube.com/watch?v=zgdo7-RRjgo',
@@ -4377,8 +4411,65 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 elif info.get('view_count') is None:
                     info['view_count'] = vc
 
+            if self._preferred_lang:
+                info['title'] = self._get_text(vpir, 'title') or info['title']
+
         vsir = get_first(contents, 'videoSecondaryInfoRenderer')
         if vsir:
+            if self._preferred_lang:
+                if content := traverse_obj(vsir, ('attributedDescription',
+                                                  'content', {str})):
+                    # convert to UTF-16LE to ease handling of emoticons
+                    content = content.encode('utf-16le')
+                    paths = (('browseEndpoint', 'canonicalBaseUrl'),
+                             ('urlEndpoint', 'url'),
+                             (('reelWatchEndpoint', 'watchEndpoint'), 'videoId'))
+                    runs = traverse_obj(vsir, (
+                        'attributedDescription', 'commandRuns',
+                        (lambda _, v: traverse_obj(v, ('onTap', 'innertubeCommand', paths)))))
+                    for c in sorted(runs, key=lambda i: i['startIndex'], reverse=True):
+                        itc = c['onTap']['innertubeCommand']
+                        if url := traverse_obj(itc, (paths, {str}), get_all=False):
+                            if endpoint := itc.get('reelWatchEndpoint') or itc.get('watchEndpoint'):
+                                if f'://youtu.be/{url}' in info['description']:
+                                    url = f'https://youtu.be/{url}'
+                                elif itc.get('reelWatchEndpoint'):
+                                    url = f'https://www.youtube.com/shorts/{url}'
+                                else:
+                                    if f'://music.youtube.com/watch?v={url}' in info['description']:
+                                        domain = 'https://music.youtube.com'
+                                    else:
+                                        domain = 'https://www.youtube.com'
+                                    if url := traverse_obj(itc, ('commandMetadata', 'webCommandMetadata',
+                                                                 'url', {str})):
+                                        url = f'{domain}{url}'
+                                    else:
+                                        playlistId = endpoint.get('playlistId')
+                                        l = f'&list={playlistId}' if playlistId else ''
+                                        index = endpoint.get('index', 0)
+                                        i = f'&index={index}' if index > 1 else ''
+                                        start_time = endpoint.get('startTimeSeconds', 0)
+                                        t = f'&t={start_time}s' if start_time > 0 else ''
+                                        url = f'{domain}/watch?v={url}{l}{i}{t}'
+                            elif '://www.youtube.com/redirect?' in url:
+                                parsed_url = urllib.parse.urlparse(url)
+                                qs = urllib.parse.parse_qs(parsed_url.query)
+                                url = qs['q'][0]
+                            elif url[0:1] == '/' and '://' not in url:
+                                url = f'https://www.youtube.com{url}'
+
+                            if (url[-1] == '/'
+                                    and re.search(rf'{url}(?:\s|$)', info['description']) is None
+                                    and re.search(rf'{url[:-1]}(?:\s|$)', info['description']) is not None):
+                                url = url[:-1]
+
+                            # double the index due to UTF-16LE conversion
+                            content = (content[0:(c['startIndex'] * 2)]
+                                       + url.encode('utf-16le')
+                                       + content[((c['startIndex'] + c['length']) * 2):])
+
+                    info['description'] = content.decode('utf-16le')
+
             vor = traverse_obj(vsir, ('owner', 'videoOwnerRenderer'))
             collaborators = traverse_obj(vor, (
                 'attributedTitle', 'commandRuns', ..., 'onTap', 'innertubeCommand', 'showDialogCommand',
