@@ -4,6 +4,42 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.08.14.065759
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/11b4ff4711905abc327328a922075939f8c779b4) by [pukkandan](https://github.com/pukkandan)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/7ebf33a03e348b3767ea830506c0de6ca3f89f51) by [pukkandan](https://github.com/pukkandan)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/daa12d6b10b1293e960c5c28e1f2955f7edbe897) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/8b5d854c30244c92239ef4cf38f989fde6d4a153) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3b578d2b65d0bb0551750cb018d1a579fd2c8063) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/6eaab6e3d6d39f2ac23a5a26fbb9f71488f49a2c) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/b8f7b4537cc7a2aaca6242e52a6042137489493d) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a5319b833558dec746db9b34d0e1a25885978857) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2df309fd65385a74c521d2a8985a488d1725048e) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d908c9683ffcebdb4e20cc2a2ce3abdf10794576) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/c3282c1727629cf4c8bf350a778312deb4ed31d7) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/3f994e8bb28cb9eb4048e33d29085578fb6a3188) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/8f4ddfe7f87aa64b3c331e9afd87ed2e4464c145) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/05ec774eaf7655ca7e888ecb3bc623d9622a0eba) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/69ad2d6796e4b9678c73b522ad1d22686ea12f0b) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/67b7772238e436e3a18ac11785ced911a0f0bb9e) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5453ae6117dccbe2ea6efc618dfc414f03d91321) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Add `es5` and `es6` player JS variants](https://github.com/yt-dlp/yt-dlp/commit/f2919bd28eac905f1267c62b83738a02bb5b4e04) ([#14005](https://github.com/yt-dlp/yt-dlp/issues/14005)) by [bashonly](https://github.com/bashonly)
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/a80f85d3a35fa85e73ef0c94ec6fb7a197755c9c) by [pukkandan](https://github.com/pukkandan)
+    - [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/17c5e91e8e0935517bac54839f1841789aefce8c) by [pukkandan](https://github.com/pukkandan)
+
+#### Postprocessor changes
+- **xattrmetadata**: [Only set "Where From" attribute on macOS](https://github.com/yt-dlp/yt-dlp/commit/bdeb3eb3f29eebbe8237fbc5186e51e7293eea4a) ([#13999](https://github.com/yt-dlp/yt-dlp/issues/13999)) by [bashonly](https://github.com/bashonly)
+
+#### Misc. changes
+- **build**
+    - [Bump PyInstaller version to 6.15.0 for Windows](https://github.com/yt-dlp/yt-dlp/commit/681ed2153de754c2c885fdad09ab71fffa8114f9) ([#14002](https://github.com/yt-dlp/yt-dlp/issues/14002)) by [bashonly](https://github.com/bashonly)
+    - [Discontinue `darwin_legacy_exe` support](https://github.com/yt-dlp/yt-dlp/commit/aea85d525e1007bb64baec0e170c054292d0858a) ([#13860](https://github.com/yt-dlp/yt-dlp/issues/13860)) by [bashonly](https://github.com/bashonly)
+
 ### 2025.08.11
 
 #### Important changes
