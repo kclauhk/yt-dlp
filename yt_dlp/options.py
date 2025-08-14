@@ -927,6 +927,10 @@ def create_parser():
         action='store_const', const='selected', dest='check_formats', default=None,
         help='Make sure formats are selected only from those that are actually downloadable')
     video_format.add_option(
+        '--check-video-formats',
+        action='store_const', const='video', dest='check_formats', default=None,
+        help='Check all video/audio formats for whether they are actually downloadable')
+    video_format.add_option(
         '--check-all-formats',
         action='store_true', dest='check_formats',
         help='Check all formats for whether they are actually downloadable')
@@ -934,6 +938,10 @@ def create_parser():
         '--no-check-formats',
         action='store_false', dest='check_formats',
         help='Do not check that the formats are actually downloadable')
+    video_format.add_option(
+        '--probe-formats',
+        action='store_const', const='probe', dest='check_formats', default=None,
+        help='Probe video/audio formats if format metadata is not available (requires ffprobe)')
     video_format.add_option(
         '-F', '--list-formats',
         action='store_true', dest='listformats',
