@@ -868,10 +868,14 @@ Tip: Use `CTRL`+`F` (or `Command`+`F`)  to search by keywords
                                     containers (default)
     --check-formats                 Make sure formats are selected only from
                                     those that are actually downloadable
+    --check-video-formats           Check all video/audio formats for whether
+                                    they are actually downloadable
     --check-all-formats             Check all formats for whether they are
                                     actually downloadable
     --no-check-formats              Do not check that the formats are actually
                                     downloadable
+    --probe-formats                 Probe video/audio formats if format metadata
+                                    is not available (requires ffprobe)
     -F, --list-formats              List available formats of each video.
                                     Simulate unless --no-simulate is used
     --merge-output-format FORMAT    Containers that may be used when merging
