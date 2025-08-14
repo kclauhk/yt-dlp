@@ -2227,8 +2227,11 @@ class YoutubeDL:
                     f.pop('__needs_testing', None)
                     yield f
                     continue
-            # If ffprobe fails/is not available, try the following download test
 
+            if self.params.get('check_formats') == 'probe':
+                yield f
+                continue
+            # If ffprobe fails/is not available, try the following download test
             self.to_screen('[info] Testing format {}'.format(f['format_id']))
             path = self.get_output_path('temp')
             if not self._ensure_dir_exists(f'{path}/'):
@@ -2980,7 +2983,7 @@ class YoutubeDL:
                         note=format_field(fmt, 'format_note', ' (%s)'),
                     )
 
-        if self.params.get('check_formats') is True:
+        if self.params.get('check_formats') in (True, 'probe', 'video'):
             formats = LazyList(self._check_formats(formats[::-1], warning=False), reverse=True)
             if FFmpegPostProcessor().probe_available:
                 formats = list(formats)
