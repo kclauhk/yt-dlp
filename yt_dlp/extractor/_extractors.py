@@ -1944,6 +1944,7 @@ from .southpark import (
     SouthParkEsIE,
     SouthParkIE,
     SouthParkLatIE,
+    SouthParkSeasonsIE,
 )
 from .sovietscloset import (
     SovietsClosetIE,
