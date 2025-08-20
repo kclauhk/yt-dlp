@@ -1,4 +1,15 @@
+import re
+import urllib.parse
+
 from .mtv import MTVServicesBaseIE
+from ..utils import (
+    ExtractorError,
+    join_nonempty,
+    parse_duration,
+    str_or_none,
+    traverse_obj,
+    url_or_none,
+)
 
 
 class SouthParkIE(MTVServicesBaseIE):
@@ -352,3 +363,51 @@ class SouthParkCoUkIE(MTVServicesBaseIE):
         'url': 'https://www.southparkstudios.co.uk/collections/8dk7kr/south-park-best-of-south-park/sd5ean',
         'only_matching': True,
     }]
+
+
+class SouthParkSeasonsIE(SouthParkIE):
+    IE_NAME = 'SouthPark:Seasons'
+    _VALID_URL = r'(?P<domain>https?://(?:www\.)?southpark(?:\.cc|studios)\.com)/seasons/(?P<series>[^/]+)/?(?P<id>.+?)?(\?|#|$)'
+    _TESTS = [{
+        'url': 'https://www.southparkstudios.com/seasons/south-park/lrnlos/season-25',
+        'info_dict': {
+            'id': 'f7f6dc67-7d50-11ec-a4f1-70df2f866ace',
+            'title': 'South Park - Season 25',
+        },
+        'playlist_mincount': 6,
+    }]
+
+    def _real_extract(self, url):
+        video_id, series, domain = self._match_valid_url(url).group('id', 'series', 'domain')
+        webpage = self._download_webpage(url, video_id)
+        page_data = self._search_json(r'window\.__DATA__\s*=\s*', webpage, 'Page Data', video_id,
+                                      end_pattern=r';\n')
+        if mgids := traverse_obj(page_data, (
+                'children', lambda _, v: v['type'] == 'MainContainer', 'children', lambda _, v: v['type'] == 'LineList',
+                lambda _, v: v['type'] == 'video-guide', 'items', 0, 'meta', {
+                    'season_mgid': ('seasonMgid', {str}),
+                    'series_mgid': ('seriesMgid', {str}),
+                }), get_all=False):
+            if mgid := mgids.get('season_mgid') if video_id else mgids.get('series_mgid'):
+                api_url = domain + '/api/context/' + urllib.parse.quote_plus(mgid) + '/episode/0/10000'
+                episodes = self._download_json(api_url, video_id)
+                if items := episodes.get('items'):
+                    return self.playlist_result((
+                        self.url_result(domain + item['url'], **traverse_obj(item, {
+                            'id': ('id', {str}),
+                            'title': ('meta', 'subHeader', {str}),
+                            'description': ('meta', 'description', {str_or_none}),
+                            'thumbnail': ('media', 'image', 'url', {url_or_none}),
+                            'release_date': ('meta', 'date', {lambda v: v.split('/')},
+                                             {lambda v: v[2] + v[0] + v[1]}),
+                            'season_number': ('meta', 'header', 'title', 'text', {lambda v: v.split(' • ')[0]},
+                                              {lambda v: int(v.strip('S')) if re.match(r'^S\d+$', v) else None}),
+                            'episode_number': ('meta', 'header', 'title', 'text', {lambda v: v.split(' • ')[-1]},
+                                               {lambda v: int(v.strip('E')) if re.match(r'^E\d+$', v) else None}),
+                            'duration': ('media', 'duration', {parse_duration}),
+                        })) for item in items),
+                        playlist_id=mgid.split(':')[-1],
+                        playlist_title=join_nonempty(series.replace('-', ' ').title(),
+                                                     (video_id or '').split('/')[-1].replace('-', ' ').title(), delim=' - '),
+                    )
+        raise ExtractorError('Unable to extract ' + ('season' if video_id else 'series') + ' data')
