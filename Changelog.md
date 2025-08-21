@@ -4,6 +4,38 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.08.21.145929
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/bca9921116085b4284f2352db9d98ba4391a9793) by [pukkandan](https://github.com/pukkandan)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/b89eba4688288e9ca14e46328f7f602511f91385) by [pukkandan](https://github.com/pukkandan)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/f35379e7900b279226ba0442d46ba328a8a5f421) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/ee7dc9c9d02e1113f53f63dad8fa3b6b829f1c6f) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/fd27c52c533dcf693c2660670f7133cff99f3a00) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e7418aa9063fd3cdb601de3b1d242488a8c9a352) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/26f1bf3e24f2b9451d573f3f9694e9f9b3d20570) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0c2aa098f9cf18cad4dff0010fe246abf614da67) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0f97cb416f00d508b72a0c8730be03d0c1b978a4) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/92eb82c7d88d0b66086650af5c1acb4c6b498dc8) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/fb18e87cc80f5213cb62d5061d951753f3fdb48e) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/3a609876ceb338a6124a53d87c076f12cb2c734e) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/c17a0cea45b2e0708c5448a41ac3279b0a78308d) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/308b8c845216d7c408a820e570111c1e378c6220) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/b4e82ee7aff2fda624eda9f19b1a9233ba567ba7) by [pukkandan](https://github.com/pukkandan)
+- **steam**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/fcea3edb5c5648638357f27431500c0aaf08b147) ([#14093](https://github.com/yt-dlp/yt-dlp/issues/14093)) by [doe1080](https://github.com/doe1080)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/153e95e9f268d202a8b73e37531e9099eda2df50) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/97f96bdc4031fbc8a155813341d4b5fcfb74d738) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/bfbb6248c60a96c21e1fa8b5b12d710a8701f433) by [pukkandan](https://github.com/pukkandan)
+    - [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/124e41994e10a7f6802eef1f7eb21806dceee0f1) by [pukkandan](https://github.com/pukkandan)
+    - [Update `tv` client config](https://github.com/yt-dlp/yt-dlp/commit/a03c37b44ec8f50fd472c409115096f92410346d) ([#14101](https://github.com/yt-dlp/yt-dlp/issues/14101)) by [seproDev](https://github.com/seproDev)
+
+#### Misc. changes
+- **build**: [Post-release workflow cleanup](https://github.com/yt-dlp/yt-dlp/commit/415b6d9ca868032a45b30b9139a50c5c06be2feb) ([#14090](https://github.com/yt-dlp/yt-dlp/issues/14090)) by [bashonly](https://github.com/bashonly)
+
 ### 2025.08.20
 
 #### Core changes
