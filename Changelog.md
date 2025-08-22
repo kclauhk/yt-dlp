@@ -4,6 +4,40 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.08.22.020045
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/de5c6f53c9f2243ba456c3a7c26e3dd8d3cb1bba) by [pukkandan](https://github.com/pukkandan)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/07e842cfad1072116fca020c377d37789a96f2c1) by [pukkandan](https://github.com/pukkandan)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/d3dce27362bba50240fd348f9dbb8bc1f7ad60eb) by [pukkandan](https://github.com/pukkandan)
+- **cookies**: [Fix `--cookies-from-browser` with Firefox 142+](https://github.com/yt-dlp/yt-dlp/commit/f29acc4a6e73a9dc091686d40951288acae5a46d) ([#14114](https://github.com/yt-dlp/yt-dlp/issues/14114)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/13e1e5e1d2c2c06b543fc0389d8553205cd527ef) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f7a47a3f6a8b6c5f1a532b95b1aa60c961f13171) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/56369776627ad8a96fa755499e2fac3a7d803910) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/15524b39e6c3fb8358fff0ec706458752788f1af) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/ba35f0408289a0c548d654e243cdab2c1eb2f23e) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/38574ebdb3c62a853a108f90a7579a524b9b31d8) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bbe60896c6af80b3e31bed0c4dab4197af1e02ca) by [pukkandan](https://github.com/pukkandan)
+- **mediaklikk**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/4dbe96459d7e632d397826d0bb323f3f0ac8b057) ([#13975](https://github.com/yt-dlp/yt-dlp/issues/13975)) by [zhallgato](https://github.com/zhallgato)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/f69df24c60bcb32d083d6a0b69809f23e9fe2300) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/da16977ab7a40c43076a66792ddd2c5497e5a674) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/0a9e51c1b4626087cb2624a7e42fc52e4f1a5b93) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/b2652786672911df683aef7f260906f7d9dcfbad) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/f1b9ea5d824270534277b86c7da6e35233e1893c) by [pukkandan](https://github.com/pukkandan)
+- **steam**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/fcea3edb5c5648638357f27431500c0aaf08b147) ([#14093](https://github.com/yt-dlp/yt-dlp/issues/14093)) by [doe1080](https://github.com/doe1080)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/0bf7d8b1719ade28c2c15e1d44315475ab35652e) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/23da8c70a484b0472a0274966aa17be3c880fa99) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/e4621e069a39a4a0fc78021dbb1495a35f77675e) by [pukkandan](https://github.com/pukkandan)
+    - [Revoke PO token requirement of ios client](https://github.com/yt-dlp/yt-dlp/commit/fb0cc08c3a104664c07e3e11cc33b5138c621693) by [pukkandan](https://github.com/pukkandan)
+    - [Update `tv` client config](https://github.com/yt-dlp/yt-dlp/commit/a03c37b44ec8f50fd472c409115096f92410346d) ([#14101](https://github.com/yt-dlp/yt-dlp/issues/14101)) by [seproDev](https://github.com/seproDev)
+
+#### Misc. changes
+- **build**: [Post-release workflow cleanup](https://github.com/yt-dlp/yt-dlp/commit/415b6d9ca868032a45b30b9139a50c5c06be2feb) ([#14090](https://github.com/yt-dlp/yt-dlp/issues/14090)) by [bashonly](https://github.com/bashonly)
+
 ### 2025.08.20
 
 #### Core changes
