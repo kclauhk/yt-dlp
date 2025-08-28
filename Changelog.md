@@ -4,6 +4,38 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.08.28.031211
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/5753b17cc0c91563781de456e26ad747edf97e5b) by [pukkandan](https://github.com/pukkandan)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/f17f8ab2d5f7870f14ed93156f31d374b38602bb) by [pukkandan](https://github.com/pukkandan)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/1cff6e2e6533a8230036ce0b9ba80353df8f95d5) by [pukkandan](https://github.com/pukkandan)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/5f402cae3cf5a1de2546a7968ac319612d82fab3) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e1dc6bdd868b0ffe7d03f685e8c5d1459cfcfe68) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/02d376d954db933c72493548d204221c2d90bca6) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/1ccec65d95eccc6c4a8b2bb176480d4af6250d62) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/0aed276a7940093b6d301af154b76d40f6afaae6) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/98a4aa4e9f530fb64e12e455866c1f21c9b6b70e) by [pukkandan](https://github.com/pukkandan)
+- **googledrive**: [Fix subtitles extraction](https://github.com/yt-dlp/yt-dlp/commit/18fe696df9d60804a8f5cb8cd74f38111d6eb711) ([#14139](https://github.com/yt-dlp/yt-dlp/issues/14139)) by [zakaryan2004](https://github.com/zakaryan2004)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/26f2ca85044be7c8dd877c0cf318ef8d9e59509e) by [pukkandan](https://github.com/pukkandan)
+- **itvbtcc**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/0b51005b4819e7cea222fcbaf8e60391db4f732c) ([#14161](https://github.com/yt-dlp/yt-dlp/issues/14161)) by [garret1317](https://github.com/garret1317)
+- **kick**: vod: [Support ongoing livestream VODs](https://github.com/yt-dlp/yt-dlp/commit/1e28f6bf743627b909135bb9a88537ad2deccaf0) ([#14154](https://github.com/yt-dlp/yt-dlp/issues/14154)) by [InvalidUsernameException](https://github.com/InvalidUsernameException)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/291899bbae4e464c59d6d41156be872f7004db69) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/82b8c17a63d3267da6d74d9e37d098f341cb78c0) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/a416b256428966894f447c18d335f104c6902fe1) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/3231122be429a5ecc577ada441ecc79e54cf2396) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/37002c4781da61a116b938fc9b01bbe39f2a4a4e) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/dec93307d560465e86606177cdbb135f46784f33) by [pukkandan](https://github.com/pukkandan)
+- **tver**: [Extract more metadata](https://github.com/yt-dlp/yt-dlp/commit/223baa81f6637dcdef108f817180d8d1ae9fa213) ([#14165](https://github.com/yt-dlp/yt-dlp/issues/14165)) by [arabcoders](https://github.com/arabcoders)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/98d0d8f8cd0114d9df070ddedc5587e7e34079bc) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/c82be8db39ae35b77b7dbddf3996486fab1902d3) by [pukkandan](https://github.com/pukkandan)
+    - [Revert changes in default clients and playback_wait time](https://github.com/yt-dlp/yt-dlp/commit/68554c16a1f3ef1db02d3019264269d44b922407) by [pukkandan](https://github.com/pukkandan)
+    - [Revoke PO token requirement of 'ios'](https://github.com/yt-dlp/yt-dlp/commit/d7186999f81ad6d87d8c7f20d8c775748113c193) by [pukkandan](https://github.com/pukkandan)
+
 ### 2025.08.27
 
 #### Extractor changes
