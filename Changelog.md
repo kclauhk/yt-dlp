@@ -4,6 +4,46 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.09.09.014437
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/f28e76b97cf7c9ae207a3d4f9da825009662f1fe) by [pukkandan](https://github.com/pukkandan)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/bfed057b038cfb48cfdb3791e7351ee506992148) by [pukkandan](https://github.com/pukkandan)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/4f99e2a1260edc9f249ed9c651cfde7fbd5c804e) by [pukkandan](https://github.com/pukkandan)
+- **compat**: [Add `compat_datetime_from_timestamp`](https://github.com/yt-dlp/yt-dlp/commit/6a763a55d8a93b2a964ecf7699248ad342485412) ([#11902](https://github.com/yt-dlp/yt-dlp/issues/11902)) by [pzhlkj6612](https://github.com/pzhlkj6612), [seproDev](https://github.com/seproDev)
+
+#### Extractor changes
+- **10play**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/067062bb87ac057e453ce9efdac7ca117a6a7da0) ([#14242](https://github.com/yt-dlp/yt-dlp/issues/14242)) by [Sipherdrakon](https://github.com/Sipherdrakon)
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/0248a8112a9c5c2bbe8f293153e34db2bff4d5b3) by [pukkandan](https://github.com/pukkandan)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/848d982b440ed15d0429847a4b0b63917269febd) by [pukkandan](https://github.com/pukkandan)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/3d650a6d04682559ea9650e9b6630348d54ed0c2) by [pukkandan](https://github.com/pukkandan)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/c851dce33da682b5f639e55473ce03b5ba22d0c4) by [pukkandan](https://github.com/pukkandan)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/886957a2a9409cdd13f095adb26976589cb2bf6b) by [pukkandan](https://github.com/pukkandan)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e3cf445648d625ff557ad85a12f8027050ad97ce) by [pukkandan](https://github.com/pukkandan)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a252e80d3f14bb22d512903a1df50b9d052744a6) by [pukkandan](https://github.com/pukkandan)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/b79181cfbc854bd1ec2ba0315ce45f11edd3d45e) by [pukkandan](https://github.com/pukkandan)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/56b5cb6287c46dbb90d4275d49aff210ab472d87) by [pukkandan](https://github.com/pukkandan)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/03cd3c84693d749a08e65550d437ab540f62288b) by [pukkandan](https://github.com/pukkandan)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/f491d278855770a25932b389ef6b724221932da2) by [pukkandan](https://github.com/pukkandan)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/0fcae26834ba4e5e38686f5c2e7425e47ac9077d) by [pukkandan](https://github.com/pukkandan)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/10edc4ec72905c0ee433076545d5dfdcebe2b8cb) by [pukkandan](https://github.com/pukkandan)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/25b3fc45411a3c973c273c86d876f856b2e821c5) by [pukkandan](https://github.com/pukkandan)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/9bce7dc4c6a2c11d06e280bd8fa6a126beec3134) by [pukkandan](https://github.com/pukkandan)
+    - [Revert changes](https://github.com/yt-dlp/yt-dlp/commit/85fa1fa34ffd185d93aeb11b4b98ab8d88c22cd1) by [pukkandan](https://github.com/pukkandan)
+    - [Revoke PO token requirement of 'ios'](https://github.com/yt-dlp/yt-dlp/commit/44c1886fd3c34962fe939ebe80b3eb2986160909) by [pukkandan](https://github.com/pukkandan)
+
+#### Misc. changes
+- **build**
+    - [Fix cache warmer](https://github.com/yt-dlp/yt-dlp/commit/8597a4331e8535a246d777bb8397bdcab251766c) ([#14261](https://github.com/yt-dlp/yt-dlp/issues/14261)) by [bashonly](https://github.com/bashonly)
+    - [Post-release workflow cleanup](https://github.com/yt-dlp/yt-dlp/commit/cd94e7004036e0149d7d3fa236c7dd44cf460788) ([#14250](https://github.com/yt-dlp/yt-dlp/issues/14250)) by [bashonly](https://github.com/bashonly)
+    - [Use SPDX license identifier](https://github.com/yt-dlp/yt-dlp/commit/48a214bef4bfd5984362d3d24b09dce50ba449ea) ([#14260](https://github.com/yt-dlp/yt-dlp/issues/14260)) by [cdce8p](https://github.com/cdce8p)
+    - [Use new PyInstaller builds for Windows](https://github.com/yt-dlp/yt-dlp/commit/c8ede5f34d6c95c442b936bb01ecbcb724aefdef) ([#14273](https://github.com/yt-dlp/yt-dlp/issues/14273)) by [bashonly](https://github.com/bashonly)
+- **ci**: [Test and lint workflows](https://github.com/yt-dlp/yt-dlp/commit/7c9b10ebc83907d37f9f65ea9d4bd6f5e3bd1371) ([#14249](https://github.com/yt-dlp/yt-dlp/issues/14249)) by [bashonly](https://github.com/bashonly)
+- **docs**: [Clarify license of PyInstaller-bundled executables](https://github.com/yt-dlp/yt-dlp/commit/e6e6b512141e66b1b36058966804fe59c02a2b4d) ([#14257](https://github.com/yt-dlp/yt-dlp/issues/14257)) by [seproDev](https://github.com/seproDev)
+- **test**: utils: [Fix `sanitize_path` test for Windows CPython 3.11](https://github.com/yt-dlp/yt-dlp/commit/a183837ec8bb5e28fe6eb3a9d77ea2d0d7a106bd) ([#13878](https://github.com/yt-dlp/yt-dlp/issues/13878)) by [Grub4K](https://github.com/Grub4K)
+
 ### 2025.09.05
 
 #### Core changes
