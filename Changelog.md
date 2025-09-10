@@ -4,6 +4,48 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.09.10.190341
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/0abadf837e5de71890a379740b96018ab7c8eea0) by [kclauhk](https://github.com/kclauhk)
+- [Update README.md](https://github.com/yt-dlp/yt-dlp/commit/cfcce42ce3658731ab28209e83322e2e97e9d89d) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/3a730093261579b957d6b234d6f6614c9e036e31) by [kclauhk](https://github.com/kclauhk)
+- **compat**: [Add `compat_datetime_from_timestamp`](https://github.com/yt-dlp/yt-dlp/commit/6a763a55d8a93b2a964ecf7699248ad342485412) ([#11902](https://github.com/yt-dlp/yt-dlp/issues/11902)) by [pzhlkj6612](https://github.com/pzhlkj6612), [seproDev](https://github.com/seproDev)
+
+#### Extractor changes
+- **10play**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/067062bb87ac057e453ce9efdac7ca117a6a7da0) ([#14242](https://github.com/yt-dlp/yt-dlp/issues/14242)) by [Sipherdrakon](https://github.com/Sipherdrakon)
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/ec51ef6d2e8cd51e3633248224e586c2a10ee558) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bb950bc5e522b6cd3a4979bac4cf1d40c78d4c65) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e43a13105b0078bdc32bac153af97df13b30d949) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Experimental](https://github.com/yt-dlp/yt-dlp/commit/0e000eff53b8ed71696ed10db5628422d1454b1b) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/b4716ca4694001319376ad246c1239a2ed7c5df1) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/f46de498bf1a5868dcdb0f1c01ca3d351f4c8c41) by [kclauhk](https://github.com/kclauhk)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e008ab6adc910119b999f50c44177273c47171ec) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/1484ec59b25378ab8ee45a572cb748f276e2d22d) by [kclauhk](https://github.com/kclauhk)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/e3081cec59a86ab6feac592d73b1b47f3ec34179) by [kclauhk](https://github.com/kclauhk)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/52e4cfffbdac0accb3581fe1ade35a2a6664e949) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/28d1ec463ea971fb830ec7415750d645d1602834) by [kclauhk](https://github.com/kclauhk)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/42d6fd0c89e7c3afa00da50ebf87b4f72375d07f) by [kclauhk](https://github.com/kclauhk)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/4f488e5a370230b4f8a9bd50e8d895b307a55d08) by [kclauhk](https://github.com/kclauhk)
+- **vimeo**: [Fix login error handling](https://github.com/yt-dlp/yt-dlp/commit/679587dac7cd011a1472255e1f06efb017ba91b6) ([#14280](https://github.com/yt-dlp/yt-dlp/issues/14280)) by [bashonly](https://github.com/bashonly)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5ae10bfd7348fc566a7cf1d0a91d85ec7b77fc0f) by [kclauhk](https://github.com/kclauhk)
+- **xhamster**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/a1c98226a4e869a34cc764a9dcf7a4558516308e) ([#14286](https://github.com/yt-dlp/yt-dlp/issues/14286)) by [nicolaasjan](https://github.com/nicolaasjan), [willsmillie](https://github.com/willsmillie)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/a4ca1039e260129e2ab6d85f1f6c487cfa9d8769) by [kclauhk](https://github.com/kclauhk)
+    - [Revert changes](https://github.com/yt-dlp/yt-dlp/commit/ab4431c78d4ee64a5c48201912b4dba2279801ef) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of 'ios'](https://github.com/yt-dlp/yt-dlp/commit/aeda443b180cbaed83103acf226efe2402b63fb3) by [kclauhk](https://github.com/kclauhk)
+
+#### Misc. changes
+- **build**
+    - [Fix cache warmer](https://github.com/yt-dlp/yt-dlp/commit/8597a4331e8535a246d777bb8397bdcab251766c) ([#14261](https://github.com/yt-dlp/yt-dlp/issues/14261)) by [bashonly](https://github.com/bashonly)
+    - [Post-release workflow cleanup](https://github.com/yt-dlp/yt-dlp/commit/cd94e7004036e0149d7d3fa236c7dd44cf460788) ([#14250](https://github.com/yt-dlp/yt-dlp/issues/14250)) by [bashonly](https://github.com/bashonly)
+    - [Use SPDX license identifier](https://github.com/yt-dlp/yt-dlp/commit/48a214bef4bfd5984362d3d24b09dce50ba449ea) ([#14260](https://github.com/yt-dlp/yt-dlp/issues/14260)) by [cdce8p](https://github.com/cdce8p)
+    - [Use new PyInstaller builds for Windows](https://github.com/yt-dlp/yt-dlp/commit/c8ede5f34d6c95c442b936bb01ecbcb724aefdef) ([#14273](https://github.com/yt-dlp/yt-dlp/issues/14273)) by [bashonly](https://github.com/bashonly)
+- **ci**: [Test and lint workflows](https://github.com/yt-dlp/yt-dlp/commit/7c9b10ebc83907d37f9f65ea9d4bd6f5e3bd1371) ([#14249](https://github.com/yt-dlp/yt-dlp/issues/14249)) by [bashonly](https://github.com/bashonly)
+- **docs**: [Clarify license of PyInstaller-bundled executables](https://github.com/yt-dlp/yt-dlp/commit/e6e6b512141e66b1b36058966804fe59c02a2b4d) ([#14257](https://github.com/yt-dlp/yt-dlp/issues/14257)) by [seproDev](https://github.com/seproDev)
+- **test**: utils: [Fix `sanitize_path` test for Windows CPython 3.11](https://github.com/yt-dlp/yt-dlp/commit/a183837ec8bb5e28fe6eb3a9d77ea2d0d7a106bd) ([#13878](https://github.com/yt-dlp/yt-dlp/issues/13878)) by [Grub4K](https://github.com/Grub4K)
+
 ### 2025.09.05
 
 #### Core changes
