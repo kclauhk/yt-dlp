@@ -14,6 +14,7 @@ from yt_dlp.utils import traverse_obj
 __all__ = ['WEBPO_CLIENTS', 'ContentBindingType', 'get_webpo_content_binding']
 
 WEBPO_CLIENTS = (
+    'IOS',
     'WEB',
     'MWEB',
     'TVHTML5',
