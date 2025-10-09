@@ -21,7 +21,6 @@ class TestGetWebPoContentBinding:
         ('WEB_REMIX', PoTokenContext.GVS, False, ('example-visitor-data', ContentBindingType.VISITOR_DATA)),
         ('WEB_REMIX', PoTokenContext.PLAYER, False, ('example-visitor-data', ContentBindingType.VISITOR_DATA)),
         ('ANDROID', PoTokenContext.GVS, False, (None, None)),
-        ('IOS', PoTokenContext.GVS, False, (None, None)),
     ])
     def test_get_webpo_content_binding(self, pot_request, client_name, context, is_authenticated, expected):
         pot_request.innertube_context['client']['clientName'] = client_name
