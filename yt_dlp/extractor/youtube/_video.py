@@ -10,6 +10,7 @@ import os.path
 import random
 import re
 import sys
+import tempfile
 import threading
 import time
 import traceback
@@ -3076,6 +3077,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
 
         innertube_host = self._select_api_hostname(None, default_client=client)
 
+        self._config_cookiejar(client)
         pot_request = PoTokenRequest(
             context=PoTokenContext(context),
             innertube_context=traverse_obj(kwargs, ('ytcfg', 'INNERTUBE_CONTEXT')),
@@ -3106,6 +3108,26 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         )
 
         return self._pot_director.get_po_token(pot_request)
+
+    unsupported_clients = []
+    cookie_tempfile = None
+    def _config_cookiejar(self, client):
+        if (not self.unsupported_clients
+                or not (self._passed_auth_cookies or self.cookie_tempfile)):
+            return False
+        if self._passed_auth_cookies and not self.cookie_tempfile:
+            self.cookie_tempfile = tempfile.mkstemp()
+        if self.cookie_tempfile:
+            # save current cookies
+            if self._passed_auth_cookies:
+                self.cookiejar.save(self.cookie_tempfile[1])
+            # discard cookies if client does not support cookies
+            if client in self.unsupported_clients:
+                self.cookiejar.clear()
+            elif not self._passed_auth_cookies:
+                self.cookiejar.load(self.cookie_tempfile[1])
+            self._passed_auth_cookies = client not in self.unsupported_clients
+        return True
 
     @staticmethod
     def _is_agegated(player_response):
@@ -3194,14 +3216,14 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             if (smuggled_data.get('is_music_url') or self.is_music_url(url)) and 'web_music' not in requested_clients:
                 requested_clients.append('web_music')
 
-            unsupported_clients = [
+            self.unsupported_clients = [
                 client for client in requested_clients if not INNERTUBE_CLIENTS[client]['SUPPORTS_COOKIES']
             ]
-            for client in unsupported_clients:
-                self.report_warning(f'Skipping client "{client}" since it does not support cookies', only_once=True)
-                requested_clients.remove(client)
+            requested_clients = orderedSet(requested_clients)
+            for client in self.unsupported_clients:
+                self.report_warning(f'"{client}" does not support cookies; some formats may be missing', only_once=True)
 
-        return orderedSet(requested_clients)
+        return requested_clients
 
     def _invalid_player_response(self, pr, video_id):
         # YouTube may return a different video player response than expected.
@@ -3246,6 +3268,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             deprioritize_pr = False
             client, base_client, variant = _split_innertube_client(clients.pop())
             player_ytcfg = webpage_ytcfg if client == webpage_client else {}
+            self._config_cookiejar(client)
             if 'configs' not in self._configuration_arg('player_skip') and client != webpage_client:
                 player_ytcfg = self._download_ytcfg(client, video_id) or player_ytcfg
 
@@ -3721,6 +3744,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 if require_po_token and not po_token and 'missing_pot' not in self._configuration_arg('formats'):
                     self._report_pot_format_skipped(video_id, client_name, 'hls')
                 else:
+                    self._config_cookiejar(client_name)
                     fmts, subs = self._extract_m3u8_formats_and_subtitles(
                         hls_manifest_url, video_id, 'mp4', fatal=False, live=live_status == 'is_live')
                     for sub in traverse_obj(subs, (..., ..., {dict})):
@@ -4522,5 +4546,13 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         info['__post_extractor'] = self.extract_comments(webpage_ytcfg, video_id, contents, webpage)
 
         self.mark_watched(video_id, player_responses)
+
+        # restore cookiejar and remove temporary cookies file
+        if self.cookie_tempfile:
+            if not self._passed_auth_cookies:
+                self.cookiejar.load(self.cookie_tempfile[1])
+                self._passed_auth_cookies = True
+            os.close(self.cookie_tempfile[0])
+            os.remove(self.cookie_tempfile[1])
 
         return info
