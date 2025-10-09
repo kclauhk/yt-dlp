@@ -271,7 +271,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         'info_dict': {
             'id': 'IB3lcPjvWLA',
             'ext': 'm4a',
-            'title': 'Afrojack, Spree Wilson - The Spark (Official Music Video) ft. Spree Wilson',
+            'title': 'AFROJACK - The Spark ft. Spree Wilson',
             'age_limit': 0,
             'availability': 'public',
             'categories': ['Music'],
@@ -281,14 +281,14 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             'channel_is_verified': True,
             'channel_url': 'https://www.youtube.com/channel/UChuZAo1RKL85gev3Eal9_zg',
             'comment_count': int,
-            'description': 'md5:8f5e2b82460520b619ccac1f509d43bf',
+            'description': 'md5:12e7067fa6735a77bdcbb58cb1187d2d',
             'duration': 244,
             'heatmap': 'count:100',
             'like_count': int,
             'live_status': 'not_live',
             'media_type': 'video',
             'playable_in_embed': True,
-            'tags': 'count:19',
+            'tags': 'count:14',
             'thumbnail': r're:https?://i\.ytimg\.com/.+',
             'timestamp': 1381496404,
             'upload_date': '20131011',
@@ -1261,7 +1261,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             'channel_is_verified': True,
             'channel_url': 'https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow',
             'concurrent_view_count': int,
-            'description': 'md5:48841fcfc1be6131d729fa7b4a7784cb',
+            'description': 'md5:db583da632f8f3bc77cc573990a3c38e',
             'like_count': int,
             'live_status': 'is_live',
             'media_type': 'livestream',
@@ -1693,7 +1693,10 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             'timestamp': 1211825920,
             'media_type': 'video',
         },
-        'params': {'skip_download': True},
+        'params': {
+            'extractor_args': {'generic': {'impersonate': ['chrome']}},
+            'skip_download': True,
+        },
     }, {
         # <embed>
         # https://github.com/ytdl-org/youtube-dl/commit/2b88feedf7993c24b03e0a7ff169a548794de70c
@@ -1800,11 +1803,10 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         'info_dict': {
             'id': 'www.uca.ac',
             'title': 'UCA | Creative Arts Degrees UK | University for the Creative Arts',
-            'age_limit': 0,
             'description': 'md5:179c7a06ea1ed01b94ff5d56cb18d73b',
-            'thumbnail': '/media/uca-2020/hero-headers/2025-prospectus-all-2x2.jpg',
+            'thumbnail': r're:/media/uca-2020/hero-headers/.+\.jpg',
         },
-        'playlist_count': 10,
+        'playlist_count': 9,
         'params': {'skip_download': True},
     }]
 
