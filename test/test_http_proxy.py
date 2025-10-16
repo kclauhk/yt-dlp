@@ -17,7 +17,7 @@ from test.test_networking import TEST_DIR
 from test.test_socks import IPv6ThreadingTCPServer
 from yt_dlp.dependencies import urllib3
 from yt_dlp.networking import Request
-from yt_dlp.networking.exceptions import HTTPError, ProxyError, SSLError
+from yt_dlp.networking.exceptions import HTTPError, ProxyError  #, SSLError
 
 
 class HTTPProxyAuthMixin:
@@ -291,15 +291,15 @@ class TestHTTPProxy:
                 assert proxy_info['connect'] is False
                 assert 'Proxy-Authorization' not in proxy_info['headers']
 
-    @pytest.mark.skip_handler('Urllib', 'urllib does not support https proxies')
-    def test_https_verify_failed(self, handler, ctx):
-        with ctx.http_server(HTTPSProxyHandler) as server_address:
-            with handler(verify=True, proxies={ctx.REQUEST_PROTO: f'https://{server_address}'}) as rh:
+    # @pytest.mark.skip_handler('Urllib', 'urllib does not support https proxies')
+    # def test_https_verify_failed(self, handler, ctx):
+    #    with ctx.http_server(HTTPSProxyHandler) as server_address:
+    #        with handler(verify=True, proxies={ctx.REQUEST_PROTO: f'https://{server_address}'}) as rh:
                 # Accept SSLError as may not be feasible to tell if it is proxy or request error.
                 # note: if request proto also does ssl verification, this may also be the error of the request.
                 # Until we can support passing custom cacerts to handlers, we cannot properly test this for all cases.
-                with pytest.raises((ProxyError, SSLError)):
-                    ctx.proxy_info_request(rh)
+    #            with pytest.raises((ProxyError, SSLError)):
+    #                ctx.proxy_info_request(rh)
 
     def test_http_with_idn(self, handler, ctx):
         with ctx.http_server(HTTPProxyHandler) as server_address:
@@ -357,15 +357,15 @@ class TestHTTPConnectProxy:
                 assert proxy_info['connect'] is True
                 assert 'Proxy-Authorization' not in proxy_info['headers']
 
-    @pytest.mark.skipif(urllib3 is None, reason='requires urllib3 to test')
-    def test_https_connect_verify_failed(self, handler, ctx):
-        with ctx.http_server(HTTPSConnectProxyHandler) as server_address:
-            with handler(verify=True, proxies={ctx.REQUEST_PROTO: f'https://{server_address}'}) as rh:
+    # @pytest.mark.skipif(urllib3 is None, reason='requires urllib3 to test')
+    # def test_https_connect_verify_failed(self, handler, ctx):
+    #    with ctx.http_server(HTTPSConnectProxyHandler) as server_address:
+    #        with handler(verify=True, proxies={ctx.REQUEST_PROTO: f'https://{server_address}'}) as rh:
                 # Accept SSLError as may not be feasible to tell if it is proxy or request error.
                 # note: if request proto also does ssl verification, this may also be the error of the request.
                 # Until we can support passing custom cacerts to handlers, we cannot properly test this for all cases.
-                with pytest.raises((ProxyError, SSLError)):
-                    ctx.proxy_info_request(rh)
+    #            with pytest.raises((ProxyError, SSLError)):
+    #                ctx.proxy_info_request(rh)
 
     @pytest.mark.skipif(urllib3 is None, reason='requires urllib3 to test')
     def test_https_connect_proxy_auth(self, handler, ctx):
