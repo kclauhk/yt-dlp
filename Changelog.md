@@ -4,6 +4,39 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.10.25.033242
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/872bec9d3c5e5e87a7226c506b8353b78b261ca5) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/d39128e70c909a405816f2ac79a1cb85f7751250) by [kclauhk](https://github.com/kclauhk)
+
+#### Extractor changes
+- **bilibili**: [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/c0bc2645e716cedc6848ab8234c55baec5b888df) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2fdebc449e32d38ff605fd3734668059c44b0506) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/9226f050fc91d1de7b0745af645f4a5345bf1d0e) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/3008aeffe4ec64dad101a03256fca2de8942d5f3) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/9689eed1e48b40cf959bcf950f690dded36473cd) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4da14efe55b4a18a094408b82496a8199d8146e0) by [kclauhk](https://github.com/kclauhk)
+- **googledrive**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/70f1098312fe53bc85358f7bd624370878b2fa28) ([#14746](https://github.com/yt-dlp/yt-dlp/issues/14746)) by [seproDev](https://github.com/seproDev)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5fb14ce59a0e187750b5d829db51dbc0939a972e) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/d4a15ff96403a6558f7e5f0967329ec380ce27d4) by [kclauhk](https://github.com/kclauhk)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/b64e50c967341beac5ef5d6f97395c688aa62d3f) by [kclauhk](https://github.com/kclauhk)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/a1b0504f435022dd255c51c5098ed27939c19b22) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/3ab29ba069cc599aea436099dd02d6604d985ef0) by [kclauhk](https://github.com/kclauhk)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/41dc8f2794048005bdfc0bb25d291febf3a5e803) by [kclauhk](https://github.com/kclauhk)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/7995236fc1d801acf1412e83d3a2bd495a6f4a4f) by [kclauhk](https://github.com/kclauhk)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/009c133663c6d46c9d025300f51357d40b315739) by [kclauhk](https://github.com/kclauhk)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/de49db76b15a857d0621883f1af57ce408dc0103) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/9894c4163890a6fb33c3d4ecf7edda5c45cde727) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of 'ios'](https://github.com/yt-dlp/yt-dlp/commit/211019b066bb8eae73f2ecd140bfaecb345740e1) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/4804858e17e3e81a1ea79a46b4bf7a20a66bba08) by [kclauhk](https://github.com/kclauhk)
+
+#### Misc. changes
+- **ci**: [Skip HTTPS verify_failed tests](https://github.com/yt-dlp/yt-dlp/commit/33c5bf93950eb2922e221b0234e30ab156a84208) by [kclauhk](https://github.com/kclauhk)
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/990b6e45a40023c28ef32e74a58a33d288221448) by [kclauhk](https://github.com/kclauhk)
+
 ### 2025.10.22
 
 #### Important changes
