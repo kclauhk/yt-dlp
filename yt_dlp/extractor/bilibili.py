@@ -684,23 +684,26 @@ class BiliBiliIE(BilibiliBaseIE):
                 'https://api.bilibili.com/x/web-interface/wbi/view/detail', video_id,
                 note='Downloading redirection URL', errnote='Failed to download redirection URL',
                 query=self._sign_wbi(query, video_id), headers=headers)
-            new_url = traverse_obj(detail, ('data', 'View', 'redirect_url', {url_or_none}))
+            view_data = traverse_obj(detail, ('data', 'View'))
+            new_url = traverse_obj(view_data, ('redirect_url', {url_or_none}))
             if new_url and BiliBiliBangumiIE.suitable(new_url):
                 return self.url_result(new_url, BiliBiliBangumiIE)
-            raise ExtractorError('Unable to extract initial state')
+            elif view_data and all(k in view_data for k in ['bvid', 'aid', 'title']):
+                video_data = view_data
+            else:
+                raise ExtractorError('Unable to extract initial state')
 
-        if traverse_obj(initial_state, ('error', 'trueCode')) == -403:
-            self.raise_login_required()
-        if traverse_obj(initial_state, ('error', 'trueCode')) == -404:
-            raise ExtractorError(
-                'This video may be deleted or geo-restricted. '
-                'You might want to try a VPN or a proxy server (with --proxy)', expected=True)
+        is_festival = False
+        if initial_state:
+            if traverse_obj(initial_state, ('error', 'trueCode')) == -403:
+                self.raise_login_required()
+            if traverse_obj(initial_state, ('error', 'trueCode')) == -404:
+                raise ExtractorError(
+                    'This video may be deleted or geo-restricted. '
+                    'You might want to try a VPN or a proxy server (with --proxy)', expected=True)
 
-        is_festival = 'videoData' not in initial_state
-        if is_festival:
-            video_data = initial_state['videoInfo']
-        else:
-            video_data = initial_state['videoData']
+            is_festival = 'videoData' not in initial_state
+            video_data = initial_state['videoInfo' if is_festival else 'videoData']
 
         video_id, title = video_data['bvid'], video_data.get('title')
 
