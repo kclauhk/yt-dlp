@@ -12,6 +12,7 @@ The only reliable way to check if a site is supported is to try it.
  - **17live:vod**
  - **1News**: 1news.co.nz article videos
  - **1tv**: Первый канал
+ - **1tv:live**: Первый канал (прямой эфир)
  - **20min**: (**Currently broken**)
  - **23video**
  - **247sports**: (**Currently broken**)
@@ -93,6 +94,8 @@ The only reliable way to check if a site is supported is to try it.
  - **archive.org**: archive.org video and audio
  - **ArcPublishing**
  - **ARD**
+ - **ARDAudiothek**
+ - **ARDAudiothekPlaylist**
  - **ARDMediathek**
  - **ARDMediathekCollection**
  - **Art19**
@@ -428,6 +431,9 @@ The only reliable way to check if a site is supported is to try it.
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
  - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
+ - **ExtremeMusic:search**: "exmsearch:" prefix
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
@@ -510,8 +516,17 @@ The only reliable way to check if a site is supported is to try it.
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
- - **Gimy**
+ - **gimy.cc**
+ - **gimy.cc:search**: gimy Search; "gimysearch:" prefix
+ - **gimy.la**
+ - **gimy:detail**
+ - **GimySearchURL**
  - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -537,7 +552,6 @@ The only reliable way to check if a site is supported is to try it.
  - **google:​podcasts:feed**
  - **GoogleDrive**
  - **GoogleDrive:Folder**
- - **GoPlay**: [*goplay*](## "netrc machine")
  - **GoPro**
  - **Goshgay**
  - **GoToStage**
@@ -590,7 +604,10 @@ The only reliable way to check if a site is supported is to try it.
  - **IdagioRecording**
  - **IdagioTrack**
  - **IdolPlus**
- - **IdolTV**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -778,6 +795,7 @@ The only reliable way to check if a site is supported is to try it.
  - **MediasetShow**
  - **Mediasite**
  - **MediasiteCatalog**
+ - **MediasiteChannel**
  - **MediasiteNamedCatalog**
  - **MediaStream**
  - **MediaWorksNZVOD**
@@ -849,6 +867,7 @@ The only reliable way to check if a site is supported is to try it.
  - **MusicdexArtist**
  - **MusicdexPlaylist**
  - **MusicdexSong**
+ - **Mux**
  - **Mx3**
  - **Mx3Neo**
  - **Mx3Volksmusik**
@@ -863,13 +882,15 @@ The only reliable way to check if a site is supported is to try it.
  - **n-tv.de**
  - **N1Info:article**
  - **N1InfoAsset**
+ - **NascarClassics**
  - **Nate**
  - **NateProgram**
  - **natgeo:video**
  - **NationalGeographicTV**
  - **Naver**
  - **Naver:live**
- - **navernow**
+ - **Naver:now**
+ - **Naver:playlist**
  - **nba**: (**Currently broken**)
  - **nba:channel**: (**Currently broken**)
  - **nba:embed**: (**Currently broken**)
@@ -1076,6 +1097,7 @@ The only reliable way to check if a site is supported is to try it.
  - **PlanetMarathi**
  - **Platzi**: [*platzi*](## "netrc machine")
  - **PlatziCourse**: [*platzi*](## "netrc machine")
+ - **play.tv**: [*goplay*](## "netrc machine") PLAY (formerly goplay.be)
  - **player.sky.it**
  - **PlayerFm**
  - **playeur**
@@ -1363,6 +1385,7 @@ The only reliable way to check if a site is supported is to try it.
  - **southpark.cc.com:español**
  - **southpark.de**
  - **southpark.lat**
+ - **SouthPark:Seasons**
  - **southparkstudios.co.uk**
  - **southparkstudios.com.br**
  - **southparkstudios.nu**
@@ -1668,6 +1691,7 @@ The only reliable way to check if a site is supported is to try it.
  - **VKPlayLive**
  - **vm.tiktok**
  - **VMware**
+ - **VMware:search**: "vmwaresearch:" prefix
  - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
