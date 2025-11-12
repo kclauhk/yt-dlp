@@ -431,6 +431,9 @@ The only reliable way to check if a site is supported is to try it.
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
  - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
+ - **ExtremeMusic:search**: "exmsearch:" prefix
  - **EyedoTV**
  - **facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
@@ -513,8 +516,17 @@ The only reliable way to check if a site is supported is to try it.
  - **Gettr**
  - **GettrStreaming**
  - **GiantBomb**
- - **Gimy**
+ - **gimy.cc**
+ - **gimy.cc:search**: gimy Search; "gimysearch:" prefix
+ - **gimy.la**
+ - **gimy:detail**
+ - **GimySearchURL**
  - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -592,7 +604,10 @@ The only reliable way to check if a site is supported is to try it.
  - **IdagioRecording**
  - **IdagioTrack**
  - **IdolPlus**
- - **IdolTV**
+ - **IDOLTV**
+ - **IDOLTV:search**: IDOLTV Search; "idoltvsearch:" prefix
+ - **IDOLTV:vod**
+ - **IdoltvSearchURL**
  - **iflix:episode**
  - **IflixSeries**
  - **ign.com**
@@ -780,6 +795,7 @@ The only reliable way to check if a site is supported is to try it.
  - **MediasetShow**
  - **Mediasite**
  - **MediasiteCatalog**
+ - **MediasiteChannel**
  - **MediasiteNamedCatalog**
  - **MediaStream**
  - **MediaWorksNZVOD**
@@ -873,7 +889,8 @@ The only reliable way to check if a site is supported is to try it.
  - **NationalGeographicTV**
  - **Naver**
  - **Naver:live**
- - **navernow**
+ - **Naver:now**
+ - **Naver:playlist**
  - **nba**: (**Currently broken**)
  - **nba:channel**: (**Currently broken**)
  - **nba:embed**: (**Currently broken**)
@@ -1368,6 +1385,7 @@ The only reliable way to check if a site is supported is to try it.
  - **southpark.cc.com:español**
  - **southpark.de**
  - **southpark.lat**
+ - **SouthPark:Seasons**
  - **southparkstudios.co.uk**
  - **southparkstudios.com.br**
  - **southparkstudios.nu**
@@ -1673,6 +1691,7 @@ The only reliable way to check if a site is supported is to try it.
  - **VKPlayLive**
  - **vm.tiktok**
  - **VMware**
+ - **VMware:search**: "vmwaresearch:" prefix
  - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
