@@ -4,6 +4,40 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.11.12.080904
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/5a9240db9868902c4bd07c22c8e215084053de1c) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/ee9deda2b2603ecf73e1fd749b7bcb6ccc88270c) by [kclauhk](https://github.com/kclauhk)
+
+#### Extractor changes
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/dbe2d7917cc65c5f11a65c6b35ad9a5201a0c6f6) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/5278deec28c7d48412ebc6a4f91ae12cc1781faa) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/44b59b2d07ddb43eb5debb03be780f50bc41a165) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/359e92a89c721a6de91f634bcba2903924d3a3f7) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/13ca3e9298585bad110366b6809f659caea0ae5b) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a8a79073523da1852ac4164db22afcdde6f2d36d) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e351f282cc76b6ef8f7a925545dcc9ddb6acf013) by [kclauhk](https://github.com/kclauhk)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8fcc17320993010936a023062078807aa54acd5c) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/0049c3794caf0ba647b70d3a5a6baf3257fbeabe) by [kclauhk](https://github.com/kclauhk)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/cfd206a5b56e9e9968954286ab13e15effe30c68) by [kclauhk](https://github.com/kclauhk)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/5eabf469b72300187d52a1fe4d3e230fbf3828e4) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/c47cf231a52f8f29c1b3c780d9cc406a78da7ac0) by [kclauhk](https://github.com/kclauhk)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/7c28d07d164473423189a1a94ffde5797a9326ca) by [kclauhk](https://github.com/kclauhk)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/a39535261484ce8e9f3bec978b5b4904636a0cf2) by [kclauhk](https://github.com/kclauhk)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4fa5a3c480fd28440a13af1153c7a72e6e957394) by [kclauhk](https://github.com/kclauhk)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/cd3aa1f912ca43cf6235db43ab95b1a9e8c6729e) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/5416cd79bd1ab1735965f45c4369813789ef03d6) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of 'ios'](https://github.com/yt-dlp/yt-dlp/commit/6808f9ace7deeccdb0efd8f8fe1fc5406b985225) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/db892f56da144ea292ed314725a2f198df60c140) by [kclauhk](https://github.com/kclauhk)
+
+#### Misc. changes
+- **ci**: [Skip HTTPS verify_failed tests](https://github.com/yt-dlp/yt-dlp/commit/a0be48a9fe028fd496f37886bc938c3e33f7db1d) by [kclauhk](https://github.com/kclauhk)
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/f71c8f1dbd60309d16255184b9474159702314b5) by [kclauhk](https://github.com/kclauhk)
+
 ### 2025.11.12
 
 #### Important changes
