@@ -4,6 +4,61 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2025.11.19.021424
+
+#### Core changes
+- [Add `--check-video-formats` and `--probe-formats` options](https://github.com/yt-dlp/yt-dlp/commit/9b817d6e0ab54ef3d91b05444bbc4124e01e4542) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check format if media properties are not available](https://github.com/yt-dlp/yt-dlp/commit/409331d067079b8698db33493586d99f5ca4896b) by [kclauhk](https://github.com/kclauhk)
+
+#### Extractor changes
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/1dd58440ebeebb08f1b01c34a054d39c8fd27390) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/fa71e94965e6b6390681b6a765f3356b71da7e83) by [kclauhk](https://github.com/kclauhk)
+- **bitmovin**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/45a3b42bb917e99b0b5c155c272ebf4a82a5bf66) ([#15064](https://github.com/yt-dlp/yt-dlp/issues/15064)) by [seproDev](https://github.com/seproDev)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8be6901803d599a0520ba7fbf416842de191f800) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5e61214694e9574a425942157353a5be43f56e43) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/b311e8129197b936d0450457f058966e9e34c6a8) by [kclauhk](https://github.com/kclauhk)
+- **floatplane**: [Add subtitle support](https://github.com/yt-dlp/yt-dlp/commit/b333ef1b3f961e292a8bf7052c54b54c81587a17) ([#15069](https://github.com/yt-dlp/yt-dlp/issues/15069)) by [seproDev](https://github.com/seproDev)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/7d69bf7dbb0733c3645f72f001702c4e4f90a73d) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/477faf20a5e35f8c60cf960faddd3bfef463536e) by [kclauhk](https://github.com/kclauhk)
+- **idoltv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/9d659a81bdc8e8a725f077f3acbc842f38231934) by [kclauhk](https://github.com/kclauhk)
+- **jtbc**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/947e7883406e5ea43687d6e4ff721cc0162c9664) ([#15047](https://github.com/yt-dlp/yt-dlp/issues/15047)) by [seproDev](https://github.com/seproDev)
+- **mave**: channel: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/5f66ac71f6637f768cd251509b0a932d0ce56427) ([#14915](https://github.com/yt-dlp/yt-dlp/issues/14915)) by [anlar](https://github.com/anlar)
+- **medaltv**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/a4c72acc462668a938827370bd77084a1cd4733b) ([#15103](https://github.com/yt-dlp/yt-dlp/issues/15103)) by [seproDev](https://github.com/seproDev)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/6515a14b1b37cd41b87839ef5721a58bd143710b) by [kclauhk](https://github.com/kclauhk)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/60fad25e95b89af65a5bf54b76c915372753b7f4) by [kclauhk](https://github.com/kclauhk)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/34389d9e0281802e0d4a47bfb9cf3e4c06f194ef) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/5f0617ef3099bb21e445b957ded54cf3b214773a) by [kclauhk](https://github.com/kclauhk)
+- **nowcanal**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/4e680db1505dafb93313b1d42ffcd3f230fcc92a) ([#14584](https://github.com/yt-dlp/yt-dlp/issues/14584)) by [pferreir](https://github.com/pferreir)
+- **rinsefm**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/d6aa8c235d2e7d9374f79ec73af23a3859c76bea) ([#15020](https://github.com/yt-dlp/yt-dlp/issues/15020)) by [1bnBattuta](https://github.com/1bnBattuta), [seproDev](https://github.com/seproDev)
+- **soundcloudplaylist**: [Support new API URLs](https://github.com/yt-dlp/yt-dlp/commit/1dd84b9d1c33e50de49866b0d93c2596897ce506) ([#15071](https://github.com/yt-dlp/yt-dlp/issues/15071)) by [seproDev](https://github.com/seproDev)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/79a7cbfda32ba8422b55d00a37a277fd6ef0aa77) by [kclauhk](https://github.com/kclauhk)
+- **thechosen**: [Add extractors](https://github.com/yt-dlp/yt-dlp/commit/854fded114f3b7b33693c2d3418575d04014aa4b) ([#14183](https://github.com/yt-dlp/yt-dlp/issues/14183)) by [mrFlamel](https://github.com/mrFlamel)
+- **thisoldhouse**: [Fix login support](https://github.com/yt-dlp/yt-dlp/commit/9daba4f442139ee2537746398afc5ac30b51c28c) ([#15097](https://github.com/yt-dlp/yt-dlp/issues/15097)) by [bashonly](https://github.com/bashonly)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/083cfa246a6bca0a30c7cf4a6c0de5d9ae947f1e) by [kclauhk](https://github.com/kclauhk)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/47835ddb1e26bb504aa60088946ffe2ff0c9191d) by [kclauhk](https://github.com/kclauhk)
+- **yfanefa**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/af285016d2b14c4445109283e7c590b31542de88) ([#15032](https://github.com/yt-dlp/yt-dlp/issues/15032)) by [Haytam001](https://github.com/Haytam001)
+- **youtube**
+    - [Detect "super resolution" AI-upscaled formats](https://github.com/yt-dlp/yt-dlp/commit/4cb5e191efeebc3679f89c3c8ac819bcd511bb1f) ([#15050](https://github.com/yt-dlp/yt-dlp/issues/15050)) by [bashonly](https://github.com/bashonly)
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/8c45a5412d162c30be509a77790b91de7cfaaf77) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/0558fe528bc32b62416b9af09b038f699078d946) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of 'ios'](https://github.com/yt-dlp/yt-dlp/commit/16319982903485303760adb0e027fb78af25b60f) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/fcb166af897d3f8bfb2220651e9c284a66300f26) by [kclauhk](https://github.com/kclauhk)
+
+#### Downloader changes
+- [Fix playback wait time for ffmpeg downloads](https://github.com/yt-dlp/yt-dlp/commit/23f1ab346927ab73ad510fd7ba105a69e5291c66) ([#15066](https://github.com/yt-dlp/yt-dlp/issues/15066)) by [bashonly](https://github.com/bashonly)
+
+#### Postprocessor changes
+- **ffmpeg**: [Fix uncaught error if bad --ffmpeg-location is given](https://github.com/yt-dlp/yt-dlp/commit/0eed3fe530d6ff4b668494c5b1d4d6fc1ade96f7) ([#15104](https://github.com/yt-dlp/yt-dlp/issues/15104)) by [bashonly](https://github.com/bashonly)
+
+#### Networking changes
+- **Request Handler**: urllib: [Do not read after close](https://github.com/yt-dlp/yt-dlp/commit/6ee6a6fc58d6254ef944bd311e6890e208a75e98) ([#15049](https://github.com/yt-dlp/yt-dlp/issues/15049)) by [bashonly](https://github.com/bashonly)
+
+#### Misc. changes
+- **ci**: [Skip HTTPS verify_failed tests](https://github.com/yt-dlp/yt-dlp/commit/926a4dac38d3324d0c272ad73a43bf0e20bdc735) by [kclauhk](https://github.com/kclauhk)
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/a37436ed700fa89fb0d5a391a215200bbfd743e0) by [kclauhk](https://github.com/kclauhk)
+
 ### 2025.11.12
 
 #### Important changes
