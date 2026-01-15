@@ -820,6 +820,10 @@ class FFmpegMergerPP(FFmpegPostProcessor):
         args = ['-c', 'copy']
         audio_streams = 0
         for (i, fmt) in enumerate(info['requested_formats']):
+            if fmt.get('acodec').startswith('iamf'):
+                raise FFmpegPostProcessorError(
+                    'To merge IAMF audio with video stream, use GPAC\'s MP4Box (https://gpac.io). '
+                    'See  https://trac.ffmpeg.org/ticket/11627  for more info.')
             if fmt.get('acodec') != 'none':
                 args.extend(['-map', f'{i}:a:0'])
                 aac_fixup = fmt['protocol'].startswith('m3u8') and self.get_audio_codec(fmt['filepath']) == 'aac'
@@ -861,7 +865,7 @@ class FFmpegFixupStretchedPP(FFmpegFixupPostProcessor):
 class FFmpegFixupM4aPP(FFmpegFixupPostProcessor):
     @PostProcessor._restrict_to(images=False, video=False)
     def run(self, info):
-        if info.get('container') == 'm4a_dash':
+        if info.get('container') == 'm4a_dash' and not info.get('acodec', '').startswith('iamf'):
             self._fixup('Correcting container', info['filepath'], [*self.stream_copy_opts(), '-f', 'mp4'])
         return [], info
 
