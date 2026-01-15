@@ -821,7 +821,7 @@ class FFmpegMergerPP(FFmpegPostProcessor):
         audio_streams = 0
         for (i, fmt) in enumerate(info['requested_formats']):
             if fmt.get('acodec') != 'none':
-                args.extend(['-map', f'{i}:a:0'])
+                args.extend(['-map', f'{i}:a'])
                 aac_fixup = fmt['protocol'].startswith('m3u8') and self.get_audio_codec(fmt['filepath']) == 'aac'
                 if aac_fixup:
                     args.extend([f'-bsf:a:{audio_streams}', 'aac_adtstoasc'])
