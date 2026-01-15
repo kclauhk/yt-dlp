@@ -3054,8 +3054,8 @@ def parse_codecs(codecs_str):
                 hdr = 'HDR10'
             elif parts[:2] == ['vp9', '2']:
                 hdr = 'HDR10'
-        elif parts[0] in ('flac', 'mp4a', 'opus', 'vorbis', 'mp3', 'aac', 'ac-4',
-                          'ac-3', 'ec-3', 'eac3', 'dtsc', 'dtse', 'dtsh', 'dtsl'):
+        elif parts[0] in ('flac', 'mp4a', 'opus', 'vorbis', 'mp3', 'aac', 'ac-4', 'ac-3',
+                          'ec-3', 'eac3', 'dtsc', 'dtse', 'dtsh', 'dtsl', 'iamf'):
             acodec = acodec or full_codec
         elif parts[0] in ('stpp', 'wvtt'):
             scodec = scodec or full_codec
@@ -3089,6 +3089,7 @@ def get_compatible_ext(*, vcodecs, acodecs, vexts, aexts, preferences=None):
         'mp4': {
             'av1', 'hevc', 'avc1', 'mp4a', 'ac-4',  # fourcc (m3u8, mpd)
             'h264', 'aacl', 'ec-3',  # Set in ISM
+            'iamf',
         },
         'webm': {
             'av1', 'vp9', 'vp8', 'opus', 'vrbs',
@@ -5352,7 +5353,7 @@ class FormatSorter:
         'vcodec': {'type': 'ordered', 'regex': True,
                    'order': ['av0?1', r'vp0?9\.0?2', 'vp0?9', '[hx]265|he?vc?', '[hx]264|avc', 'vp0?8', 'mp4v|h263', 'theora', '', None, 'none']},
         'acodec': {'type': 'ordered', 'regex': True,
-                   'order': ['[af]lac', 'wav|aiff', 'opus', 'vorbis|ogg', 'aac', 'mp?4a?', 'mp3', 'ac-?4', 'e-?a?c-?3', 'ac-?3', 'dts', '', None, 'none']},
+                   'order': ['[af]lac', 'wav|aiff', 'opus', 'vorbis|ogg', 'aac', 'mp?4a?', 'mp3', 'ac-?4', 'e-?a?c-?3', 'ac-?3', 'dts', 'iamf', '', None, 'none']},
         'hdr': {'type': 'ordered', 'regex': True, 'field': 'dynamic_range',
                 'order': ['dv', '(hdr)?12', r'(hdr)?10\+', '(hdr)?10', 'hlg', '', 'sdr', None]},
         'proto': {'type': 'ordered', 'regex': True, 'field': 'protocol',
