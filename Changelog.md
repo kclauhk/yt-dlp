@@ -4,6 +4,40 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2026.01.31.021633
+
+#### Core changes
+- [Partial support IAMF format (download only, merge not supported)](https://github.com/yt-dlp/yt-dlp/commit/d31a9415df0fef23d31f27c2dcd930595482611d) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check formats](https://github.com/yt-dlp/yt-dlp/commit/29fd21fa35b4e53d1a7b1fed7560294b79cb2f58) by [kclauhk](https://github.com/kclauhk)
+
+#### Extractor changes
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/1b30b5947d7ca8d9c13007188d8dc9b2d0da9dc2) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/2418234ca25734fcb57c2586e789cf91150b210b) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/cd63c5987229b2fc6cdf5a5f463a06bfb4097767) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a539b96d9ee4a6d4d40b51d205d2260ca598039f) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/c6f8db66f2943be6c91e9412c470f8f94b965021) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/d68838c04487b22359b0b8af6fc729226852cc79) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**
+    - [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/52afad3d9f6c03fb0e9d986dff0058ef8227a408) by [kclauhk](https://github.com/kclauhk)
+    - [Provide untimed transcript in ttml format](https://github.com/yt-dlp/yt-dlp/commit/b287507f6673f218c37ee6a4471914b5c601eda6) by [kclauhk](https://github.com/kclauhk)
+    - [Support channel](https://github.com/yt-dlp/yt-dlp/commit/39bff11e903febe143e05df695d0d4ac192545af) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/28c6aa0450d707d978a44533b991741a40ff665f) by [kclauhk](https://github.com/kclauhk)
+- **soop**: [Support subscription-only VODs](https://github.com/yt-dlp/yt-dlp/commit/d0bf3d0fc3455d411ae44c0a5dc974dd1481e3aa) ([#15523](https://github.com/yt-dlp/yt-dlp/issues/15523)) by [thematuu](https://github.com/thematuu)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/061b05f8d70ba15e94934ccdf16459b54ec99c61) by [kclauhk](https://github.com/kclauhk)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/669b7a1f524870a0ce53f40db4c4cda9c4ac0d52) by [kclauhk](https://github.com/kclauhk)
+- **unsupported**: [Update unsupported URLs](https://github.com/yt-dlp/yt-dlp/commit/bf5d8c2a663ac690711262aebc733c1b06a54b26) ([#15410](https://github.com/yt-dlp/yt-dlp/issues/15410)) by [bashonly](https://github.com/bashonly)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/91ca133f68246f41d4c03e1a6c52e60392810818) by [kclauhk](https://github.com/kclauhk)
+- **whyp**: [Extract more metadata](https://github.com/yt-dlp/yt-dlp/commit/0d8ee637e83d62edaf22aa85833a51c70d560389) ([#15757](https://github.com/yt-dlp/yt-dlp/issues/15757)) by [azdlonky](https://github.com/azdlonky)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/b1595826041b97b86ea226415b03d6e8b2e2239b) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/aa0ac445b64b8ab4e958a6899271da7fd6adc5f7) by [kclauhk](https://github.com/kclauhk)
+    - [Revert "Deprioritize `web_safari` m3u8 formats"](https://github.com/yt-dlp/yt-dlp/commit/065b4927aa45b564df4fb13125b57784efe0cc07) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/5a93453363f8e3efa8775cac317b09e73f1f1c2b) by [kclauhk](https://github.com/kclauhk)
+
+#### Misc. changes
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/a4e1829b17dfc2cbc5dfa3b6d0d52400da29f5de) by [kclauhk](https://github.com/kclauhk)
+
 ### 2026.01.29
 
 #### Core changes
