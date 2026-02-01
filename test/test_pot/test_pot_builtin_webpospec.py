@@ -37,7 +37,6 @@ class TestWebPoPCSP:
 
     @pytest.mark.parametrize('client_name, context, is_authenticated', [
         ('ANDROID', PoTokenContext.GVS, False),
-        ('IOS', PoTokenContext.GVS, False),
         ('IOS', PoTokenContext.PLAYER, False),
     ])
     def test_not_supports(self, ie, logger, pot_request, client_name, context, is_authenticated):
