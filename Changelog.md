@@ -4,6 +4,56 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2026.02.19.061959
+
+#### Core changes
+- [Partial support IAMF format (download only, merge not supported)](https://github.com/yt-dlp/yt-dlp/commit/d12841e0517845d437bbe3faf5468134c3c37010) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check formats](https://github.com/yt-dlp/yt-dlp/commit/2ad5f410ea3bf11239ff54045b550bbcf58e765e) by [kclauhk](https://github.com/kclauhk)
+- **cookies**: [Ignore cookies with control characters](https://github.com/yt-dlp/yt-dlp/commit/43229d1d5f47b313e1958d719faff6321d853ed3) ([#15862](https://github.com/yt-dlp/yt-dlp/issues/15862)) by [bashonly](https://github.com/bashonly), [syphyr](https://github.com/syphyr)
+- **jsinterp**
+    - [Fix bitwise operations](https://github.com/yt-dlp/yt-dlp/commit/62574f5763755a8637880044630b12582e4a55a5) ([#15985](https://github.com/yt-dlp/yt-dlp/issues/15985)) by [bashonly](https://github.com/bashonly)
+    - [Stringify bracket notation keys in object access](https://github.com/yt-dlp/yt-dlp/commit/c9c86519753d6cdafa052945d2de0d3fcd448927) ([#15989](https://github.com/yt-dlp/yt-dlp/issues/15989)) by [bashonly](https://github.com/bashonly)
+    - [Support string concatenation with `+` and `+=`](https://github.com/yt-dlp/yt-dlp/commit/d108ca10b926410ed99031fec86894bfdea8f8eb) ([#15990](https://github.com/yt-dlp/yt-dlp/issues/15990)) by [bashonly](https://github.com/bashonly)
+
+#### Extractor changes
+- **1tv**: [Extract chapters](https://github.com/yt-dlp/yt-dlp/commit/23c059a455acbb317b2bbe657efd59113bf4d5ac) ([#15848](https://github.com/yt-dlp/yt-dlp/issues/15848)) by [hunter-gatherer8](https://github.com/hunter-gatherer8)
+- **applepodcasts**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/1ea7329cc91da38a790174e831fffafcb3ea3c3d) ([#15901](https://github.com/yt-dlp/yt-dlp/issues/15901)) by [coreywright](https://github.com/coreywright)
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/87c61b5a0b086e0ca4ab87cf19e149e37242dded) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/79e60967e6c1a8e1830660f8f2c71df68636d767) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/6fa37d76923b7203796f60b0e094d10c5d9c642f) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/6f5508d4162a4e9cf8175e48a41d2381bb77db7b) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/00e9b3c76e51f92a33359a7b1357b830e66a98bd) by [kclauhk](https://github.com/kclauhk)
+- **gem.cbc.ca**: [Support standalone, series & Olympics URLs](https://github.com/yt-dlp/yt-dlp/commit/637ae202aca7a990b3b61bc33d692870dc16c3ad) ([#15878](https://github.com/yt-dlp/yt-dlp/issues/15878)) by [0xvd](https://github.com/0xvd), [bashonly](https://github.com/bashonly), [makew0rld](https://github.com/makew0rld)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/fd950637c118ef83b68fb311307ebda80f671141) by [kclauhk](https://github.com/kclauhk)
+- **locipo**: [Add extractors](https://github.com/yt-dlp/yt-dlp/commit/442c90da3ec680037b7d94abf91ec63b2e5a9ade) ([#15486](https://github.com/yt-dlp/yt-dlp/issues/15486)) by [doe1080](https://github.com/doe1080), [gravesducking](https://github.com/gravesducking)
+- **matchitv**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8d6e0b29bf15365638e0ceeb803a274e4db6157d) ([#15204](https://github.com/yt-dlp/yt-dlp/issues/15204)) by [gseddon](https://github.com/gseddon)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/4007af28d3c10e89a9c1753b5ec3c0ec7314fd23) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/e65b9bed1387f5261b03f27eb295b25a66abc73d) by [kclauhk](https://github.com/kclauhk)
+- **odnoklassniki**: [Fix inefficient regular expression](https://github.com/yt-dlp/yt-dlp/commit/071ad7dfa012f5b71572d29ef96fc154cb2dc9cc) ([#15974](https://github.com/yt-dlp/yt-dlp/issues/15974)) by [bashonly](https://github.com/bashonly)
+- **pornhub**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/6f38df31b477cf5ea3c8f91207452e3a4e8d5aa6) ([#15858](https://github.com/yt-dlp/yt-dlp/issues/15858)) by [beacdeac](https://github.com/beacdeac)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/86496278d20032c13fdb4ca4483f92cbcebe6468) by [kclauhk](https://github.com/kclauhk)
+- **steam**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/1a9c4b8238434c760b3e27d0c9df6a4a2482d918) ([#15028](https://github.com/yt-dlp/yt-dlp/issues/15028)) by [doe1080](https://github.com/doe1080)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/dd5d646afd043d01cba67e69c4274a72fc63806f) by [kclauhk](https://github.com/kclauhk)
+- **tver**: olympic: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/02ce3efbfe51d54cb0866953af423fc6d1f38933) ([#15885](https://github.com/yt-dlp/yt-dlp/issues/15885)) by [doe1080](https://github.com/doe1080)
+- **tvo**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/a13f281012a21c85f76cf3e320fc3b00d480d6c6) ([#15903](https://github.com/yt-dlp/yt-dlp/issues/15903)) by [doe1080](https://github.com/doe1080)
+- **twitter**: [Fix error handling](https://github.com/yt-dlp/yt-dlp/commit/0d8898c3f4e76742afb2b877f817fdee89fa1258) ([#15993](https://github.com/yt-dlp/yt-dlp/issues/15993)) by [bashonly](https://github.com/bashonly)
+- **visir**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c7c45f52890eee40565188aee874ff4e58e95c4f) ([#15811](https://github.com/yt-dlp/yt-dlp/issues/15811)) by [doe1080](https://github.com/doe1080)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/bfba24050eee529709130034787c3200af81a5f7) by [kclauhk](https://github.com/kclauhk)
+- **xhamster**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/133cb959be4d268e2cd6b3f1d9bf87fba4c3743e) ([#15831](https://github.com/yt-dlp/yt-dlp/issues/15831)) by [0xvd](https://github.com/0xvd)
+- **youtube**
+    - [Add more known player JS variants](https://github.com/yt-dlp/yt-dlp/commit/2204cee6d8301e491d8455a2c54fd0e1b23468f5) ([#15975](https://github.com/yt-dlp/yt-dlp/issues/15975)) by [bashonly](https://github.com/bashonly)
+    - [Extract live adaptive `incomplete` formats](https://github.com/yt-dlp/yt-dlp/commit/319a2bda83f5e54054661c56c1391533f82473c2) ([#15937](https://github.com/yt-dlp/yt-dlp/issues/15937)) by [bashonly](https://github.com/bashonly), [CanOfSocks](https://github.com/CanOfSocks)
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/27e45af1c7f2666bb5d24c6a76c00eb7a44e112c) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/23e7c942f44c66b114c27a6fa12087366aa57cac) by [kclauhk](https://github.com/kclauhk)
+    - [Revert "Deprioritize `web_safari` m3u8 formats"](https://github.com/yt-dlp/yt-dlp/commit/450c3e7229b054c8d8650c9d3f3c951efb2f2dc8) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of `ios`](https://github.com/yt-dlp/yt-dlp/commit/4ed086a5a088b96db93b5a7347cccb9b906d340e) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/dbc218c56e3538bf080f31368ad297ad2d6d9dfd) by [kclauhk](https://github.com/kclauhk)
+
+#### Misc. changes
+- **cleanup**: [Bump ruff to 0.15.x](https://github.com/yt-dlp/yt-dlp/commit/abade83f8ddb63a11746b69038ebcd9c1405a00a) ([#15951](https://github.com/yt-dlp/yt-dlp/issues/15951)) by [Grub4K](https://github.com/Grub4K)
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/530f3dbbfdcaa8eb5012dd6ffbf9f68a12075b15) by [kclauhk](https://github.com/kclauhk)
+
 ### 2026.02.04
 
 #### Extractor changes

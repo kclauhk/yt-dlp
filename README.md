@@ -281,10 +281,10 @@ Tip: Use `CTRL`+`F` (or `Command`+`F`)  to search by keywords
     --no-update                     Do not check for updates (default)
     --update-to [CHANNEL]@[TAG]     Upgrade/downgrade to a specific version.
                                     CHANNEL can be a repository as well. CHANNEL
-                                    and TAG default to "stable" and "latest"
-                                    respectively if omitted; See "UPDATE" for
-                                    details. Supported channels: stable,
-                                    nightly, master
+                                    and TAG default to "kclauhk/yt-dlp" and
+                                    "latest" respectively if omitted; See
+                                    "UPDATE" for details. Supported channels:
+                                    stable, nightly, master
     -i, --ignore-errors             Ignore download and postprocessing errors.
                                     The download will be considered successful
                                     even if the postprocessing fails
@@ -373,7 +373,7 @@ Tip: Use `CTRL`+`F` (or `Command`+`F`)  to search by keywords
                                     (default)
     --live-from-start               Download livestreams from the start.
                                     Currently experimental and only supported
-                                    for YouTube and Twitch
+                                    for YouTube, Twitch, and TVer
     --no-live-from-start            Download livestreams from the current time
                                     (default)
     --wait-for-video MIN[-MAX]      Wait for scheduled streams to become
