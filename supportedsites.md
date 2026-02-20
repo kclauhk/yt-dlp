@@ -435,8 +435,11 @@ The only reliable way to check if a site is supported is to try it.
  - **EWETVRecordings**: [*ewetv*](## "netrc machine")
  - **Expressen**
  - **ExtremeMusic**
+ - **ExtremeMusic:album**
+ - **ExtremeMusic:playlist**
+ - **ExtremeMusic:search**: "exmsearch:" prefix
  - **EyedoTV**
- - **facebook**
+ - **Facebook**: [*facebook*](## "netrc machine")
  - **facebook:ads**
  - **facebook:reel**
  - **FacebookPluginsVideo**
@@ -508,7 +511,8 @@ The only reliable way to check if a site is supported is to try it.
  - **GDCVault**: [*gdcvault*](## "netrc machine") (**Currently broken**)
  - **GediDigital**
  - **gem.cbc.ca**: [*cbcgem*](## "netrc machine")
- - **gem.cbc.ca:live**
+ - **gem.cbc.ca:live**: [*cbcgem*](## "netrc machine")
+ - **gem.cbc.ca:olympics**: [*cbcgem*](## "netrc machine")
  - **gem.cbc.ca:playlist**: [*cbcgem*](## "netrc machine")
  - **Genius**
  - **GeniusLyrics**
@@ -519,6 +523,11 @@ The only reliable way to check if a site is supported is to try it.
  - **GettrStreaming**
  - **GiantBomb**
  - **Giphy**
+ - **giphy:channel**: Giphy Channel; "giphychannel:" prefix
+ - **giphy:search**: Giphy Search; "giphysearch:" prefix
+ - **GiphyChannelPage**
+ - **GiphySearchURL**
+ - **GiphyStories**
  - **GlattvisionTV**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVLive**: [*glattvisiontv*](## "netrc machine")
  - **GlattvisionTVRecordings**: [*glattvisiontv*](## "netrc machine")
@@ -737,6 +746,8 @@ The only reliable way to check if a site is supported is to try it.
  - **Livestreamfails**
  - **Lnk**
  - **loc**: Library of Congress
+ - **Locipo**
+ - **LocipoPlaylist**
  - **Loco**
  - **loom**
  - **loom:folder**: (**Currently broken**)
@@ -766,6 +777,7 @@ The only reliable way to check if a site is supported is to try it.
  - **MarkizaPage**: (**Currently broken**)
  - **massengeschmack.tv**
  - **Masters**
+ - **MatchiTV**
  - **MatchTV**
  - **mave**
  - **mave:channel**
@@ -875,7 +887,8 @@ The only reliable way to check if a site is supported is to try it.
  - **NationalGeographicTV**
  - **Naver**
  - **Naver:live**
- - **navernow**
+ - **Naver:now**
+ - **Naver:playlist**
  - **nba**: (**Currently broken**)
  - **nba:channel**: (**Currently broken**)
  - **nba:embed**: (**Currently broken**)
@@ -1287,6 +1300,7 @@ The only reliable way to check if a site is supported is to try it.
  - **Sangiin**: 参議院インターネット審議中継 (archive)
  - **Sapo**: SAPO Vídeos
  - **SaucePlus**: Sauce+
+ - **SaucePlusChannel**
  - **SBS**: sbs.com.au
  - **sbs.co.kr**
  - **sbs.co.kr:allvod_program**
@@ -1369,6 +1383,7 @@ The only reliable way to check if a site is supported is to try it.
  - **southpark.cc.com:español**
  - **southpark.de**
  - **southpark.lat**
+ - **SouthPark:Seasons**
  - **southparkstudios.co.uk**
  - **southparkstudios.com.br**
  - **southparkstudios.nu**
@@ -1554,10 +1569,12 @@ The only reliable way to check if a site is supported is to try it.
  - **TVC**
  - **TVCArticle**
  - **TVer**
+ - **tver:olympic**
  - **tvigle**: Интернет-телевидение Tvigle.ru
  - **TVIPlayer**
  - **TVN24**: (**Currently broken**)
  - **tvnoe**: Televize Noe
+ - **TVO**
  - **tvopengr:embed**: tvopen.gr embedded videos
  - **tvopengr:watch**: tvopen.gr (and ethnos.gr) videos
  - **tvp**: Telewizja Polska
@@ -1668,6 +1685,7 @@ The only reliable way to check if a site is supported is to try it.
  - **ViMP:Playlist**
  - **Viously**
  - **Viqeo**: (**Currently broken**)
+ - **Visir**: Vísir
  - **Viu**
  - **viu:ott**: [*viu*](## "netrc machine")
  - **viu:playlist**
@@ -1679,6 +1697,7 @@ The only reliable way to check if a site is supported is to try it.
  - **VKPlayLive**
  - **vm.tiktok**
  - **VMware**
+ - **VMware:search**: "vmwaresearch:" prefix
  - **VMwareExplore**
  - **Vocaroo**
  - **VODPl**
@@ -1818,7 +1837,6 @@ The only reliable way to check if a site is supported is to try it.
  - **youtube:playlist**: [*youtube*](## "netrc machine") YouTube playlists
  - **youtube:recommended**: [*youtube*](## "netrc machine") YouTube recommended videos; ":ytrec" keyword
  - **youtube:search**: [*youtube*](## "netrc machine") YouTube search; "ytsearch:" prefix
- - **youtube:​search:date**: [*youtube*](## "netrc machine") YouTube search, newest videos first; "ytsearchdate:" prefix
  - **youtube:search_url**: [*youtube*](## "netrc machine") YouTube search URLs with sorting and filter support
  - **youtube:​shorts:pivot:audio**: [*youtube*](## "netrc machine") YouTube Shorts audio pivot (Shorts using audio of a given video)
  - **youtube:subscriptions**: [*youtube*](## "netrc machine") YouTube subscriptions feed; ":ytsubs" keyword (requires cookies)
