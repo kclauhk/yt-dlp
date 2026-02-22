@@ -676,6 +676,12 @@ from .gettr import (
     GettrStreamingIE,
 )
 from .giantbomb import GiantBombIE
+from .gimy import (
+    GimyBotIE,
+    GimyIE,
+    GimySearchIE,
+    GimyVodIE,
+)
 from .giphy import (
     GiphyChannelIE,
     GiphyChannelPageIE,
