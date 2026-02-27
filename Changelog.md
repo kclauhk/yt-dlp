@@ -4,6 +4,39 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2026.02.27.014308
+
+#### Core changes
+- [Partial support IAMF format (download only, merge not supported)](https://github.com/yt-dlp/yt-dlp/commit/60c32dff9e8213c7e85e3cdfe3b5cd3d20177ea7) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check formats](https://github.com/yt-dlp/yt-dlp/commit/9583e13ffa4621e2806824e09e45c2ef1047f321) by [kclauhk](https://github.com/kclauhk)
+
+#### Extractor changes
+- **aenetworks**: [Fix extraction](https://github.com/yt-dlp/yt-dlp/commit/338dbebdb8627a95bd8f72ed86fdc2d50c8e2d14) ([#16036](https://github.com/yt-dlp/yt-dlp/issues/16036)) by [bashonly](https://github.com/bashonly)
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/f06d7ba52a035e43c88790cd8e38cdfee92c6be7) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/af196e07bd4969263ba8be8177d7105d95c749ec) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/1b8b26e2392f4d929f165742ab747f46f5226401) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8b309cf957124c4d404f85dca875835cdaf03092) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/d8530f87d45c1c524df08b1a899c5e3ed92e2ab1) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/2759e70a667265024abb861e14a91cf1fc20ff1a) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/21ae3f4f52e1fe85d99c52fdbed18c8cd78a358f) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/bc562f71eb6cbfe564f1be088d789ac3d1aea069) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/c502fdf7f3cea08b5b357de1213d9b469d85ad6b) by [kclauhk](https://github.com/kclauhk)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/54514ccdd52604aa0c4087b3255e7ab8e60ae078) by [kclauhk](https://github.com/kclauhk)
+- **thechosen**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/e3118604aa99a5514342d6a002c9b4a3fe1235b4) ([#16021](https://github.com/yt-dlp/yt-dlp/issues/16021)) by [0xvd](https://github.com/0xvd)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/e23ada0711044fbee98374782377d92e0074db0a) by [kclauhk](https://github.com/kclauhk)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/75fdbf6a50fc578b61b2a5d362928864345fa0a4) by [kclauhk](https://github.com/kclauhk)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/4204f123a4f0fb37208e4eca46b73d34a6444691) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/38cb88c9160ae59dc089bf2799a63dd2228bf8a5) by [kclauhk](https://github.com/kclauhk)
+    - [Revert "Deprioritize `web_safari` m3u8 formats"](https://github.com/yt-dlp/yt-dlp/commit/3c2e084ebcc53daf3aefbe3a2bf829db940c34c8) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of `ios`](https://github.com/yt-dlp/yt-dlp/commit/f33cb23e6f937cf3a04624b60a3231ff14c3888c) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/89719c1f4ada466f30f8ca06f211cc263f4cd543) by [kclauhk](https://github.com/kclauhk)
+- **zapiks**: [Improve extraction](https://github.com/yt-dlp/yt-dlp/commit/6f796a2bff332f72c3f250207cdf10db852f6016) ([#16030](https://github.com/yt-dlp/yt-dlp/issues/16030)) by [doe1080](https://github.com/doe1080)
+
+#### Misc. changes
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/24e20e00a755f972e5c927b819e8d5595529b03d) by [kclauhk](https://github.com/kclauhk)
+
 ### 2026.02.21
 
 #### Important changes
