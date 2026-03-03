@@ -4,6 +4,40 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2026.03.03.025918
+
+#### Core changes
+- [Partial support IAMF format (download only, merge not supported)](https://github.com/yt-dlp/yt-dlp/commit/3c1583dce1898e0664acf9a06f24ef82fe30e7e8) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check formats](https://github.com/yt-dlp/yt-dlp/commit/41f529a5dd6dbfb92fde06f5f0750a5e73d69109) by [kclauhk](https://github.com/kclauhk)
+
+#### Extractor changes
+- **aenetworks**: [Fix extraction](https://github.com/yt-dlp/yt-dlp/commit/338dbebdb8627a95bd8f72ed86fdc2d50c8e2d14) ([#16036](https://github.com/yt-dlp/yt-dlp/issues/16036)) by [bashonly](https://github.com/bashonly)
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/f3c40763f2a333ef1478b475b11280e08e4b9c57) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/65382196c3f1badb4e641acf7b54612bfafff2e4) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8961726c5d4576ab79e69d4a1e6f006e2048a0bf) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c5544f9d4eac0a156995d44bca6e975ea7cef3c9) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/b1f922f6239587585b735bcb24f10c9c5a3e5a4f) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/243fec9a4bf6191f4b4a461d30d09080a55fc754) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/8d52238df169e88ab7188e2551d88b458e9892de) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/093e1dda6c9e76285bd1ca45bfb9f8e3ba22a312) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/80d15df51b0fff66db6aebc97fbf609cba0300ad) by [kclauhk](https://github.com/kclauhk)
+- **patreon**: [Fix extractors](https://github.com/yt-dlp/yt-dlp/commit/bf4dfffe0164385c29a2dcb0367110babe4d4f27) ([#16112](https://github.com/yt-dlp/yt-dlp/issues/16112)) by [bashonly](https://github.com/bashonly)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/cf8e407cd381e8b721bf7a9e1416bb826c334ce7) by [kclauhk](https://github.com/kclauhk)
+- **thechosen**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/e3118604aa99a5514342d6a002c9b4a3fe1235b4) ([#16021](https://github.com/yt-dlp/yt-dlp/issues/16021)) by [0xvd](https://github.com/0xvd)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/0fb2621366a965ea3570bea98a633d64b7864302) by [kclauhk](https://github.com/kclauhk)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/46f6a980dc8f8988230dbdafcd4f403b733bc318) by [kclauhk](https://github.com/kclauhk)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/20924b3ce694486f3f1759ab36b070c6cbcad27f) by [kclauhk](https://github.com/kclauhk)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/61e7d23e164dde590ab945b24d066ab37f6acdb0) by [kclauhk](https://github.com/kclauhk)
+    - [Revert "Deprioritize `web_safari` m3u8 formats"](https://github.com/yt-dlp/yt-dlp/commit/f351e0c0fedff1af63ae931f9b5852f380c34248) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of `ios`](https://github.com/yt-dlp/yt-dlp/commit/99a45816857cde5b10b92cff87f2504eb680c353) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/0c219a0fa40565655ae2cbc457804f632c75a140) by [kclauhk](https://github.com/kclauhk)
+- **zapiks**: [Improve extraction](https://github.com/yt-dlp/yt-dlp/commit/6f796a2bff332f72c3f250207cdf10db852f6016) ([#16030](https://github.com/yt-dlp/yt-dlp/issues/16030)) by [doe1080](https://github.com/doe1080)
+
+#### Misc. changes
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/d9d6ed84ae0787c4c3f22eba8fdd0e1a457e378f) by [kclauhk](https://github.com/kclauhk)
+
 ### 2026.02.21
 
 #### Important changes
