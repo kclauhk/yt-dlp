@@ -4,6 +4,50 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2026.04.06.130419
+
+#### Core changes
+- [Fix `default` extra for `ios` platforms](https://github.com/yt-dlp/yt-dlp/commit/a5aae189452d11ca731a4fb409d0136c668bd7c6) ([#16376](https://github.com/yt-dlp/yt-dlp/issues/16376)) by [bashonly](https://github.com/bashonly)
+- [Partial support IAMF format (download only, merge not supported)](https://github.com/yt-dlp/yt-dlp/commit/fafa4f877e75548aff1afb2e5be5e084d1bd58f5) by [kclauhk](https://github.com/kclauhk)
+- [Use ffprobe to check formats](https://github.com/yt-dlp/yt-dlp/commit/354830bb8a2f755185813c60c1729c9f67e83c71) by [kclauhk](https://github.com/kclauhk)
+- **update**: [Bump GitHub REST API version to `2026-03-10`](https://github.com/yt-dlp/yt-dlp/commit/fe5e67c0545a4aac9d404b220c21ba53d1048353) ([#16435](https://github.com/yt-dlp/yt-dlp/issues/16435)) by [bashonly](https://github.com/bashonly)
+
+#### Extractor changes
+- **bandcamp**: weekly: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/2d7b278666bfbf12cf287072498dd275c946b968) ([#16373](https://github.com/yt-dlp/yt-dlp/issues/16373)) by [bashonly](https://github.com/bashonly)
+- **bilibili**
+    - [Extract backup URLs](https://github.com/yt-dlp/yt-dlp/commit/f08cb008ab7688fb08eb9200a141683b189bad59) by [kclauhk](https://github.com/kclauhk)
+    - [Fix initial state extraction failure](https://github.com/yt-dlp/yt-dlp/commit/4fdc96e722b046196c4eec8b97c214855a4626fc) by [kclauhk](https://github.com/kclauhk)
+- **bluey**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/dc3fdb13d2c79599cec84c8474f0ca7bc0db9d19) by [kclauhk](https://github.com/kclauhk)
+- **extrememusic**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/fa8d49d1a36a65edc8b17f6fe500085bca50ae44) by [kclauhk](https://github.com/kclauhk)
+- **facebook**: [Rework extractor](https://github.com/yt-dlp/yt-dlp/commit/8f98c13fe7441b22ce55f840fa9d4aa1ba1f19e8) by [kclauhk](https://github.com/kclauhk)
+- **gimy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/39459186da71e8e52e2a56815d5a9382cfda42b8) by [kclauhk](https://github.com/kclauhk)
+- **giphy**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/c5b2053b230d2d7f5d3f8fb8f2b3956878d333c9) by [kclauhk](https://github.com/kclauhk)
+- **mediasite**: [Fix extractor](https://github.com/yt-dlp/yt-dlp/commit/9ee5a9ede4255f731c6ac710b0b94b09ac9fc3e2) by [kclauhk](https://github.com/kclauhk)
+- **naver**: [Change API URL & add playlist extraction](https://github.com/yt-dlp/yt-dlp/commit/cdb820aa93d4dd68733990fa88be6485908507d9) by [kclauhk](https://github.com/kclauhk)
+- **rtp**: [Support multi-part episodes and `--no-playlist`](https://github.com/yt-dlp/yt-dlp/commit/f01e1a1ced581c13f28c7da45eb6396cb9fff6e4) ([#16299](https://github.com/yt-dlp/yt-dlp/issues/16299)) by [bashonly](https://github.com/bashonly)
+- **southpark**: [Add season extractor](https://github.com/yt-dlp/yt-dlp/commit/f50ac711f8711212b3b16db622ee1c30502229c4) by [kclauhk](https://github.com/kclauhk)
+- **tiktok**: [Fix web format resolution calculation](https://github.com/yt-dlp/yt-dlp/commit/d7757f255ec4c1df8fc78eaf2a6a9df70d72c91c) by [kclauhk](https://github.com/kclauhk)
+- **vmware**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/698b95ab7db7ff5df1e192d842af8a03304561ce) by [kclauhk](https://github.com/kclauhk)
+- **youtube**
+    - [Extract translated info](https://github.com/yt-dlp/yt-dlp/commit/7b2f1795d279381c2bb1f8a495efe2d2f690bd7b) by [kclauhk](https://github.com/kclauhk)
+    - [Fix outdated quickjs-ng warning](https://github.com/yt-dlp/yt-dlp/commit/04b2261cbf1aafb964320062dbb33e74ec613291) ([#16437](https://github.com/yt-dlp/yt-dlp/issues/16437)) by [bashonly](https://github.com/bashonly)
+    - [Ignore cookies when player client does not support](https://github.com/yt-dlp/yt-dlp/commit/a40246a3eff0c9b4c20d71ff90774f72a0407f84) by [kclauhk](https://github.com/kclauhk)
+    - [Revert "Deprioritize `web_safari` m3u8 formats"](https://github.com/yt-dlp/yt-dlp/commit/9a20a0be66120c4246830b9821edc8e4101d446c) by [kclauhk](https://github.com/kclauhk)
+    - [Revoke PO token requirement of `ios`](https://github.com/yt-dlp/yt-dlp/commit/bd9c5c2ada5b5d03e492d7913ab79d4dce6104fd) by [kclauhk](https://github.com/kclauhk)
+    - [Update tests](https://github.com/yt-dlp/yt-dlp/commit/55b1c52656406a0500d7989f53dfbc5b86248266) by [kclauhk](https://github.com/kclauhk)
+
+#### Networking changes
+- **Request Handler**
+    - curl_cffi
+        - [Fix supported impersonate targets](https://github.com/yt-dlp/yt-dlp/commit/565dcfec4e5c035b5544de4a369f654b8a60e9e6) ([#16440](https://github.com/yt-dlp/yt-dlp/issues/16440)) by [bashonly](https://github.com/bashonly)
+        - [Support `curl_cffi` 0.15.x](https://github.com/yt-dlp/yt-dlp/commit/0f45ecc920f31c3c5704c62bad8da2e2844ff9bc) ([#16429](https://github.com/yt-dlp/yt-dlp/issues/16429)) by [bashonly](https://github.com/bashonly)
+
+#### Misc. changes
+- **build**: [Harden build/release workflows](https://github.com/yt-dlp/yt-dlp/commit/87eaf886f5a1fed00639baf3677ac76281cd98f9) ([#16358](https://github.com/yt-dlp/yt-dlp/issues/16358)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K) (With fixes in [cdc465a](https://github.com/yt-dlp/yt-dlp/commit/cdc465a34674d15edf52b656457f6006b9e03edf) by [bashonly](https://github.com/bashonly))
+- **devscripts**: [Handle `ejs` updates for requirements files](https://github.com/yt-dlp/yt-dlp/commit/fcccbc68496d8af1b7c24cd5e45e83af4ca76f18) ([#16374](https://github.com/yt-dlp/yt-dlp/issues/16374)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K)
+- **docs**: [Miscellaneous](https://github.com/yt-dlp/yt-dlp/commit/b1a27e9e0897c3b052fe882a51961e87026a04ac) by [kclauhk](https://github.com/kclauhk)
+- **test**: [Add default and curl-cffi extras to hatch-test env](https://github.com/yt-dlp/yt-dlp/commit/f14d2f2d548a45fef221aa3821e5a1bf450d5c0b) ([#16397](https://github.com/yt-dlp/yt-dlp/issues/16397)) by [JSubelj](https://github.com/JSubelj)
+
 ### 2026.03.17
 
 #### Extractor changes
