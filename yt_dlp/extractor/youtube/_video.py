@@ -3459,7 +3459,8 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             streaming_formats = traverse_obj(streaming_data, (('formats', 'adaptiveFormats'), ...))
 
             def get_stream_id(fmt_stream):
-                return str_or_none(fmt_stream.get('itag')), traverse_obj(fmt_stream, 'audioTrack', 'id'), fmt_stream.get('isDrc')
+                return (str_or_none(fmt_stream.get('itag')), traverse_obj(fmt_stream, 'audioTrack', 'id'),
+                        (fmt_stream.get('isDrc') and 'drc') or (fmt_stream.get('isVb') and 'vb'))
 
             def process_format_stream(fmt_stream, proto, missing_pot, super_resolution=False):
                 itag = str_or_none(fmt_stream.get('itag'))
@@ -3514,11 +3515,12 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                     'filesize': int_or_none(fmt_stream.get('contentLength')),
                     'format_id': join_nonempty(itag, (
                         'drc' if fmt_stream.get('isDrc')
+                        else 'vb' if fmt_stream.get('isVb')
                         else 'sr' if super_resolution
                         else None)),
                     'format_note': join_nonempty(
                         join_nonempty(audio_track.get('displayName'), audio_track.get('audioIsDefault') and '(default)', delim=' '),
-                        name, fmt_stream.get('isDrc') and 'DRC', super_resolution and 'AI-upscaled',
+                        name, fmt_stream.get('isDrc') and 'DRC', fmt_stream.get('isVb') and 'AI-boosted', super_resolution and 'AI-upscaled',
                         try_get(fmt_stream, lambda x: x['projectionType'].replace('RECTANGULAR', '').lower()),
                         try_get(fmt_stream, lambda x: x['spatialAudioType'].replace('SPATIAL_AUDIO_TYPE_', '').lower()),
                         is_damaged and 'DAMAGED', missing_pot and 'MISSING POT',
@@ -3529,7 +3531,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                     'fps': fps if fps > 1 else None,  # For some formats, fps is wrongly returned as 1
                     'audio_channels': fmt_stream.get('audioChannels'),
                     'height': height,
-                    'quality': q(quality) - bool(fmt_stream.get('isDrc')) / 2,
+                    'quality': q(quality) - bool(fmt_stream.get('isDrc', fmt_stream.get('isVb'))) / 2,
                     'has_drm': has_drm,
                     'tbr': tbr,
                     'filesize_approx': filesize_from_tbr(tbr, format_duration),
