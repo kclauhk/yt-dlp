@@ -66,6 +66,15 @@ secretstorage = [
 deno = [
     "deno>=2.6.6",
 ]
+nodriver = [
+    "nodriver==0.47.0",
+]
+pin-nodriver = [
+    "deprecated==1.3.1",
+    "mss==10.2.0",
+    "nodriver==0.47.0",
+    "wrapt==2.1.2",
+]
 pin = [
     "brotli==1.2.0 ; implementation_name == 'cpython' and sys_platform != 'ios'",
     "brotlicffi==1.2.0.1 ; implementation_name != 'cpython'",
@@ -191,6 +200,7 @@ pattern = "_pkg_version = '(?P<version>[^']+)'"
 features = [
     "curl-cffi",
     "default",
+    "nodriver",
 ]
 dependencies = [
     "pre-commit",
@@ -211,6 +221,7 @@ dependencies = [
 detached = true
 dependency-groups = [
     "static-analysis",
+    "nodriver",
 ]
 dependencies = []  # override hatch ruff version
 config-path = "pyproject.toml"
@@ -225,6 +236,7 @@ lint-fix = "ruff check --fix {args:.}"
 features = [
     "curl-cffi",
     "default",
+    "nodriver",
 ]
 dependency-groups = [
     "test",
