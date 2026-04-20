@@ -44,6 +44,7 @@ PINNED_EXTRAS = {
     'pin-curl-cffi': 'curl-cffi',
     'pin-secretstorage': 'secretstorage',
     'pin-deno': 'deno',
+    'pin-nodriver': 'nodriver',
 }
 
 EJS_ASSETS = {
@@ -75,18 +76,18 @@ class Target:
 
 BUNDLE_TARGETS = {
     'default': Target(
-        extras=['default'],
+        extras=['default', 'nodriver'],
         # PyPy bundles cffi, which is a transitive dep of brotlicffi, which is only required for PyPy
         prune_packages=['cffi'],
     ),
     'curl-cffi': Target(
-        extras=['default', 'curl-cffi'],
+        extras=['default', 'curl-cffi', 'nodriver'],
     ),
     'linux': Target(
-        extras=['default', 'curl-cffi', 'secretstorage'],
+        extras=['default', 'curl-cffi', 'secretstorage', 'nodriver'],
     ),
     'macos': Target(
-        extras=['default', 'curl-cffi'],
+        extras=['default', 'curl-cffi', 'nodriver'],
         # NB: Resolve delocate and PyInstaller together since they share dependencies
         groups=['delocate', 'pyinstaller'],
         # curl-cffi and cffi don't provide universal2 wheels, so only directly install their deps
@@ -94,7 +95,7 @@ BUNDLE_TARGETS = {
     ),
     # We fuse our own universal2 wheels for curl-cffi+cffi, so we need a separate requirements file
     'macos-curl_cffi': Target(
-        extras=['curl-cffi'],
+        extras=['curl-cffi', 'nodriver'],
         # Only need curl-cffi+cffi in this requirements file; their deps are installed directly
         # XXX: Try to keep these in sync with curl-cffi's and cffi's transitive dependencies
         prune_packages=['rich'],
