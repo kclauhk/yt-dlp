@@ -27,6 +27,7 @@ from ..utils import (
     get_element_by_class,
     int_or_none,
     join_nonempty,
+    jwt_decode_hs256,
     make_archive_id,
     merge_dicts,
     mimetype2ext,
@@ -51,6 +52,9 @@ class BilibiliBaseIE(InfoExtractor):
     _FORMAT_ID_RE = re.compile(r'-(\d+)\.m4s\?')
     _WBI_KEY_CACHE_TIMEOUT = 30  # exact expire timeout is unclear, use 30s for one session
     _wbi_key_cache = {}
+    _CHALLENGE_COOKIE = 'X-BILI-SEC-TOKEN'
+    _CACHE_NAME = 'bilibili_data'
+    _CACHE_KEY = 'bili_sec_token'
 
     @property
     def is_logged_in(self):
@@ -219,6 +223,72 @@ class BilibiliBaseIE(InfoExtractor):
                 'of': get_of(random.randint(0, 100), 0),
             }, separators=(',', ':')),
         }
+
+    # Source https://security.bilibili.com/static/js/412.js
+    def bili_challenge_result(self, data, video_id, limit=5_000_000):
+        if int(data.get('type')) != 1:
+            return False
+        final_hash = data.get('r')
+        q = data.get('q')
+        for i in map(str, range(limit)):
+            data_hash = hashlib.sha256((q + i).encode()).hexdigest()
+            if data_hash == final_hash:
+                self.to_screen(f'{video_id}: Generated result {i}')
+                return i
+        return None
+
+    def _is_jwt_expired(self, token):
+        return jwt_decode_hs256(token)['exp'] - time.time() < 300
+
+    def _get_and_set_bili_sec_token(self, token=None, use_cache=False):
+        if token:
+            if use_cache:
+                self.cache.store(self._CACHE_NAME, self._CACHE_KEY, token)
+            return self._set_cookie('www.bilibili.com', self._CHALLENGE_COOKIE, token)
+
+        if use_cache:
+            if cached := self.cache.load(self._CACHE_NAME, self._CACHE_KEY, default=None):
+                token = cached.split(',', 1)[-1]
+                if not self._is_jwt_expired(token):
+                    return cached
+            return None
+
+        bili_cookie = self._get_cookies('https://www.bilibili.com').get(self._CHALLENGE_COOKIE)
+        if not bili_cookie:
+            return None
+        return bili_cookie.value.split(',', 1)[-1]
+
+    def _download_webpage_handle(self, url_or_request, video_id, note=None, headers=None, data=None, **kwargs):
+        try:
+            return super()._download_webpage_handle(url_or_request, video_id, note, data=data, headers=headers, **kwargs)
+        except ExtractorError as e:
+            if isinstance(e.cause, HTTPError) and e.cause.status == 412:
+                bili_token = self._get_and_set_bili_sec_token()
+                if bili_token:
+                    self.to_screen(f'{video_id}: Received a bilibili challenge')
+                    if cached_token := self._get_and_set_bili_sec_token(use_cache=True):
+                        self.to_screen(f'{video_id}: Using cached bili sec token')
+                        self._get_and_set_bili_sec_token(cached_token, use_cache=False)
+                        return super()._download_webpage_handle(url_or_request, video_id, note, data=data, headers=headers, **kwargs)
+
+                    bili_token_data = jwt_decode_hs256(bili_token)
+                    challenge = self._download_json(
+                        'https://security.bilibili.com/th/captcha/cc/check',
+                        None, f'{video_id}: Submitting challenge',
+                        errnote=f'{video_id}: Unable to solve challenge',
+                        data=urlencode_postdata({
+                            'token': bili_token,
+                            'result': self.bili_challenge_result(bili_token_data, video_id),
+                        }),
+                        headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                    )
+                    new_bili_token = challenge.get('message')
+                    if int(challenge.get('code')) != 0:
+                        raise ExtractorError(f'Failed to solve challenge: api says {new_bili_token}')
+                    self._get_and_set_bili_sec_token(new_bili_token, use_cache=True)
+                    return super()._download_webpage_handle(url_or_request, video_id, note, data=data, headers=headers, **kwargs)
+                raise
+            raise
 
     def _download_playinfo(self, bvid, cid, headers=None, query=None, fatal=True):
         params = {
