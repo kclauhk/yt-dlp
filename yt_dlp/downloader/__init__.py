@@ -1,10 +1,13 @@
-from ..utils import NO_DEFAULT, determine_protocol
+from ..utils import NO_DEFAULT, determine_protocol, traverse_obj
 
 
 def get_suitable_downloader(info_dict, params={}, default=NO_DEFAULT, protocol=None, to_stdout=False):
     info_dict['protocol'] = determine_protocol(info_dict)
     info_copy = info_dict.copy()
     info_copy['to_stdout'] = to_stdout
+
+    if traverse_obj(info_dict, ('downloader_options', 'preprocessor', 'key', {str})):
+        return preprocessorFD
 
     protocols = (protocol or info_copy['protocol']).split('+')
     downloaders = [_get_suitable_downloader(info_copy, proto, params, default) for proto in protocols]
@@ -31,6 +34,7 @@ from .http import HttpFD
 from .ism import IsmFD
 from .mhtml import MhtmlFD
 from .niconico import NiconicoLiveFD
+from .preprocessor import preprocessorFD
 from .rtmp import RtmpFD
 from .websocket import WebSocketFragmentFD
 from .youtube_live_chat import YoutubeLiveChatFD
