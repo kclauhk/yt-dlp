@@ -829,6 +829,10 @@ class InfoExtractor:
         """Real extraction process. Redefine in subclasses."""
         raise NotImplementedError('This method must be implemented by subclasses')
 
+    def _before_download(self, info_dict, *args, **kwargs):
+        """Process before download. Redefine in subclasses."""
+        pass
+
     @classmethod
     def ie_key(cls):
         """A string for getting the InfoExtractor with get_info_extractor"""
