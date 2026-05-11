@@ -3286,6 +3286,14 @@ class YoutubeDL:
         if self.params.get('forcejson'):
             self.to_stdout(json.dumps(self.sanitize_info(info_dict)))
 
+    def before_download(self, info, subtitle=False, test=False):
+        """ Run extractor's _before_download prior to invoking file downloader """
+        if ie := traverse_obj(dict(reversed(self._ies_instances.items())),
+                              (..., {object}), get_all=False):
+            if callable(getattr(ie, '_before_download', None)):
+                return ie._before_download(info, subtitle, test)
+        return info
+
     def dl(self, name, info, subtitle=False, test=False):
         if not info.get('url'):
             self.raise_no_formats(info, True)
@@ -3307,6 +3315,7 @@ class YoutubeDL:
         else:
             params = self.params
 
+        info = self.before_download(info, subtitle, test)
         fd = get_suitable_downloader(info, params, to_stdout=(name == '-'))(self, params)
         if not test:
             for ph in self._progress_hooks:
