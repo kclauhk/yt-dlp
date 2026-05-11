@@ -3301,6 +3301,9 @@ class YoutubeDL:
         else:
             params = self.params
 
+        if ie := traverse_obj(self._ies_instances, (..., {object}), get_all=False):
+            ie._before_download(info, subtitle=subtitle, test=test)
+
         fd = get_suitable_downloader(info, params, to_stdout=(name == '-'))(self, params)
         if not test:
             for ph in self._progress_hooks:
