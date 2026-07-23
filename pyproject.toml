@@ -134,6 +134,16 @@ pip = [
 uv = [
     "uv>=0.10",
 ]
+nodriver = [
+    "deprecated==1.3.1",
+    "mss==10.2.0",
+    "nodriver==0.47.0",
+    "wrapt==2.2.2",
+]
+opencv-python = [
+    "numpy",
+    "opencv-python==4.9.0.80",
+]
 
 [project.urls]
 Documentation = "https://github.com/yt-dlp/yt-dlp#readme"
