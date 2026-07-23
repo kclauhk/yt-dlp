@@ -348,6 +348,18 @@ jobs:
               -d build/wheels \
                --require-hashes \
               -r "bundle/requirements/macos-curl_cffi.txt"
+            python3 -m pip download \
+              --no-deps \
+              --only-binary=:all: \
+              --platform "${platform}" \
+              -d build/wheels \
+              numpy
+            python3 -m pip download \
+              --no-deps \
+              --only-binary=:all: \
+              --platform "${platform}" \
+              -d build/wheels \
+              opencv-python
           done
           python3 -m delocate.cmd.delocate_merge build/wheels/curl_cffi-*.whl -w build/universal2
           python3 -m delocate.cmd.delocate_merge build/wheels/cffi-*.whl -w build/universal2
@@ -462,6 +474,9 @@ jobs:
             python -m pip install -U --require-hashes -r "bundle/requirements/default.txt"
           } else {
             python -m pip install -U --require-hashes -r "bundle/requirements/curl-cffi.txt"
+          }
+          if (${Env:ARCH} -ne "arm64") {
+            python -m pip install -U --require-hashes -r "bundle/requirements/opencv-python.txt"
           }
 
       - name: Prepare
