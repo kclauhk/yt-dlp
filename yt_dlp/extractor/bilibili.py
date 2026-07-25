@@ -122,27 +122,37 @@ class BilibiliBaseIE(InfoExtractor):
         if formats:
             self._check_missing_formats(play_info, formats)
 
-        fragments = traverse_obj(play_info, ('durl', lambda _, v: url_or_none(v['url']), {
-            'url': ('url', {url_or_none}),
-            'duration': ('length', {float_or_none(scale=1000)}),
-            'filesize': ('size', {int_or_none}),
-        }))
-        if fragments:
-            formats.append({
-                'url': fragments[0]['url'],
-                'filesize': sum(traverse_obj(fragments, (..., 'filesize'))),
-                **({
-                    'fragments': fragments,
-                    'protocol': 'http_dash_segments',
-                } if len(fragments) > 1 else {}),
-                **traverse_obj(play_info, {
-                    'quality': ('quality', {int_or_none}),
-                    'format_id': ('quality', {str_or_none}),
-                    'format_note': ('quality', {format_names.get}),
-                    'duration': ('timelength', {float_or_none(scale=1000)}),
-                }),
-                **parse_resolution(traverse_obj(play_info, ('quality', {format_names.get}))),
-            })
+        for fmt in play_info.get('durls', [play_info] if play_info.get('durl') else []):
+            for fragments in [
+                    traverse_obj(fmt, (
+                        'durl', lambda _, v: url_or_none(v['url']), {
+                            'url': ('url', {url_or_none}),
+                            'duration': ('length', {float_or_none(scale=1000)}),
+                            'filesize': ('size', {int_or_none}),
+                        })),
+                    *[traverse_obj(fmt, (
+                        'durl', lambda _, v: traverse_obj(v, ('backup_url', i, {url_or_none})), {
+                            'url': ('backup_url', i, {url_or_none}),
+                            'duration': ('length', {float_or_none(scale=1000)}),
+                            'filesize': ('size', {int_or_none}),
+                        })) for i in range(len(traverse_obj(fmt, ('durl', 0, 'backup_url')) or []))
+                      ]][::-1]:
+                if fragments:
+                    formats.append({
+                        'url': fragments[0]['url'],
+                        'filesize': sum(traverse_obj(fragments, (..., 'filesize'))),
+                        **({
+                            'fragments': fragments,
+                            'protocol': 'http_dash_segments',
+                        } if len(fragments) > 1 else {}),
+                        **traverse_obj(fmt, {
+                            'quality': ('quality', {int_or_none}),
+                            'format_id': ('quality', {str_or_none}),
+                            'format_note': ('quality', {format_names.get}),
+                            'duration': ('timelength', {float_or_none(scale=1000)}),
+                        }),
+                        **parse_resolution(traverse_obj(fmt, ('quality', {format_names.get}))),
+                    })
         return formats
 
     def _get_wbi_key(self, video_id):
