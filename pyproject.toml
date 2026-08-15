@@ -133,6 +133,12 @@ pip = [
 uv = [
     "uv>=0.10",
 ]
+drissionpage = [
+    "DrissionPage",
+]
+macos-psutil = [
+    "psutil ; sys_platform == 'darwin'",
+]
 
 [project.urls]
 Documentation = "https://github.com/yt-dlp/yt-dlp#readme"
