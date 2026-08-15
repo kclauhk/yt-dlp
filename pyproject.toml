@@ -124,6 +124,9 @@ pyinstaller = [
 delocate = [
     "delocate>=0.13.0 ; sys_platform == 'darwin'",
 ]
+drissionpage = [
+    "DrissionPage==4.1.1.4",
+]
 pyflakes = [
     "pyflakes~=3.4.0",
 ]
