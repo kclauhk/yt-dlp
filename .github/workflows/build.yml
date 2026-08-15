@@ -349,9 +349,31 @@ jobs:
                --require-hashes \
               -r "bundle/requirements/macos-curl_cffi.txt"
           done
+          # Only directly install wheels for "macosx_11_0_arm64" and "macosx_10_15_x86_64" platforms
+          for platform in "macosx_11_0_arm64" "macosx_10_15_x86_64"; do
+            python3 -m pip download \
+              --no-deps \
+              --only-binary=:all: \
+              --platform "${platform}" \
+              -d build/wheels \
+               --require-hashes \
+              -r "bundle/requirements/macos-psutil.txt"
+          done
           python3 -m delocate.cmd.delocate_merge build/wheels/curl_cffi-*.whl -w build/universal2
           python3 -m delocate.cmd.delocate_merge build/wheels/cffi-*.whl -w build/universal2
-          python3 -m pip install --force-reinstall --no-deps -U build/universal2/{curl_,}cffi-*.whl
+          python3 -m delocate.cmd.delocate_merge build/wheels/psutil-*.whl -w build/universal2
+          # Only directly install wheels for "macosx_10_15_universal2" and "any" platforms
+          python3 -m pip download \
+            --only-binary=:all: \
+            --platform=macosx_10_15_universal2 \
+            --platform=macosx_11_0_arm64 \
+            --platform=any \
+            -d build/wheels \
+            --require-hashes \
+            -r "bundle/requirements/drissionpage.txt"
+          mv build/wheels/*-any.whl build/universal2/
+          mv build/wheels/*_universal2.whl build/universal2/
+          python3 -m pip install --force-reinstall --no-deps -U build/universal2/*.whl
           rm -rf build
 
       - name: Prepare
@@ -463,6 +485,7 @@ jobs:
           } else {
             python -m pip install -U --require-hashes -r "bundle/requirements/curl-cffi.txt"
           }
+          python -m pip install -U --require-hashes -r "bundle/requirements/drissionpage.txt"
 
       - name: Prepare
         shell: pwsh
