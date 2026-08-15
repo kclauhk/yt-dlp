@@ -479,6 +479,7 @@ jobs:
           } else {
             python -m pip install -U --require-hashes -r "bundle/requirements/curl-cffi.txt"
           }
+          python -m pip install -U --require-hashes -r "bundle/requirements/drissionpage.txt"
 
       - name: Prepare
         shell: pwsh
