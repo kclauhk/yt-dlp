@@ -352,6 +352,19 @@ jobs:
           python3 -m delocate.cmd.delocate_merge build/wheels/curl_cffi-*.whl -w build/universal2
           python3 -m delocate.cmd.delocate_merge build/wheels/cffi-*.whl -w build/universal2
           python3 -m pip install --force-reinstall --no-deps -U build/universal2/{curl_,}cffi-*.whl
+          rm -rf build/wheels/*
+          python3 -m pip install "git+https://github.com/giampaolo/psutil.git@v7.2.2"
+          # Only directly install wheels for "macosx_10_15_universal2" and "any" platforms
+          python3 -m pip download \
+            --only-binary=:all: \
+            --platform=macosx_10_15_universal2 \
+            --platform=macosx_11_0_arm64 \
+            --platform=any \
+            -d build/wheels \
+            --require-hashes \
+            -r "bundle/requirements/drissionpage.txt"
+          python3 -m pip install -U build/wheels/*_universal2.whl
+          python3 -m pip install -U build/wheels/*-any.whl
           rm -rf build
 
       - name: Prepare
@@ -463,6 +476,7 @@ jobs:
           } else {
             python -m pip install -U --require-hashes -r "bundle/requirements/curl-cffi.txt"
           }
+          python -m pip install -U --require-hashes -r "bundle/requirements/drissionpage.txt"
 
       - name: Prepare
         shell: pwsh
