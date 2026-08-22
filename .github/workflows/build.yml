@@ -343,6 +343,13 @@ jobs:
             -d build/wheels \
             --require-hashes \
             -r "bundle/requirements/macos.txt"
+          python3 -m pip download \
+            --only-binary=:all: \
+            --platform=macosx_10_15_universal2 \
+            --platform=any \
+            -d build/wheels \
+            --require-hashes \
+            -r "bundle/requirements/nodriver.txt"
           python3 -m pip install --force-reinstall --no-deps -U build/wheels/*.whl
           rm -rf build/wheels/*
           # We need to fuse our own universal2 wheels for curl_cffi and cffi
@@ -359,6 +366,7 @@ jobs:
           python3 -m delocate.cmd.delocate_merge build/wheels/curl_cffi-*.whl -w build/universal2
           python3 -m delocate.cmd.delocate_merge build/wheels/cffi-*.whl -w build/universal2
           python3 -m pip install --force-reinstall --no-deps -U build/universal2/{curl_,}cffi-*.whl
+          python3 -m pip install --no-deps "git+https://github.com/omegastrux/nodriver-cf-verify.git"
           rm -rf build
 
       - name: Prepare
@@ -468,6 +476,8 @@ jobs:
           } else {
             python -m pip install -U --require-hashes -r "bundle/requirements/curl-cffi.txt"
           }
+          python -m pip install -U --require-hashes -r "bundle/requirements/nodriver.txt"
+          python -m pip install --no-deps "git+https://github.com/omegastrux/nodriver-cf-verify.git"
 
       - name: Prepare
         shell: pwsh
