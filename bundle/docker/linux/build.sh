@@ -16,6 +16,7 @@ source .venv/bin/activate
 
 python -m pip install -U --require-hashes -r "bundle/requirements/pyinstaller.txt"
 python -m pip install -U --require-hashes -r "bundle/requirements/${REQUIREMENTS}.txt"
+python -m pip install -U --require-hashes -r "bundle/requirements/drissionpage.txt"
 python -m devscripts.make_lazy_extractors
 python devscripts/update-version.py -c "${CHANNEL}" -r "${ORIGIN}" "${VERSION}"
 
