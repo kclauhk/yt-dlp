@@ -330,12 +330,13 @@ class BilibiliBaseIE(InfoExtractor):
                 lambda _, v: url_or_none(v['share_url']) and v['id'])):
             yield self.url_result(entry['share_url'], BiliBiliBangumiIE, str_or_none(entry.get('id')))
 
-    def _get_divisions(self, video_id, graph_version, edges, edge_id, cid_edges=None):
+    def _get_divisions(self, video_id, graph_version, edges, edge_id, cid_edges):
         cid_edges = cid_edges or {}
         division_data = self._download_json(
             'https://api.bilibili.com/x/stein/edgeinfo_v2', video_id,
             query={'graph_version': graph_version, 'edge_id': edge_id, 'bvid': video_id},
             note=f'Extracting divisions from edge {edge_id}')
+        edge_id = division_data['data']['edge_id']
         edges.setdefault(edge_id, {}).update(
             traverse_obj(division_data, ('data', 'story_list', lambda _, v: v['edge_id'] == edge_id, {
                 'title': ('title', {str}),
@@ -355,7 +356,7 @@ class BilibiliBaseIE(InfoExtractor):
         for choice in traverse_obj(edges, (edge_id, 'choices', ...)):
             if choice['edge_id'] not in edges:
                 edges[choice['edge_id']] = {'cid': choice['cid']}
-                self._get_divisions(video_id, graph_version, edges, choice['edge_id'], cid_edges=cid_edges)
+                self._get_divisions(video_id, graph_version, edges, choice['edge_id'], cid_edges)
         return cid_edges
 
     def _get_interactive_entries(self, video_id, cid, metainfo, headers=None):
@@ -364,7 +365,7 @@ class BilibiliBaseIE(InfoExtractor):
                 'https://api.bilibili.com/x/player/wbi/v2', video_id,
                 'Extracting graph version', query={'bvid': video_id, 'cid': cid}, headers=headers),
             ('data', 'interaction', 'graph_version', {int_or_none}))
-        cid_edges = self._get_divisions(video_id, graph_version, {1: {'cid': cid}}, 1)
+        cid_edges = self._get_divisions(video_id, graph_version, {}, '', {})
         for cid, edges in cid_edges.items():
             play_info = self._download_playinfo(video_id, cid, headers=headers, query={'try_look': 1})
             yield {
