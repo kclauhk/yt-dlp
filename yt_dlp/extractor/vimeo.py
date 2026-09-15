@@ -72,7 +72,7 @@ class VimeoBaseInfoExtractor(InfoExtractor):
         },
         'web': {
             'CACHE_ONLY': False,
-            'REQUIRES_AUTH': True,
+            'REQUIRES_AUTH': False,
             'USER_AGENT': None,
             'VIDEOS_FIELDS': (
                 'config_url', 'created_time', 'description', 'license',
@@ -402,6 +402,7 @@ class VimeoBaseInfoExtractor(InfoExtractor):
                 'User-Agent': client_config['USER_AGENT'],
                 **self._CLIENT_HEADERS,
             }), query={
+                'anon_signature': 'c95581c8ad3575a2f6a8e37767b6e44c29c83008a1fd0bdb81085239556cb25a_1788691328418',
                 'fields': ','.join(client_config['VIDEOS_FIELDS']),
                 **(query or {}),
             }, **kwargs)
