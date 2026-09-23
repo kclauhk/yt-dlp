@@ -99,7 +99,7 @@ services:
       platforms:
         - "linux/arm/v7"
       args:
-        VERIFYIMAGE: arm32v7/debian:bullseye@sha256:9d544bf6ff73e36b8df1b7e415f6c8ee40ed84a0f3a26970cac8ea88b0ccf2ac
+        VERIFYIMAGE: arm32v7/debian:trixie
     environment:
       EXE_NAME: ${EXE_NAME:?}
       UPDATE_TO:
