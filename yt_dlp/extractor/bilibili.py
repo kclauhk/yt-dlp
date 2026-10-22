@@ -462,7 +462,7 @@ class BilibiliBaseIE(InfoExtractor):
 
 
 class BiliBiliIE(BilibiliBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:video/|festival/[^/?#]+\?(?:[^#]*&)?bvid=)(?P<prefix>[aAbB][vV])(?P<id>[^/?#&]+)'
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?(?:video/|festival/[^/?#]+\?(?:[^#]*&)?bvid=)(?P<prefix>[aAbB][vV])(?P<id>[^/?#&]+)'
 
     _TESTS = [{
         'url': 'https://www.bilibili.com/video/BV13x41117TL',
@@ -992,7 +992,7 @@ class BiliBiliIE(BilibiliBaseIE):
 
 
 class BiliBiliBangumiIE(BilibiliBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/bangumi/play/ep(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?bangumi/play/ep(?P<id>\d+)'
 
     _TESTS = [{
         'url': 'https://www.bilibili.com/bangumi/play/ep21495/',
@@ -1176,7 +1176,7 @@ class BiliBiliBangumiIE(BilibiliBaseIE):
 
 
 class BiliBiliBangumiMediaIE(BilibiliBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/bangumi/media/md(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?bangumi/media/md(?P<id>\d+)'
     _TESTS = [{
         'url': 'https://www.bilibili.com/bangumi/media/md24097891',
         'info_dict': {
@@ -1232,7 +1232,7 @@ class BiliBiliBangumiMediaIE(BilibiliBaseIE):
 
 
 class BiliBiliBangumiSeasonIE(BilibiliBaseIE):
-    _VALID_URL = r'(?x)https?://(?:www\.)?bilibili\.com/bangumi/play/ss(?P<id>\d+)'
+    _VALID_URL = r'(?x)https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?bangumi/play/ss(?P<id>\d+)'
     _TESTS = [{
         'url': 'https://www.bilibili.com/bangumi/play/ss26801',
         'info_dict': {
@@ -1333,7 +1333,7 @@ class BilibiliCheeseBaseIE(BilibiliBaseIE):
 
 
 class BilibiliCheeseIE(BilibiliCheeseBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/cheese/play/ep(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?cheese/play/ep(?P<id>\d+)'
     _TESTS = [{
         'url': 'https://www.bilibili.com/cheese/play/ep229832',
         'info_dict': {
@@ -1360,7 +1360,7 @@ class BilibiliCheeseIE(BilibiliCheeseBaseIE):
 
 
 class BilibiliCheeseSeasonIE(BilibiliCheeseBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/cheese/play/ss(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?cheese/play/ss(?P<id>\d+)'
     _TESTS = [{
         'url': 'https://www.bilibili.com/cheese/play/ss5918',
         'info_dict': {
@@ -1427,7 +1427,7 @@ class BilibiliSpaceBaseIE(BilibiliBaseIE):
 
 
 class BilibiliSpaceVideoIE(BilibiliSpaceBaseIE):
-    _VALID_URL = r'https?://space\.bilibili\.com/(?P<id>\d+)(?P<video>(?:/upload)?/video)?/?(?:[?#]|$)'
+    _VALID_URL = r'https?://space\.bilibili\.com/(?:[^/]+?/)?(?P<id>\d+)(?P<video>(?:/upload)?/video)?/?(?:[?#]|$)'
     _TESTS = [{
         'url': 'https://space.bilibili.com/3985676/video',
         'info_dict': {
@@ -1531,7 +1531,7 @@ class BilibiliSpaceVideoIE(BilibiliSpaceBaseIE):
 
 
 class BilibiliSpaceAudioIE(BilibiliSpaceBaseIE):
-    _VALID_URL = r'https?://space\.bilibili\.com/(?P<id>\d+)/(?:upload/)?audio'
+    _VALID_URL = r'https?://space\.bilibili\.com/(?:[^/]+?/)?(?P<id>\d+)/(?:upload/)?audio'
     _TESTS = [{
         'url': 'https://space.bilibili.com/313580179/upload/audio',
         'info_dict': {
@@ -1584,8 +1584,8 @@ class BilibiliSpaceListBaseIE(BilibiliSpaceBaseIE):
 
 class BilibiliCollectionListIE(BilibiliSpaceListBaseIE):
     _VALID_URL = [
-        r'https?://space\.bilibili\.com/(?P<mid>\d+)/channel/collectiondetail/?\?sid=(?P<sid>\d+)',
-        r'https?://space\.bilibili\.com/(?P<mid>\d+)/lists/(?P<sid>\d+)',
+        r'https?://space\.bilibili\.com/(?:[^/]+?/)?(?P<mid>\d+)/channel/collectiondetail/?\?sid=(?P<sid>\d+)',
+        r'https?://space\.bilibili\.com/(?:[^/]+?/)?(?P<mid>\d+)/lists/(?P<sid>\d+)',
     ]
     _TESTS = [{
         'url': 'https://space.bilibili.com/2142762/lists/3662502?type=season',
@@ -1647,8 +1647,8 @@ class BilibiliCollectionListIE(BilibiliSpaceListBaseIE):
 
 class BilibiliSeriesListIE(BilibiliSpaceListBaseIE):
     _VALID_URL = [
-        r'https?://space\.bilibili\.com/(?P<mid>\d+)/channel/seriesdetail/?\?\bsid=(?P<sid>\d+)',
-        r'https?://space\.bilibili\.com/(?P<mid>\d+)/lists/(?P<sid>\d+)/?\?(?:[^#]+&)?type=series(?:[&#]|$)',
+        r'https?://space\.bilibili\.com/(?:[^/]+?/)?(?P<mid>\d+)/channel/seriesdetail/?\?\bsid=(?P<sid>\d+)',
+        r'https?://space\.bilibili\.com/(?:[^/]+?/)?(?P<mid>\d+)/lists/(?P<sid>\d+)/?\?(?:[^#]+&)?type=series(?:[&#]|$)',
     ]
     _TESTS = [{
         'url': 'https://space.bilibili.com/1958703906/lists/547718?type=series',
@@ -1706,7 +1706,7 @@ class BilibiliSeriesListIE(BilibiliSpaceListBaseIE):
 
 
 class BilibiliFavoritesListIE(BilibiliSpaceListBaseIE):
-    _VALID_URL = r'https?://(?:space\.bilibili\.com/\d+/favlist/?\?fid=|(?:www\.)?bilibili\.com/medialist/detail/ml)(?P<id>\d+)'
+    _VALID_URL = r'https?://(?:space\.bilibili\.com/(?:[^/]+?/)?\d+/favlist/?\?fid=|(?:www\.)?bilibili\.com/medialist/detail/ml)(?P<id>\d+)'
     _TESTS = [{
         'url': 'https://space.bilibili.com/84912/favlist?fid=1103407912&ftype=create',
         'info_dict': {
@@ -1778,7 +1778,7 @@ class BilibiliWatchlaterIE(BilibiliSpaceListBaseIE):
 
 
 class BilibiliPlaylistIE(BilibiliSpaceListBaseIE):
-    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:medialist/play|list)/(?P<id>\w+)'
+    _VALID_URL = r'https?://(?:www\.)?bilibili\.com/(?:[^/]+?/)?(?:medialist/play|list)/(?P<id>\w+)'
     _TESTS = [{
         'url': 'https://www.bilibili.com/list/1958703906?sid=547718',
         'info_dict': {
