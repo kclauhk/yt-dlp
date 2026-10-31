@@ -72,7 +72,7 @@ class VimeoBaseInfoExtractor(InfoExtractor):
         },
         'web': {
             'CACHE_ONLY': False,
-            'REQUIRES_AUTH': True,
+            'REQUIRES_AUTH': False,
             'USER_AGENT': None,
             'VIDEOS_FIELDS': (
                 'config_url', 'created_time', 'description', 'license',
@@ -391,9 +391,12 @@ class VimeoBaseInfoExtractor(InfoExtractor):
         if client_config['REQUIRES_AUTH'] and not self._is_logged_in:
             self.raise_login_required(f'The {client} client only works when logged-in')
 
+        sig = (self._configuration_arg('sig', [None], ie_key=VimeoIE)[0]
+               or 'b3566da60bde6e3fe98929b713d237bc5ba317f08c90e342065ddfcba74d0d75_1793436903171')
+
         return self._download_json(
             join_nonempty(
-                'https://api.vimeo.com/videos',
+                'https://vimeo.com/api/v3/videos',
                 join_nonempty(video_id, unlisted_hash, delim=':'),
                 path, delim='/'),
             video_id, f'Downloading {client} API JSON', f'Unable to download {client} API JSON',
@@ -402,6 +405,7 @@ class VimeoBaseInfoExtractor(InfoExtractor):
                 'User-Agent': client_config['USER_AGENT'],
                 **self._CLIENT_HEADERS,
             }), query={
+                'anon_signature': sig,
                 'fields': ','.join(client_config['VIDEOS_FIELDS']),
                 **(query or {}),
             }, **kwargs)
