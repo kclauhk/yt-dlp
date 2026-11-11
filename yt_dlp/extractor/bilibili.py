@@ -2733,8 +2733,16 @@ class BiliLiveIE(InfoExtractor):
                 yield {
                     'url': f'{url_info["host"]}{codec["base_url"]}{url_info["extra"]}',
                     'ext': fmt.get('format_name'),
-                    'vcodec': codec.get('codec_name'),
                     'quality': self._quality(qn),
+                    **traverse_obj(codec.get('media_info'), {
+                        'width': ('width', {int_or_none}),
+                        'height': ('height', {int_or_none}),
+                    }),
+                    **traverse_obj(codec, {
+                        'vcodec': ('video_codecs', 'base', {str_or_none},
+                                   {lambda v: v or codec.get('codec_name')}),
+                        'acodec': ('audio_codecs', 'base', {str_or_none}),
+                    }),
                     **self._FORMATS[qn],
                 }
 
