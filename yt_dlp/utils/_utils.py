@@ -5107,7 +5107,7 @@ class Namespace(types.SimpleNamespace):
 
 MEDIA_EXTENSIONS = Namespace(
     common_video=('avi', 'flv', 'mkv', 'mov', 'mp4', 'webm'),
-    video=('3g2', '3gp', 'f4v', 'mk3d', 'divx', 'mpg', 'ogv', 'm4v', 'wmv'),
+    video=('3g2', '3gp', 'f4v', 'fmp4', 'mk3d', 'divx', 'mpg', 'ogv', 'm4v', 'wmv'),
     common_audio=('aiff', 'alac', 'flac', 'm4a', 'mka', 'mp3', 'ogg', 'opus', 'wav'),
     audio=('aac', 'ape', 'asf', 'f4a', 'f4b', 'm4b', 'm4r', 'oga', 'ogx', 'spx', 'vorbis', 'wma', 'weba'),
     thumbnails=('jpg', 'png', 'webp'),
